@@ -1,0 +1,337 @@
+/* green color scheme */
+
+.green-color-scheme
+
+.green-color-scheme .wpb_carousel .wpb_thumbnails-fluid li a.link_image:hover,
+.green-color-scheme .wpb_teaser_grid ul .isotope-item a.link_image:hover,
+.green-color-scheme .mobera-fastflickrwidget.widget a:hover,
+.green-color-scheme .featured_apps_container .app-content-overlay {
+	background-color: rgba(41,142,110, 0.7);
+}
+
+.green-color-scheme .sidr .current-menu-item a,
+.green-color-scheme .sidr ul li:hover>a,
+.green-color-scheme .sidr ul li:hover>span,
+.green-color-scheme .sidr ul li.active>a,
+.green-color-scheme .sidr ul li.active>span,
+.green-color-scheme .sidr ul li.sidr-class-active>a,
+.green-color-scheme .sidr ul li.sidr-class-active>span,
+.green-color-scheme .sidr ul li ul li:hover>a,
+.green-color-scheme .sidr ul li ul li:hover>span,
+.green-color-scheme .sidr ul li ul li.active>a,
+.green-color-scheme .sidr ul li ul li.active>span,
+.green-color-scheme .sidr ul li ul li.sidr-class-active>a,
+.green-color-scheme .sidr ul li ul li.sidr-class-active>span,
+.green-color-scheme .mobera-contactform.widget .submitButton input[type=submit]:hover,
+.green-color-scheme .mobera-contactform.widget .submitButton input[type=submit],
+html .green-color-scheme .main-inner a.store_button,
+.green-color-scheme .ac-device nav span:hover,
+.green-color-scheme .wpcf7 .wpcf7-submit,
+.green-color-scheme .wpcf7 .wpcf7-submit:hover,
+.green-color-scheme .mp-menu .nav li.current-menu-ancestor > a,
+.green-color-scheme .mp-menu .nav li.current-menu-parent > a,
+.green-color-scheme .mp-menu .nav li.current-menu-item > a,
+.green-color-scheme .mp-menu .nav li.current_page_item > a,
+.green-color-scheme .mp-menu .nav li.current-menu-parent > a,
+.green-color-scheme .mp-menu .nav li.dropdown:hover > a,
+.green-color-scheme .mp-menu .current-menu-item a,
+.green-color-scheme .mp-menu ul li a:hover,
+.green-color-scheme .mp-level > ul > li:first-child > a:hover,
+body.green-color-scheme .wpb_image_grid .wpb_image_grid_ul .isotope-item:hover,
+.green-color-scheme .menu-container .sb-icon-search,
+.green-color-scheme .main-body-color,
+.green-color-scheme .page-wrapper .categories_filter li:hover a,
+.green-color-scheme .page-wrapper .categories_filter li.active a,
+body.green-color-scheme .wpb_content_element .wpb_tabs_nav li.ui-tabs-active a,
+body.green-color-scheme .wpb_content_element .wpb_tabs_nav li:hover a,
+.green-color-scheme .featured_apps_container .ui-tabs-active a,
+.green-color-scheme .featured_apps_container ul li a:hover,
+.green-color-scheme #commentform #submit,
+body.green-color-scheme .theme-default .nivo-controlNav a.active,
+body.green-color-scheme .theme-default .nivo-controlNav a:hover,
+body.green-color-scheme .flex-control-paging li a:hover,
+body.green-color-scheme .flex-control-paging li a.flex-active {
+	background-color: #24a1af;
+}
+
+.green-color-scheme .sf-menu > .current-menu-item > a,
+.green-color-scheme .sf-menu > .current-page-ancestor > a,
+.green-color-scheme .sf-menu > .current-menu-ancestor > a,
+.green-color-scheme .sf-menu > .current-page-parent > a,
+.green-color-scheme .sf-menu > .current_page_ancestor > a,
+.green-color-scheme .sf-menu > li > .sub-menu,
+.green-color-scheme .sf-menu > li:hover > a,
+.green-color-scheme .sf-menu > li.sfHover > a,
+.green-color-scheme .social-container .social-icons div a,
+.green-color-scheme .staff-member .social-icons div a {
+	border-color: #24a1af;
+}
+
+.green-color-scheme .mobera-contactform.widget textarea:active,
+.green-color-scheme .mobera-contactform.widget input[type=text]:active,
+.green-color-scheme .mobera-contactform.widget input[type=email]:active,
+.green-color-scheme .mobera-contactform.widget input[type="password"]:active,
+.green-color-scheme .mobera-contactform.widget textarea:hover,
+.green-color-scheme .mobera-contactform.widget input[type=text]:hover,
+.green-color-scheme .mobera-contactform.widget input[type=email]:hover,
+.green-color-scheme .mobera-contactform.widget input[type="password"]:hover,
+.green-color-scheme .mobera-contactform.widget textarea:focus,
+.green-color-scheme .mobera-contactform.widget input[type=text]:focus,
+.green-color-scheme .mobera-contactform.widget input[type=email]:focus,
+.green-color-scheme .mobera-contactform.widget input[type="password"]:focus,
+.green-color-scheme .ac-device nav,
+.green-color-scheme .ac-device nav span:first-child,
+.green-color-scheme .wpcf7 textarea:active,
+.green-color-scheme .wpcf7 input[type=text]:active,
+.green-color-scheme .wpcf7 input[type="password"]:active,
+.green-color-scheme .wpcf7 textarea:focus,
+.green-color-scheme .wpcf7 input[type=text]:focus,
+.green-color-scheme .wpcf7 input[type=email]:focus,
+.green-color-scheme .wpcf7 input[type="password"]:focus,
+.green-color-scheme .wpcf7 textarea:hover,
+.green-color-scheme .wpcf7 input[type=text]:hover,
+.green-color-scheme .wpcf7 input[type=email]:hover,
+.green-color-scheme .wpcf7 input[type="password"]:hover,
+.green-color-scheme .featured_apps_container ul li,
+body.green-color-scheme .flex-control-paging li a,
+body.green-color-scheme .theme-default .nivo-controlNav a,
+.green-color-scheme #comments textarea:active,
+.green-color-scheme #comments input[type=text]:active,
+.green-color-scheme #comments input[type="password"]:active,
+.green-color-scheme #comments textarea:focus,
+.green-color-scheme #comments input[type=text]:focus,
+.green-color-scheme #comments input[type="password"]:focus,
+.green-color-scheme #comments textarea:hover,
+.green-color-scheme #comments input[type=text]:hover,
+.green-color-scheme #comments input[type=email]:hover,
+.green-color-scheme #comments input[type="password"]:hover,
+.green-color-scheme .page-wrapper .sidebar-right ul li:before,
+.green-color-scheme .page-wrapper .main-inner ul li:before,
+body.green-color-scheme .wpb_content_element .wpb_accordion_wrapper .ui-accordion-header-active,
+body.green-color-scheme .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_content,
+.green-color-scheme .page-wrapper .categories_filter,
+.green-color-scheme .wpb_content_element .wpb_tabs_nav,
+.green-color-scheme .featured_apps_container ul,
+.green-color-scheme .page-wrapper .categories_filter li,
+body.green-color-scheme .wpb_content_element .wpb_tabs_nav li,
+.green-color-scheme .mp-back:hover,
+body.single-post.green-color-scheme .comment-form-email.focused:after,
+body.single-post.green-color-scheme .comment-form-comment.focused:after,
+body.single-post.green-color-scheme .comment-form-email.hovered:after,
+body.single-post.green-color-scheme .comment-form-comment.hovered:after,
+.green-color-scheme .wpcf7-form-control-wrap.focused:after,
+.green-color-scheme .wpcf7-form-control-wrap.hovered:after {
+	border-color: #24a1af !important;
+}
+
+.green-color-scheme .sidr .current-menu-item a,
+.green-color-scheme .page-wrapper .bg-style-2 h1,
+.green-color-scheme .page-wrapper .bg-style-3 h1,
+.green-color-scheme .page-wrapper .bg-style-4 h1,
+.green-color-scheme .page-wrapper .bg-style-5 h1,
+.green-color-scheme .page-wrapper .bg-style-6 h1,
+.green-color-scheme .page-wrapper .categories_filter li:hover a,
+.green-color-scheme .page-wrapper .categories_filter li.active a,
+body.green-color-scheme .wpb_content_element .wpb_tabs_nav li.ui-tabs-active a,
+body.green-color-scheme .wpb_content_element .wpb_tabs_nav li:hover a,
+.green-color-scheme .featured_apps_container .ui-tabs-active a,
+.green-color-scheme .featured_apps_container ul li a:hover {
+	color: #fff;
+}
+
+.green-color-scheme .sf-menu > .current-menu-item > a,
+.green-color-scheme .sf-menu > .current-page-ancestor > a,
+.green-color-scheme .sf-menu > .current-menu-ancestor > a,
+.green-color-scheme .sf-menu > .current-page-parent > a,
+.green-color-scheme .sf-menu > .current_page_ancestor > a,
+.green-color-scheme .sf-menu > li > .sub-menu,
+.green-color-scheme .sf-menu > li:hover > a,
+.green-color-scheme .sf-menu > li.sfHover > a,
+.green-color-scheme .sf-menu a:hover,
+.green-color-scheme .sf-menu .current-menu-item a,
+.green-color-scheme .sf-menu .current-page-ancestor > .sub-menu .current-menu-parent > a,
+.green-color-scheme .sf-menu .current-menu-ancestor > .sub-menu .current-menu-parent > a,
+.green-color-scheme .sf-menu .current-page-parent > .sub-menu .current-menu-parent > a,
+.green-color-scheme .sf-menu .current_page_ancestor > .sub-menu .current-menu-parent > a,
+.green-color-scheme .textwidget a::before,
+.green-color-scheme .widget li a:hover,
+.green-color-scheme .page-wrapper .widget h4,
+.green-color-scheme .mobera-recentpostsplus.widget h3 a:hover,
+.green-color-scheme .ac-device nav span,
+.green-color-scheme .ac-device .ac-title,
+.green-color-scheme .page-wrapper h1,
+.green-color-scheme #geodir-wrapper-content h1,
+.green-color-scheme .social-container .social-icons div a,
+.green-color-scheme .staff-member .social-icons div a,
+.green-color-scheme .page-wrapper h2,
+.green-color-scheme h2,
+.green-color-scheme .content .entry-title,
+.green-color-scheme .teaser_grid_container .post-title,
+.green-color-scheme .commentlist .comment-content .reply-edit-container .reply a,
+.green-color-scheme .commentlist .comment-content .reply-edit-container .edit-link a,
+.green-color-scheme .page-wrapper .categories_filter li a,
+body.green-color-scheme .wpb_content_element .wpb_tour_tabs_wrapper .wpb_tabs_nav a,
+body.green-color-scheme .wpb_content_element .wpb_accordion_header a,
+.green-color-scheme .featured_apps_container ul li a,
+.green-color-scheme .page-wrapper h3,
+.green-color-scheme .page-wrapper > .page-title h1,
+.green-color-scheme .cocoa-color-scheme a,
+.green-color-scheme .cocoa-color-scheme .dropcap,
+.green-color-scheme .featured-properties-container .item-title a,
+.green-color-scheme .popular-destinations-container .item-title a,
+.green-color-scheme .recent-activities .info-container .item-link,
+.green-color-scheme .blog-carousel .blog-inner-container .blog-title a,
+.green-color-scheme .wrapper .reviewer,
+.green-color-scheme .wrapper .prev_blog_post,
+.green-color-scheme .wrapper .next_blog_post,
+.green-color-scheme .single-listing-by-main.skydirectory .share-location {
+	color: #009ed2;
+}
+
+.green-color-scheme .google-map-title a,
+.green-color-scheme .gdmodal-title span {
+	color: #0098af;
+}
+
+.green-color-scheme .wrapper .top-menu-container .header-menu > li.current-menu-item > a,
+.green-color-scheme .wrapper .top-menu-container .header-menu > li.current-menu-ancestor > a,
+.green-color-scheme .wrapper .top-menu-container .header-menu > li.current-menu-parent > a {
+	border-top: 4px solid #009ed2;
+}
+
+.green-color-scheme .wrapper .top-menu-container .header-menu li.menu-item-has-children ul li a:hover {
+	background-color: #009ed2;
+}
+
+.green-color-scheme .wpb_button.wpb_btn-primary,
+body.single-post.green-color-scheme #commentform .form-submit #submit {
+	background: -webkit-linear-gradient(#009c8b, #00836e);
+	background: -o-linear-gradient(#009c8b, #00836e);
+	background: -moz-linear-gradient(#009c8b, #00836e);
+	background: linear-gradient(#009c8b, #00836e);
+
+}
+
+.green-color-scheme .wpb_button.wpb_btn-primary:hover,
+body.single-post.green-color-scheme #commentform .form-submit #submit:hover {
+	background: -webkit-linear-gradient(#00836e, #009c8b);
+	background: -o-linear-gradient(#00836e, #009c8b);
+	background: -moz-linear-gradient(#00836e, #009c8b);
+	background: linear-gradient(#00836e, #009c8b);
+}
+
+.green-color-scheme .wpb_button.wpb_btn-primary:active,
+body.single-post.green-color-scheme #commentform .form-submit #submit:active {
+	background: -webkit-linear-gradient(#016D5C, #016D5C);
+	background: -o-linear-gradient(#016D5C, #016D5C);
+	background: -moz-linear-gradient(#016D5C, #016D5C);
+	background: linear-gradient(#016D5C, #016D5C);
+}
+
+.green-color-scheme .wpb_button.wpb_btn-primary.clearfix:active,
+body.single-post.green-color-scheme #commentform .form-submit #submit:active,
+body.green-color-scheme .wpb_button.wpb_btn-primary.input_button.wpcf7-submit:active {
+	border-bottom: 4px solid #016D5C;
+	border-top: 4px solid #016051;
+}
+
+.green-color-scheme .header_search .search .gray-form .sb-icon-search,
+.green-color-scheme .wpb_button.wpb_btn-warning,
+.green-color-scheme .contact-us-email .email-address {
+	background: -webkit-linear-gradient(#009ed2, #0086c7);
+	background: -o-linear-gradient(#009ed2, #0086c7);
+	background: -moz-linear-gradient(#009ed2, #0086c7);
+	background: linear-gradient(#009ed2, #0086c7);
+}
+
+.green-color-scheme .header_search .search .gray-form .sb-icon-search:hover,
+.green-color-scheme .wpb_button.wpb_btn-warning:hover {
+	background: -webkit-linear-gradient(#0086c7, #009ed2);
+	background: -o-linear-gradient(#0086c7, #009ed2);
+	background: -moz-linear-gradient(#0086c7, #009ed2);
+	background: linear-gradient(#0086c7, #009ed2);
+}
+
+.green-color-scheme #geodir-add-listing-submit input {
+	border-bottom: 4px solid #006a9d;
+	border-top: 4px solid #009ed2;
+}
+
+.green-color-scheme #geodir-add-listing-submit input:hover {
+	border-bottom: 4px solid #009ed2;
+	border-top: 4px solid #0075ad;
+}
+
+.green-color-scheme #geodir-add-listing-submit input:active {
+	background: -webkit-linear-gradient(#0086c7, #0086c7);
+	background: -o-linear-gradient(#0086c7, #0086c7);
+	background: -moz-linear-gradient(#0086c7, #0086c7);
+	background: linear-gradient(#0086c7, #0086c7);
+	border-bottom: 4px solid #0086c7;
+	border-top: 4px solid #0075ad;
+}
+
+.green-color-scheme .recent-activities .info-container .item-author,
+.green-color-scheme .blog-author .author-name a,
+.green-color-scheme .useful-links-title,
+.green-color-scheme .phone-info-container .phone-text,
+.green-color-scheme .phone-info-container .phone-number,
+.green-color-scheme .single-listing-by-info .author-name a,
+.green-color-scheme .custom-table-container .custom-table-description {
+	color: #009c8b;
+}
+
+.green-color-scheme .add-review-container span {
+	color: #333;
+}
+
+.green-color-scheme .blogpost-usefullinks.widget a {
+	color: #666;
+}
+
+.green-color-scheme .contact-us-phone .phone-icon {
+	background-color: #009c8b;
+}
+
+.green-color-scheme .wrapper h3,
+.green-color-scheme h2.wpb_gallery_heading,
+.green-color-scheme .wrapper .sidebar-inner .item-title-bg h4,
+.green-color-scheme.single-gd_place .recent-activities .info-container .item-link,
+body.green-color-scheme .wrapper .page_info .page-title h1 {
+	color: #c95500;
+}
+
+.green-color-scheme #commentform .form-submit #submit,
+body.green-color-scheme .simplemodal-data .gmmodal-dialog-lower input,
+body.single-post.green-color-scheme #commentform .form-submit #submit,
+.green-color-scheme .wpb_button.wpb_btn-primary.input_button.wpcf7-submit {
+	border-top: 4px solid #009c8b;
+	border-bottom: 4px solid #026A59;
+}
+
+.green-color-scheme #commentform .form-submit #submit:hover,
+body.green-color-scheme .simplemodal-data .gmmodal-dialog-lower input:hover,
+body.single-post.green-color-scheme #commentform .form-submit #submit:hover,
+.green-color-scheme .wpb_button.wpb_btn-primary.input_button.wpcf7-submit:hover {
+	border-top: 4px solid #026A59;
+	border-bottom: 4px solid #009c8b;
+}
+
+body.green-color-scheme .wrapper #propertyform .geodir_package.free .geodir-select-package {
+	border-top: 4px solid #0099cc;
+	border-bottom: 4px solid #00669a;
+}
+
+body.green-color-scheme .wrapper #propertyform .geodir_package.free .geodir-select-package:hover {
+	border-top: 4px solid #0074ac;
+	border-bottom: 4px solid #009ed2;
+}
+
+body.green-color-scheme .wrapper #propertyform .geodir_package.free .geodir-select-package:active {
+	border-top: 4px solid #003355;
+	border-bottom: 4px solid #005b7a;
+	background: -webkit-linear-gradient(#00416d, #005c7a);
+	background: -o-linear-gradient(#00416d, #005c7a);
+	background: -moz-linear-gradient(#00416d, #005c7a);
+	background: linear-gradient(#00416d, #005c7a);
+}
