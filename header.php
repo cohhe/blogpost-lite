@@ -31,9 +31,6 @@
 		<?php wp_head(); ?>
 	</head>
 	<body <?php body_class($vh_class); ?>>
-		<?php if ( $_SERVER['SERVER_NAME'] == 'cohhe.com' ) { ?>
-			<a href="http://themeforest.net/item/blogpost-responsive-wordpress-blog-theme/11211905" target="_blank" id="buy-now-ribbon"></a>
-		<?php } ?>
 		<div class="vh_wrapper" id="vh_wrappers">
 		<div class="main-body-color"></div>
 		<div class="overlay-hide"></div>
