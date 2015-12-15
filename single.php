@@ -26,7 +26,7 @@ $span_size = 'vc_col-sm-10';
 							if ( have_posts() ) {
 								while ( have_posts() ) {
 									the_post();
-									get_template_part( 'content', 'single' ); 
+									get_template_part( 'content', 'single' );
 									if ( get_post_type( $post ) == 'post' ) { ?>
 										<div class="clearfix"></div>
 										<nav class="nav-single blog vc_col-sm-12">
@@ -118,6 +118,7 @@ $span_size = 'vc_col-sm-10';
 												comments_template( '', true ); ?>
 											</div>
 										<?php } ?>
+										<div style="display: none;"><?php the_posts_pagination(); ?></div>
 										<?php
 									}
 								}
