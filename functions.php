@@ -1342,7 +1342,7 @@ function vh_breadcrumbs() {
  * we also set up the default background color.
  */
 add_theme_support( 'custom-background', array(
-	'default-color' => 'f4f4f4'
+	'default-color' => 'fcfcfc'
 ) );
 
 function vh_sanitize_color( $input ) {
