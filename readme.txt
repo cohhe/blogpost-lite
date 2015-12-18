@@ -76,5 +76,7 @@ Source: http://greensock.com
 
 Used images in screenshot.png, licensed under CC0 Public Domain, free for commercial use / no attribution required
 https://pixabay.com/en/sky-clouds-mountains-peak-snow-690813/
+https://pixabay.com/en/camera-vintage-retro-old-820018/
+https://pixabay.com/en/grand-canyon-landscape-park-nature-1083745/
+https://pixabay.com/en/the-strategy-win-champion-1080527/
 https://pixabay.com/en/red-cat-pet-animal-cute-cute-cat-1044914/
-https://pixabay.com/en/woman-girl-headphones-music-977020/
