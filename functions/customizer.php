@@ -412,26 +412,6 @@ function blogpost_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Menu bottom text
-	$wp_customize->add_section( 'blogpost_social_bottom', array(
-		'priority'       => 70,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Menu bottom text' , 'vh'),
-		'description'    => __( 'Set the text at the bottom of the menu.' , 'vh'),
-		'panel'          => 'blogpost_social_panel'
-	) );
-
-	$wp_customize->add_setting( 'blogpost_socialbottom', array( 'default' => 'Made with [heart] Riga', 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'blogpost_socialbottom',
-		array(
-			'label'      => 'Menu bottom text',
-			'section'    => 'blogpost_social_bottom',
-			'type'       => 'text',
-		)
-	);
-
 	// Consumer key
 	$wp_customize->add_section( 'blogpost_twt_consumer_key', array(
 		'priority'       => 10,

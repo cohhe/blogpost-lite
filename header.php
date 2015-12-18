@@ -117,13 +117,7 @@
 						<a href="javascript:void(0)" class="header-reading-button icon-book"></a>
 					</div>
 					<div class="made-with">
-						<?php
-						$made_with_text = sanitize_text_field( get_theme_mod('blogpost_socialbottom', 'Made with [heart] Riga') );
-						if ( strpos($made_with_text,'[heart]') !== false ) {
-							$made_with_text = str_replace('[heart]', '<span class="icon-heart"></span>', $made_with_text);
-						}
-						echo $made_with_text;
-						?>
+						Theme by <a href="https://cohhe.com">Cohhe</a>
 					</div>
 				</div>
 				<div class="clearfix"></div>

@@ -76,6 +76,8 @@ if (!function_exists('vh_setup')) {
 		// TGM plugins activation
 		require_once(VH_FUNCTIONS . '/tgm-activation/class-tgm-plugin-activation.php');
 
+		require_once(get_template_directory() . '/inc/admin/welcome-screen/welcome-screen.php');
+
 		// Shortcodes list
 		$shortcodes = array (
 			//VH_SHORTCODES . '/test.php'
