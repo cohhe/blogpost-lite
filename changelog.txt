@@ -1,4 +1,7 @@
-Longform changelog
+Blogspot Lite changelog
+
+= Version 1.0.2 =
+* Updated welcome screen
 
 = Version 1.0 =
 * Initial release
