@@ -78,27 +78,11 @@ $entry_utility_bottom .= '</div>';
 				$i++;
 			}
 
-			if ( get_post_meta( $post_id, 'post_embed_code', true ) != '' && ( get_post_format() == 'video' || get_post_format() == 'audio' ) ) {
-				echo wp_kses( 
-					get_post_meta( $post->ID, 'post_embed_code', true ), 
-					array(
-						'iframe' => array(
-							'width' => array(),
-							'height' => array(),
-							'src' => array(),
-							'frameborder' => array()
-						)
-					)
-				);
+			if ( get_post_format() == 'video' || get_post_format() == 'audio' ) {
+				get_embed_code( $post->ID );
 			} elseif ( get_post_format() == 'status' ) { ?>
 				<div class="post-twitter-username icon-twitter-1">
-				<?php
-				if ( get_post_meta( $post_id, 'post_twitter_username', true ) != '' ) {
-					$twitter_user = esc_html( get_post_meta( $post_id, 'post_twitter_username', true ) );
-					$user_link = 'https://twitter.com/'.str_replace('@', '', $twitter_user);
-					echo '<a href="' . esc_url( $user_link ) . '" class="twitter-link">' . $twitter_user . '</a>';
-				}
-				?>
+				<?php if ( function_exists('get_twitter_link') ) { get_twitter_link( $post_id ); } ?>
 				</div>
 				<div class="post-inner entry-content <?php echo get_post_type(); ?>">
 					<div class="blog-excerpt">
@@ -119,15 +103,7 @@ $entry_utility_bottom .= '</div>';
 						}
 					?>
 					</div>
-					<?php if ( get_post_meta( $post_id, 'post_twitter_link', true ) != '' ) {
-						$twitter_link = esc_url( get_post_meta( $post_id, 'post_twitter_link', true ) );
-						$twitter_link_arr = explode('/', $twitter_link); ?>
-						<div class="twitter-buttons">
-							<a href="https://twitter.com/intent/tweet?in_reply_to=<?php echo esc_attr( $twitter_link_arr['5'] ); ?>" class="twitter-button icon-reply" target="_blank"><?php _e('reply', 'vh'); ?></a>
-							<a href="https://twitter.com/intent/retweet?tweet_id=<?php echo esc_attr( $twitter_link_arr['5'] ); ?>" class="twitter-button icon-retweet" target="_blank"><?php _e('retweet', 'vh'); ?></a>
-							<a href="https://twitter.com/intent/favorite?tweet_id=<?php echo esc_attr( $twitter_link_arr['5'] ); ?>" class="twitter-button icon-star" target="_blank"><?php _e('favorite', 'vh'); ?></a>
-						</div>
-					<?php } ?>
+					<?php if ( function_exists('get_tweet_buttons') ) { get_tweet_buttons( $post_id, false ); } ?>
 				</div>
 				<?php
 			} elseif ( $attachments_count > 1 ) { ?>

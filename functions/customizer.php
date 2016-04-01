@@ -31,14 +31,6 @@ function blogpost_customize_register( $wp_customize ) {
 		'description'    => __( 'You can configure your theme side-menu settings here.' , 'vh')
 	) );
 
-	// Add twitter widget setting panel and configure settings inside it
-	$wp_customize->add_panel( 'blogpost_twitter_settings_panel', array(
-		'priority'       => 250,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Twitter widget settings' , 'vh'),
-		'description'    => __( 'You can configure your themes twitter widget settings here.' , 'vh')
-	) );
-
 	// Add 404 setting panel and configure settings inside it
 	$wp_customize->add_panel( 'blogpost_404_panel', array(
 		'priority'       => 250,
@@ -106,23 +98,6 @@ function blogpost_customize_register( $wp_customize ) {
 			)
 		)
 	);
-
-	// Login Screen Logo
-	$wp_customize->add_section( 'blogpost_general_login_logo', array(
-		'priority'       => 30,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Login Screen Logo' , 'vh'),
-		'description'    => __( 'Upload a custom logo.' , 'vh'),
-		'panel'          => 'blogpost_general_panel'
-	) );
-
-	$wp_customize->add_setting( 'blogpost_login_logo', array( 'sanitize_callback' => 'esc_url_raw' ) );
-
-	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'blogpost_login_logo', array(
-		'label'    => __( 'Login Screen Logo', 'vh' ),
-		'section'  => 'blogpost_general_login_logo',
-		'settings' => 'blogpost_login_logo',
-	) ) );
 
 	// Search background
 	$wp_customize->add_section( 'blogpost_general_search_bg', array(
@@ -408,86 +383,6 @@ function blogpost_customize_register( $wp_customize ) {
 		array(
 			'label'      => 'VKontakte URL',
 			'section'    => 'blogpost_social_vkontakte',
-			'type'       => 'text',
-		)
-	);
-
-	// Consumer key
-	$wp_customize->add_section( 'blogpost_twt_consumer_key', array(
-		'priority'       => 10,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Consumer key' , 'vh'),
-		'description'    => __( 'Please enter your Twitter API consumer key.' , 'vh'),
-		'panel'          => 'blogpost_twitter_settings_panel'
-	) );
-
-	$wp_customize->add_setting( 'blogpost_twitter_consumer_key', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'blogpost_twitter_consumer_key',
-		array(
-			'label'      => 'Consumer key',
-			'section'    => 'blogpost_twt_consumer_key',
-			'type'       => 'text',
-		)
-	);
-
-	// Consumer secret
-	$wp_customize->add_section( 'blogpost_twt_consumer_secret', array(
-		'priority'       => 20,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Consumer secret' , 'vh'),
-		'description'    => __( 'Please enter your Twitter API consumer secret.' , 'vh'),
-		'panel'          => 'blogpost_twitter_settings_panel'
-	) );
-
-	$wp_customize->add_setting( 'blogpost_twitter_consumer_secret', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'blogpost_twitter_consumer_secret',
-		array(
-			'label'      => 'Consumer secret',
-			'section'    => 'blogpost_twt_consumer_secret',
-			'type'       => 'text',
-		)
-	);
-
-	// User token
-	$wp_customize->add_section( 'blogpost_twt_user_token', array(
-		'priority'       => 30,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'User token' , 'vh'),
-		'description'    => __( 'Please enter your Twitter API User token.' , 'vh'),
-		'panel'          => 'blogpost_twitter_settings_panel'
-	) );
-
-	$wp_customize->add_setting( 'blogpost_twitter_user_token', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'blogpost_twitter_user_token',
-		array(
-			'label'      => 'User token',
-			'section'    => 'blogpost_twt_user_token',
-			'type'       => 'text',
-		)
-	);
-
-	// User secret
-	$wp_customize->add_section( 'blogpost_twt_user_secret', array(
-		'priority'       => 40,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'User secret' , 'vh'),
-		'description'    => __( 'Please enter your Twitter API User secret.' , 'vh'),
-		'panel'          => 'blogpost_twitter_settings_panel'
-	) );
-
-	$wp_customize->add_setting( 'blogpost_twitter_user_secret', array( 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'blogpost_twitter_user_secret',
-		array(
-			'label'      => 'User secret',
-			'section'    => 'blogpost_twt_user_secret',
 			'type'       => 'text',
 		)
 	);

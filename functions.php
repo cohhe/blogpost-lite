@@ -47,24 +47,6 @@ if (!function_exists('vh_setup')) {
 		require_once(VH_ADMIN . '/menu-custom-field.php');
 		require_once(VH_METABOXES . '/layouts.php');
 		require_once(VH_METABOXES . '/contact_map.php');
-		require_once(VH_SIDEBARS . '/multiple_sidebars.php');
-		require_once(VH_HOME . '/Tax-meta-class/Tax-meta-class.php');
-
-		// Widgets list
-		$widgets = array (
-			VH_WIDGETS . '/contactform.php',
-			VH_WIDGETS . '/googlemap.php',
-			VH_WIDGETS . '/social_links.php',
-			VH_WIDGETS . '/advertisement.php',
-			VH_WIDGETS . '/recent-posts-plus.php',
-			VH_WIDGETS . '/recent-comments.php',
-			VH_WIDGETS . '/sidebar-comments.php',
-			VH_WIDGETS . '/fast-flickr-widget.php',
-			VH_WIDGETS . '/about-us.php',
-		);
-
-		// Load Widgets
-		load_files($widgets);
 
 		// Load global elements
 		require_once(VH_GLOBAL . '/wp_pagenavi/wp-pagenavi.php');
@@ -97,27 +79,6 @@ if (!function_exists('vh_setup')) {
 		add_theme_support( 'post-formats', array(
 			'video', 'audio', 'gallery', 'status', 'quote'
 		) );
-
-		/*
-		* configure taxonomy custom fields
-		*/
-		$config = array(
-			'id' => 'category_custom_meta_box',
-			'title' => 'Category Custom Meta Box',
-			'pages' => array('category'),
-			'context' => 'normal',
-			'fields' => array(),
-			'local_images' => false,
-			'use_with_theme' => true
-		);
-
-		$custom_meta = new Tax_Meta_Class($config);
-
-		//Image field
-		$custom_meta->addImage('image_field_id',array('name'=> 'Category Image '));
-
-		//Finish Taxonomy Extra fields Deceleration
-		$custom_meta->Finish();
 
 	}
 }
@@ -152,9 +113,6 @@ function vh_register_widgets () {
 	) );
 }
 add_action( 'widgets_init', 'vh_register_widgets' );
-
-// Force Visual Composer to initialize as "built into the theme". This will hide certain tabs under the Settings->Visual Composer page
-if(function_exists('vc_set_as_theme')) vc_set_as_theme();
 
 // Add quote post format support
 add_theme_support( 'post-formats', array( 'quote' ) );
@@ -369,7 +327,7 @@ function vh_get_typography_style() {
 
 // Admin CSS
 function blogpost_admin_css() {
-	wp_enqueue_style( 'vh-admin-css', get_template_directory_uri() . '/functions/admin/css/wp-admin.css' );
+	wp_enqueue_style( 'blogpost-admin-css', get_template_directory_uri() . '/functions/admin/css/wp-admin.css' );
 	wp_enqueue_style('jquery.tags', get_template_directory_uri() . '/css/jquery.tagit.css');
 	wp_enqueue_style('jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
 }
@@ -600,37 +558,6 @@ function vh_get_random_circle() {
 	return $output;
 }
 
-function vh_display_social_icons() {
-	$output = '';
-	$icon_count = 1;
-	$menu_header_twitter_url   = get_theme_mod( 'blogpost_socialtwitter', '' );
-	$menu_header_facebook_url  = get_theme_mod( 'blogpost_socialfacebook', '' );
-	$menu_header_google_url    = get_theme_mod( 'blogpost_socialgplus', '' );
-	$menu_header_pinterest_url = get_theme_mod( 'blogpost_socialpinterest', '' );
-
-	if ( !empty($menu_header_twitter_url) ) {
-		$output .= '<a href="' . esc_url( $menu_header_twitter_url ) . '" class="header-social-icon icon-count-' . $icon_count . ' icon-twitter-1"></a>';
-		$icon_count++;
-	}
-
-	if ( !empty($menu_header_facebook_url) ) {
-		$output .= '<a href="' . esc_url( $menu_header_facebook_url ) . '" class="header-social-icon icon-count-' . $icon_count . ' icon-facebook"></a>';
-		$icon_count++;
-	}
-
-	if ( !empty($menu_header_google_url) ) {
-		$output .= '<a href="' . esc_url( $menu_header_google_url ) . '" class="header-social-icon icon-count-' . $icon_count . ' icon-gplus"></a>';
-		$icon_count++;
-	}
-
-	if ( !empty($menu_header_pinterest_url) ) {
-		$output .= '<a href="' . esc_url( $menu_header_pinterest_url ) . '" class="header-social-icon icon-count-' . $icon_count . ' icon-pinterest"></a>';
-		$icon_count++;
-	}
-
-	return $output;
-}
-
 function vh_get_carousel_bullets( $count ) {
 	$output = '';
 
@@ -658,112 +585,6 @@ function vh_get_blog_url_info() {
 
 	return $output;
 }
-
-function vh_add_metabox() {
-
-	add_meta_box(
-		'post_format_metabox',                                   // Unique ID
-		esc_html__( 'Advanced post format fields', 'vh' ),  // Title
-		'post_format_function',                          // Callback function
-		'post',                                           // Admin page (or post type)
-		'normal',                                           // Context
-		'high'                                              // Priority
-	);
-
-}
-
-add_action( 'load-post.php', 'vh_metabox_setup' );
-add_action( 'load-post-new.php', 'vh_metabox_setup' );
-function vh_metabox_setup() {
-
-	/* Add meta boxes on the 'add_meta_boxes' hook. */
-	add_action( 'add_meta_boxes', 'vh_add_metabox' );
-
-	/* Save post meta on the 'save_post' hook. */
-	add_action( 'save_post', 'post_format_save_metabox', 10, 2 );
-}
-
-function post_format_save_metabox( $post_id, $post ) {
-
-	/* Verify the nonce before proceeding. */
-	if ( !isset( $_POST['post_format_nonce'] ) || !wp_verify_nonce( $_POST['post_format_nonce'], basename( __FILE__ ) ) )
-	return $post_id;
-
-	/* Get the post type object. */
-	$post_type = get_post_type_object( $post->post_type );
-
-	/* Check if the current user has permission to edit the post. */
-	if ( !current_user_can( $post_type->cap->edit_post, $post_id ) )
-	return $post_id;
-
-	$custom_metabox = array('post_embed_code', 'post_twitter_username', 'post_twitter_link', 'post_ad_button_text', 'post_ad_button_url', 'post_ad_background');
-
-	foreach ($custom_metabox as $metabox_value) {
-		/* Get the posted data and sanitize it for use as an HTML class. */
-		$new_meta_value  = ( isset( $_POST[$metabox_value] ) ?  $_POST[$metabox_value]  : '' );
-
-		/* Get the meta key. */
-		$meta_key  = $metabox_value;
-
-		/* Get the meta value of the custom field key. */
-		$meta_value = get_post_meta( $post_id, $meta_key, true );
-
-		/* If a new meta value was added and there was no previous value, add it. */
-		if ( $new_meta_value && '' == $meta_value )
-		add_post_meta( $post_id, $meta_key, $new_meta_value, true );
-
-		/* If the new meta value does not match the old value, update it. */
-		elseif ( $new_meta_value && $new_meta_value != $meta_value )
-		update_post_meta( $post_id, $meta_key, $new_meta_value );
-
-		/* If there is no new meta value but an old value exists, delete it. */
-		elseif ( '' == $new_meta_value && $meta_value )
-		delete_post_meta( $post_id, $meta_key, $meta_value );
-	}
-
-}
-
-function post_format_function( $object, $box ) { ?>
-
-	<?php wp_nonce_field( basename( __FILE__ ), 'post_format_nonce' ); ?>
-
-	<p class="post-type-a">
-		<label for="post_embed_code"><?php _e( "Post embed code", 'vh' ); ?></label>
-		<br />
-		<input class="widefat" type="text" name="post_embed_code" id="post_embed_code" value="<?php echo esc_attr( get_post_meta( $object->ID, 'post_embed_code', true ) ); ?>" size="30" />
-	</p>
-
-	<p class="post-type-status">
-		<label for="post_twitter_username"><?php _e( "Post twitter username", 'vh' ); ?></label>
-		<br />
-		<input class="widefat" type="text" name="post_twitter_username" id="post_twitter_username" value="<?php echo esc_attr( get_post_meta( $object->ID, 'post_twitter_username', true ) ); ?>" size="30" />
-	</p>
-
-	<p class="post-type-status">
-		<label for="post_twitter_link"><?php _e( "Used tweet link, like https://twitter.com/Cohhe_Themes/status/577814278192959488", 'vh' ); ?></label>
-		<br />
-		<input class="widefat" type="text" name="post_twitter_link" id="post_twitter_link" value="<?php echo esc_attr( get_post_meta( $object->ID, 'post_twitter_link', true ) ); ?>" size="30" />
-	</p>
-
-	<p class="post-type-quote">
-		<label for="post_ad_button_text"><?php _e( "Add your custom button text", 'vh' ); ?></label>
-		<br />
-		<input class="widefat" type="text" name="post_ad_button_text" id="post_ad_button_text" value="<?php echo esc_attr( get_post_meta( $object->ID, 'post_ad_button_text', true ) ); ?>" size="30" />
-	</p>
-
-	<p class="post-type-quote">
-		<label for="post_ad_button_url"><?php _e( "External button URL", 'vh' ); ?></label>
-		<br />
-		<input class="widefat" type="text" name="post_ad_button_url" id="post_ad_button_url" value="<?php echo esc_attr( get_post_meta( $object->ID, 'post_ad_button_url', true ) ); ?>" size="30" />
-	</p>
-
-	<p class="post-type-quote">
-		<label for="post_ad_background"><?php _e( "Media ID for a picture background", 'vh' ); ?></label>
-		<br />
-		<input class="widefat" type="text" name="post_ad_background" id="post_ad_background" value="<?php echo esc_attr( get_post_meta( $object->ID, 'post_ad_background', true ) ); ?>" size="30" />
-	</p>
-
-<?php }
 
 /* Filter categories */
 function filter_categories($list) {
@@ -1332,10 +1153,10 @@ function vh_register_required_plugins() {
 		array(
 			'name'                  => 'Functionality for Blogpost theme', // The plugin name
 			'slug'                  => 'functionality-for-blogpost-theme', // The plugin slug (typically the folder name)
-			'required'              => true, // If false, the plugin is only 'recommended' instead of required
+			'required'              => false, // If false, the plugin is only 'recommended' instead of required
 			'version'               => '1.4', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 			'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-			'force_deactivation'    => true, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
+			'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
 			'external_url'          => '', // If set, overrides default API URL and points to an external URL
 		),
 		array(

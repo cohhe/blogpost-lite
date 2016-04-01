@@ -21,21 +21,7 @@ if ( empty($img[0]) ) {
 <li class="isotope-item blog-inner-container <?php echo get_post_format(); ?>-format">
 	<div  <?php post_class(); ?>>
 		<div class="post-image">
-		<?php
-		if ( get_post_meta( $post->ID, 'post_embed_code', true ) != '' ) {
-			echo wp_kses( 
-					get_post_meta( $post->ID, 'post_embed_code', true ), 
-					array(
-						'iframe' => array(
-							'width' => array(),
-							'height' => array(),
-							'src' => array(),
-							'frameborder' => array()
-						)
-					)
-				);
-		}
-		?>
+		<?php if ( function_exists('get_embed_code') ) { get_embed_code( $post->ID ) } ?>
 		</div>
 		<div class="post-inner entry-content <?php echo get_post_type(); ?>">
 			<div class="blog-title">

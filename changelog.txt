@@ -1,5 +1,13 @@
 Blogspot Lite changelog
 
+= Version 1.1 =
+* Using post meta only for visual things
+* Moved sidebars functionality to plugin
+* Moved Login screen logo to plugin
+* Moved widgets to plugin
+* Removed required plugin from TGM
+* Minor bugfixes
+
 = Version 1.0.2 =
 * Updated welcome screen
 

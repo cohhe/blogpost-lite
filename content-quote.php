@@ -16,28 +16,29 @@ $img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'post-gallery-medium
 if ( empty($img[0]) ) {
 	$img[0] = get_template_directory_uri() . '/images/default-image.jpg';
 }
-if ( get_post_meta( $post->ID, 'post_ad_button_text', true ) != '' ) {
-	$ad_button = get_post_meta( $post->ID, 'post_ad_button_text', true );
+
+if ( function_exists('get_ad_button_text') ) {
+	$ad_button = get_ad_button_text( $post->ID );
 } else {
 	$ad_button = __('Open ad', 'vh');
 }
 
-if ( get_post_meta( $post->ID, 'post_ad_button_url', true ) != '' ) {
-	$ad_button_url = get_post_meta( $post->ID, 'post_ad_button_url', true );
+if ( function_exists('get_ad_button_url') ) {
+	$ad_button_url = get_ad_button_url( $post->ID );
 } else {
 	$ad_button_url = get_permalink( $post->ID );
 }
 
-if ( get_post_meta( $post->ID, 'post_ad_background', true ) != '' ) {
-	$ad_background_id = get_post_meta( $post->ID, 'post_ad_background', true );
-	$ad_background = wp_get_attachment_image_src( $ad_background_id, 'post-gallery-medium' );
+if ( function_exists('get_ad_background') ) {
+	$ad_background_style = get_ad_background( $post->ID );
 } else {
-	$ad_background_id = '';
+	$ad_background_style = '';
 }
+
 ?>
 
 <li class="isotope-item blog-inner-container <?php echo get_post_format(); ?>-format">
-	<div  <?php post_class(); ?> style="background: url('<?php echo esc_url( $ad_background['0'] ); ?>') no-repeat;">
+	<div  <?php post_class(); echo $ad_background_style; ?>>
 		<div class="post-inner entry-content <?php echo get_post_type(); ?>">
 			<div class="ad-title"><?php the_title(); ?></div>
 			<div class="blog-excerpt">
