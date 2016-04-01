@@ -73,7 +73,7 @@
 								<a href="javascript:void(0)" class="header-search-button icon-search"></a>
 								<div class="clearfix"></div>
 							</div>
-							<?php echo vh_display_menu_social_icons('main') ?>
+							<?php if ( function_exists('vh_display_menu_social_icons') ) { echo vh_display_menu_social_icons('main'); } ?>
 							<a href="javascript:void(0)" class="header-reading-button icon-book"></a>
 						</div>
 						<div class="clearfix"></div>
@@ -113,7 +113,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="header-button-container menu">
-						<?php echo vh_display_menu_social_icons('menu') ?>
+						<?php if ( function_exists('vh_display_menu_social_icons') ) { echo vh_display_menu_social_icons('menu'); } ?>
 						<a href="javascript:void(0)" class="header-reading-button icon-book"></a>
 					</div>
 					<div class="made-with">
@@ -139,12 +139,12 @@
 
 					switch ($layout_type) {
 						case 'right':
-							define('LAYOUT', 'sidebar-right');
+							define('BLOGPOST_LAYOUT', 'sidebar-right');
 							break;
 						case 'full':
-							define('LAYOUT', 'sidebar-no');
+							define('BLOGPOST_LAYOUT', 'sidebar-no');
 							break;
 						case 'left':
-							define('LAYOUT', 'sidebar-left');
+							define('BLOGPOST_LAYOUT', 'sidebar-left');
 							break;
 					}

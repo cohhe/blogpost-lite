@@ -368,12 +368,12 @@ function vh_get_typography_style() {
 }
 
 // Admin CSS
-function vh_admin_css() {
+function blogpost_admin_css() {
 	wp_enqueue_style( 'vh-admin-css', get_template_directory_uri() . '/functions/admin/css/wp-admin.css' );
 	wp_enqueue_style('jquery.tags', get_template_directory_uri() . '/css/jquery.tagit.css');
 	wp_enqueue_style('jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
 }
-add_action('admin_head','vh_admin_css');
+add_action('admin_head','blogpost_admin_css');
 
 // Admin JS
 function vh_admin_js() {
@@ -626,64 +626,6 @@ function vh_display_social_icons() {
 	if ( !empty($menu_header_pinterest_url) ) {
 		$output .= '<a href="' . esc_url( $menu_header_pinterest_url ) . '" class="header-social-icon icon-count-' . $icon_count . ' icon-pinterest"></a>';
 		$icon_count++;
-	}
-
-	return $output;
-}
-
-function vh_display_menu_social_icons( $class ) {
-	$output = '';
-	$icon_count = 0;
-	$menu_header_twitter_url   = get_theme_mod( 'blogpost_socialtwitter', '' );
-	$menu_header_facebook_url  = get_theme_mod( 'blogpost_socialfacebook', '' );
-	$menu_header_google_url    = get_theme_mod( 'blogpost_socialgplus', '' );
-	$menu_header_pinterest_url = get_theme_mod( 'blogpost_socialpinterest', '' );
-	$menu_header_instagram_url = get_theme_mod( 'blogpost_socialinstagram', '' );
-	$menu_header_vkontakte_url = get_theme_mod( 'blogpost_socialvkontakte', '' );
-
-	$output .= '
-	<div class="' . $class . ' share">
-		<button class="share-toggle-button">
-			<i class="share-icon icon-share"></i>
-		</button>
-		<ul class="share-items">';
-		if ( !empty($menu_header_twitter_url) ) {
-			$output .= '<li class="share-item"><a href="' . esc_url( $menu_header_twitter_url ) . '" class="share-button twitter"><i class="share-icon icon-twitter-1"></i></a></li>';
-			$icon_count++;
-		}
-
-		if ( !empty($menu_header_facebook_url) ) {
-
-			$output .= '<li class="share-item"><a href="' . esc_url( $menu_header_facebook_url ) . '" class="share-button facebook"><i class="share-icon icon-facebook"></i></a></li>';
-			$icon_count++;
-		}
-
-		if ( !empty($menu_header_google_url) ) {
-			$output .= '<li class="share-item"><a href="' . esc_url( $menu_header_google_url ) . '" class="share-button gplus"><i class="share-icon icon-gplus"></i></a></li>';
-			$icon_count++;
-		}
-
-		if ( !empty($menu_header_pinterest_url) ) {
-			$output .= '<li class="share-item"><a href="' . esc_url( $menu_header_pinterest_url ) . '" class="share-button pinterest"><i class="share-icon icon-pinterest"></i></a></li>';
-			$icon_count++;
-		}
-
-		if ( !empty($menu_header_instagram_url) ) {
-			$output .= '<li class="share-item"><a href="' . esc_url( $menu_header_instagram_url ) . '" class="share-button instagram"><i class="share-icon icon-instagram"></i></a></li>';
-			$icon_count++;
-		}
-
-		if ( !empty($menu_header_vkontakte_url) ) {
-			$output .= '<li class="share-item"><a href="' . esc_url( $menu_header_vkontakte_url ) . '" class="share-button vkontakte"><i class="share-icon icon-vkontakte"></i></a></li>';
-			$icon_count++;
-		}
-		$output .= '</ul>';
-
-	$output .= '
-	</div>';
-
-	if ( $icon_count == 0 ) {
-		$output = '';
 	}
 
 	return $output;

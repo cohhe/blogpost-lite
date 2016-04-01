@@ -11,12 +11,12 @@ if ( have_posts() ) {
 	$vh_blog_image_layout = $vh_from_home_page = TRUE;
 	?>
 	
-	<div class="page-<?php echo LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
+	<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
 		<div id="page-inner-container">
 			<div class="clearfix"></div>
 			<div class="content vc_row wpb_row vc_row-fluid">
-				<div class="<?php echo LAYOUT; ?>-pull">
-					<div class="main-content <?php echo (LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?>">
+				<div class="<?php echo BLOGPOST_LAYOUT; ?>-pull">
+					<div class="main-content <?php echo (BLOGPOST_LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?>">
 						<div class="main-inner">
 							<?php 
 								get_template_part( 'loop', get_post_format() );
@@ -25,9 +25,9 @@ if ( have_posts() ) {
 					</div>
 				</div>
 				<?php
-				if (LAYOUT == 'sidebar-right') {
+				if (BLOGPOST_LAYOUT == 'sidebar-right') {
 				?>
-				<div class="vc_col-sm-3 pull-right <?php echo LAYOUT; ?>">
+				<div class="vc_col-sm-3 pull-right <?php echo BLOGPOST_LAYOUT; ?>">
 					<div class="sidebar-inner">
 					<?php
 						global $vh_is_in_sidebar;
@@ -48,7 +48,7 @@ if ( have_posts() ) {
 } else {
 	?>
 	
-	<div class="page-<?php echo LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
+	<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
 		<div id="page-inner-container">
 			<div class="clearfix"></div>
 			<div class="page-title">
@@ -56,7 +56,7 @@ if ( have_posts() ) {
 			</div>
 			<div class="content vc_row-fluid">
 				<?php wp_reset_postdata(); ?>
-				<div class="<?php echo LAYOUT; ?>-pull vc_col-sm-12">
+				<div class="<?php echo BLOGPOST_LAYOUT; ?>-pull vc_col-sm-12">
 					<div class="main-content vc_col-sm-12">
 						<div class="main-inner">
 							<p><?php _e( 'Sorry, nothing found!', 'vh' ); ?></p>

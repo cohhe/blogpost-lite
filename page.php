@@ -7,7 +7,7 @@ get_header();
 $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large-image' );
 
 ?>
-<div class="page-<?php echo LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?> <?php if ( !is_front_page() ) { echo 'not_front_page';}?>">
+<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?> <?php if ( !is_front_page() ) { echo 'not_front_page';}?>">
 	<div id="page-inner-container">
 		<div class="clearfix"></div>
 		<?php if ( !is_front_page() && !is_home() ) { ?>
@@ -18,13 +18,13 @@ $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large-image' );
 				<div class="clearfix"></div>
 			</div>
 		<?php } ?>
-		<?php if ( LAYOUT == 'sidebar-right' ) { ?>
+		<?php if ( BLOGPOST_LAYOUT == 'sidebar-right' ) { ?>
 			<a href="javascript:void(0)" class="header-sidebar-button icon-left" style="display: block;"></a>
 		<?php } ?>
 		<div class="content vc_row wpb_row vc_row-fluid">
 			<?php
 			wp_reset_postdata(); ?>
-			<div class="<?php echo LAYOUT; ?>-pull <?php echo (LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?>">
+			<div class="<?php echo BLOGPOST_LAYOUT; ?>-pull <?php echo (BLOGPOST_LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?>">
 				<div class="main-content">
 					<?php
 					if ( isset($img[0]) ) { ?>
@@ -80,9 +80,9 @@ $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large-image' );
 				</div>
 			</div>
 			<?php
-			if (LAYOUT == 'sidebar-right') {
+			if (BLOGPOST_LAYOUT == 'sidebar-right') {
 			?>
-			<div class="vc_col-sm-3 pull-right <?php echo LAYOUT; ?>">
+			<div class="vc_col-sm-3 pull-right <?php echo BLOGPOST_LAYOUT; ?>">
 				<a href="javascript:void(0)" class="header-sidebar-button sidebar icon-right"></a>
 				<div class="clearfix"></div>
 				<div class="sidebar-inner">

@@ -13,7 +13,7 @@ global $vh_from_search, $vh_from_archive, $vh_blog_image_layout, $more; ?>
 <div class="vc_row wpb_row vc_row-fluid">
 	<div class="vc_col-sm-12 wpb_column column_container">
 		<div class="wpb_wrapper">
-			<div class="wpb_teaser_grid vc_row wpb_row wpb_content_element wpb_grid columns_count_1 grid_layout-title_thumbnail_text title_thumbnail_text_<?php echo (LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?> columns_count_1_title_thumbnail_text wpb_teaser_grid_post">
+			<div class="wpb_teaser_grid vc_row wpb_row wpb_content_element wpb_grid columns_count_1 grid_layout-title_thumbnail_text title_thumbnail_text_<?php echo (BLOGPOST_LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?> columns_count_1_title_thumbnail_text wpb_teaser_grid_post">
 				<div class="wpb_wrapper">
 					<?php echo vh_get_blog_url_info(); ?>
 					<div class="teaser_grid_container">
@@ -41,7 +41,7 @@ global $vh_from_search, $vh_from_archive, $vh_blog_image_layout, $more; ?>
 								if ( $vh_blog_image_layout == 'with_full_image' || $vh_from_search || $vh_from_archive ) {
 									$clear = ' style="float: none;"';
 									$img_style = ' style="margin-left: 0;"';
-									if ( LAYOUT != 'sidebar-no' ) {
+									if ( BLOGPOST_LAYOUT != 'sidebar-no' ) {
 										$image_span_size = ' vc_col-sm-10';
 									} else {
 										$image_span_size = ' vc_col-sm-12';

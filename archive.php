@@ -16,7 +16,7 @@ global $vh_from_archive;
 $vh_from_archive = true;
 $author_id = get_query_var( 'author' );
 ?>
-<div class="page-<?php echo LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
+<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
 	<div id="page-inner-container">
 		<div class="clearfix"></div>
 		<?php if ( is_author() ) { ?>
@@ -124,8 +124,8 @@ $author_id = get_query_var( 'author' );
 		<?php } ?>
 		<div class="content vc_row wpb_row vc_row-fluid">
 			<?php wp_reset_postdata(); ?>
-			<div class="<?php echo LAYOUT; ?>-pull">
-				<div class="main-content <?php echo (LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?>">
+			<div class="<?php echo BLOGPOST_LAYOUT; ?>-pull">
+				<div class="main-content <?php echo (BLOGPOST_LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?>">
 					<div class="main-inner">
 						<?php
 						if (have_posts()) {

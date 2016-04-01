@@ -13,12 +13,12 @@ if(empty($layout_type)) {
 $img       = wp_get_attachment_image_src( get_post_thumbnail_id(), 'offer-image-large' );
 $span_size = 'vc_col-sm-10';
 ?>
-<div class="page-<?php echo LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
+<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
 	<div id="page-inner-container">
 		<div class="content vc_row wpb_row vc_row-fluid">
 			<?php
 			wp_reset_postdata(); ?>
-			<div class="<?php echo LAYOUT; ?>-pull">
+			<div class="<?php echo BLOGPOST_LAYOUT; ?>-pull">
 				<div class="main-content">
 					<div class="main-inner">
 						<div class="vc_row wpb_row vc_row-fluid">
@@ -132,9 +132,9 @@ $span_size = 'vc_col-sm-10';
 				</div>
 			
 			<?php
-			if (LAYOUT == 'sidebar-right') {
+			if (BLOGPOST_LAYOUT == 'sidebar-right') {
 			?>
-			<div class="vc_col-sm-3 pull-right <?php echo LAYOUT; ?>">
+			<div class="vc_col-sm-3 pull-right <?php echo BLOGPOST_LAYOUT; ?>">
 				<a href="javascript:void(0)" class="header-sidebar-button sidebar icon-right"></a>
 				<div class="clearfix"></div>
 				<div class="sidebar-inner">

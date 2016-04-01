@@ -27,7 +27,7 @@ if ( get_the_author_meta( 'description' ) ) {
 }
 
 // Determine blog image size
-if ( LAYOUT == 'sidebar-no' ) {
+if ( BLOGPOST_LAYOUT == 'sidebar-no' ) {
 	$clear     = ' style="float: none;"';
 	$img_style = ' style="margin-left: 0;"';
 } else {
@@ -54,7 +54,7 @@ if ( 'post' == get_post_type() ) {
 }
 $entry_utility_bottom .= '</div>';
 ?>
-<div class="entry no_left_margin first-entry <?php echo esc_attr( $is_author_desc ); ?> <?php if ( !isset($img[0]) ) { echo ' no-image'; } ?><?php echo (LAYOUT != 'sidebar-no') ? ' vc_col-sm-12' : ' vc_col-sm-12'; ?>">
+<div class="entry no_left_margin first-entry <?php echo esc_attr( $is_author_desc ); ?> <?php if ( !isset($img[0]) ) { echo ' no-image'; } ?><?php echo (BLOGPOST_LAYOUT != 'sidebar-no') ? ' vc_col-sm-12' : ' vc_col-sm-12'; ?>">
 	<div class="entry-image vh_animate_when_almost_visible with_full_image <?php echo esc_attr( $vh_blog_image_layout ) . esc_attr( $is_author_desc ); ?>"<?php echo $clear; ?>>
 		<?php
 		$i                 = 2;
@@ -230,7 +230,7 @@ $entry_utility_bottom .= '</div>';
 			<?php } else { ?>
 				<span class="single-post-open-title"><?php echo get_the_title(); ?></span>
 			<?php } ?>
-			<?php if (LAYOUT == 'sidebar-right') { ?>
+			<?php if (BLOGPOST_LAYOUT == 'sidebar-right') { ?>
 				<a href="javascript:void(0)" class="header-sidebar-button icon-left"></a>
 			<?php } ?>
 			<a href="javascript:void(0)" class="article-back icon-angle-double-left"></a>

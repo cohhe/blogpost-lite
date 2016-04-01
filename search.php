@@ -11,7 +11,7 @@ global $vh_from_search, $vh_blog_image_layout;
 $vh_blog_image_layout = 'with_full_image';
 ?>
 
-<div class="page-<?php echo LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
+<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
 	<div id="page-inner-container">
 		<div class="search-page-top">
 			<?php
@@ -35,8 +35,8 @@ $vh_blog_image_layout = 'with_full_image';
 			<div class="clearfix"></div>
 		</div>
 		<div class="content vc_row wpb_row vc_row-fluid">
-			<div class="<?php echo LAYOUT; ?>-pull <?php echo (LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?>">
-				<div class="main-content <?php echo (LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?>">
+			<div class="<?php echo BLOGPOST_LAYOUT; ?>-pull <?php echo (BLOGPOST_LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?>">
+				<div class="main-content <?php echo (BLOGPOST_LAYOUT != 'sidebar-no') ? 'vc_col-sm-9' : 'vc_col-sm-12'; ?>">
 					<?php
 					if ( isset($img[0]) ) { ?>
 						<div class="entry-image">
