@@ -68,18 +68,20 @@ $entry_utility_bottom .= '</div>';
 			$attachments_count = 0;
 			$images_arr = array();
 
-			while( $i <= $posts_slideshow ) {
-				$attachment_id = kd_mfi_get_featured_image_id( 'gallery-image-' . $i, 'post' );
+			if ( function_exists('kd_mfi_get_featured_image_id') ) {
+				while( $i <= $posts_slideshow ) {
+					$attachment_id = kd_mfi_get_featured_image_id( 'gallery-image-' . $i, 'post' );
 
-				if( $attachment_id ) {
-					$attachments_count++;
-					$images_arr[] = 'gallery-image-'.$i;
+					if( $attachment_id ) {
+						$attachments_count++;
+						$images_arr[] = 'gallery-image-'.$i;
+					}
+					$i++;
 				}
-				$i++;
 			}
 
 			if ( get_post_format() == 'video' || get_post_format() == 'audio' ) {
-				get_embed_code( $post->ID );
+				if ( function_exists('get_embed_code') ) { get_embed_code( $post->ID ); }
 			} elseif ( get_post_format() == 'status' ) { ?>
 				<div class="post-twitter-username icon-twitter-1">
 				<?php if ( function_exists('get_twitter_link') ) { get_twitter_link( $post_id ); } ?>

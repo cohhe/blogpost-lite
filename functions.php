@@ -32,7 +32,6 @@ define('DEMO_COMMENTS', false);
 define('TESTENVIRONMENT', FALSE);
 
 add_action('after_setup_theme', 'vh_setup');
-add_filter('widget_text', 'do_shortcode');
 
 // Set max content width
 if (!isset($content_width)) {
@@ -116,32 +115,6 @@ add_action( 'widgets_init', 'vh_register_widgets' );
 
 // Add quote post format support
 add_theme_support( 'post-formats', array( 'quote' ) );
-
-if (file_exists(VH_ADMIN . '/featured-images/featured-images.php')) {
-	require_once(VH_ADMIN . '/featured-images/featured-images.php');
-
-	if( class_exists( 'vhFeaturedImages' ) ) {
-		$i = 1;
-		$posts_slideshow = ( get_option('vh_posts_slideshow_number') ) ? get_option('vh_posts_slideshow_number') : 5;
-
-		while($i <= $posts_slideshow) {
-			$args = array(
-				'id'        => 'gallery-image-'.$i,
-				'post_type' => 'post', // Set this to post or page
-				'labels'    => array(
-					'name'   => 'Gallery image '.$i,
-					'set'    => 'Set gallery image '.$i,
-					'remove' => 'Remove gallery image '.$i,
-					'use'    => 'Use as gallery image '.$i,
-				)
-			);
-
-			new vhFeaturedImages( $args );
-
-			$i++;
-		}
-	}
-}
 
 // Load Widgets
 function load_files ($files) {
@@ -1151,10 +1124,10 @@ function vh_register_required_plugins() {
 	 */
 	$plugins = array(
 		array(
-			'name'                  => 'Functionality for Blogpost theme', // The plugin name
-			'slug'                  => 'functionality-for-blogpost-theme', // The plugin slug (typically the folder name)
+			'name'                  => 'Functionality for Blogpost Lite theme', // The plugin name
+			'slug'                  => 'functionality-for-blogpostlite-theme', // The plugin slug (typically the folder name)
 			'required'              => false, // If false, the plugin is only 'recommended' instead of required
-			'version'               => '1.5', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+			'version'               => '1.0', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 			'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 			'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
 			'external_url'          => '', // If set, overrides default API URL and points to an external URL

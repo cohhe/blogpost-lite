@@ -1,5 +1,11 @@
 Blogspot Lite changelog
 
+= Version 1.2 =
+* Fixed PHP notices
+* Moved gallery image functionality
+* Moved custom CSS/JS to plugin
+* Removed theme advertising
+
 = Version 1.1 =
 * Using post meta only for visual things
 * Moved sidebars functionality to plugin

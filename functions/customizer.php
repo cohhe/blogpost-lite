@@ -187,46 +187,6 @@ function blogpost_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Custom JavaScript
-	$wp_customize->add_section( 'blogpost_general_js', array(
-		'priority'       => 80,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Custom JavaScript' , 'vh'),
-		'description'    => __( 'Copy your custom JavaScript code here. You have to add any needed html tags yourself.' , 'vh'),
-		'panel'          => 'blogpost_general_panel'
-	) );
-
-	$wp_customize->add_setting( 'blogpost_custom_js', array( 'default' => '', 'sanitize_callback' => 'blogpost_sanitize_textarea_field' ) );
-
-	$wp_customize->add_control(
-		'blogpost_custom_js',
-		array(
-			'label'      => 'Custom JavaScript',
-			'section'    => 'blogpost_general_js',
-			'type'       => 'textarea',
-		)
-	);
-
-	// Custom CSS
-	$wp_customize->add_section( 'blogpost_general_css', array(
-		'priority'       => 90,
-		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Custom CSS' , 'vh'),
-		'description'    => __( 'Copy your custom CSS code here. Use plain CSS without any html tags.' , 'vh'),
-		'panel'          => 'blogpost_general_panel'
-	) );
-
-	$wp_customize->add_setting( 'blogpost_custom_css', array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
-
-	$wp_customize->add_control(
-		'blogpost_custom_css',
-		array(
-			'label'      => 'Custom CSS',
-			'section'    => 'blogpost_general_css',
-			'type'       => 'textarea',
-		)
-	);
-
 	// Scroll to top
 	$wp_customize->add_section( 'blogpost_general_scrolltotop', array(
 		'priority'       => 100,
@@ -446,10 +406,6 @@ function blogpost_customize_register( $wp_customize ) {
 	);
 }
 add_action( 'customize_register', 'blogpost_customize_register' );
-
-function blogpost_sanitize_textarea_field( $input ) {
-	return esc_js( $input );
-}
 
 if ( class_exists( 'WP_Customize_Section' ) && !class_exists( 'blogpost_Customized_Section' ) ) {
 	class blogpost_Customized_Section extends WP_Customize_Section {

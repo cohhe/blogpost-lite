@@ -27,13 +27,15 @@ if ( empty($img[0]) ) {
 			$attachments_count = 0;
 			$images_arr = array();
 
-			while( $i <= $posts_slideshow ) {
-				$attachment_id = kd_mfi_get_featured_image_id( 'gallery-image-' . $i, 'post' );
-				if( $attachment_id ) {
-					$attachments_count++;
-					$images_arr[] = 'gallery-image-'.$i;
+			if ( function_exists('kd_mfi_get_featured_image_id') ) {
+				while( $i <= $posts_slideshow ) {
+					$attachment_id = kd_mfi_get_featured_image_id( 'gallery-image-' . $i, 'post' );
+					if( $attachment_id ) {
+						$attachments_count++;
+						$images_arr[] = 'gallery-image-'.$i;
+					}
+					$i++;
 				}
-				$i++;
 			}
 
 			if ( $attachments_count > 1 ) { ?>
