@@ -1,7 +1,5 @@
 <?php
 
-require_once(VH_ADMIN . '/slt-file-select.php');
-
 // Saves new field to postmeta for navigation
 add_action('wp_update_nav_menu_item', 'custom_nav_update',10, 3);
 function custom_nav_update($menu_id, $menu_item_db_id, $args ) {

@@ -10,7 +10,7 @@ get_header();
 	$title_404 = get_theme_mod( 'blogpost_404_title', "This is somewhat embarrassing, isn't it?");
 	$title_msg = get_theme_mod( 'blogpost_404_message', "It seems we can't find what you're looking for. Perhaps searching, or one of the links below, can help.");
 ?>
-<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?> search-no-results">
+<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php blogpost_get_cookie_classess(); ?> search-no-results">
 	<div id="page-inner-container">
 		<div class="clearfix"></div>
 		<div class="page_info">
@@ -33,7 +33,7 @@ get_header();
 					</div>
 				</div>
 			</div>
-			<?php $vh_is_in_sidebar = false; ?>
+			<?php $blogpost_is_in_sidebar = false; ?>
 			<div class="clearfix"></div>
 		</div><!--end of content-->
 		<div class="clearfix"></div>

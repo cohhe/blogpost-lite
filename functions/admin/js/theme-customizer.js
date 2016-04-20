@@ -6,7 +6,7 @@
  */
 
 (function($) {
-	wp.customize( 'vh_color_scheme', function( value ) {
+	wp.customize( 'blogpost_color_scheme', function( value ) {
 		value.bind( function( to ) {
 			$( 'body' ).removeClass( 'yellow-color-scheme green-color-scheme red-color-scheme gray-color-scheme' ).addClass(to);
 		});

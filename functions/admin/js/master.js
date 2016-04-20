@@ -349,7 +349,7 @@ function remove_image (el, url) {
 jQuery(document).ready(function($) {
 
 	// Choose layout
-	jQuery("#vh_layouts img").click(function() {
+	jQuery("#blogpost_layouts img").click(function() {
 		jQuery(this).parent().parent().find(".selected").removeClass("selected");
 		jQuery(this).addClass("selected");
 	});

@@ -101,7 +101,7 @@ class create_meta_boxes {
 		extract($value);
 
 		// Load template
-		require_once(VH_METABOXES . '/templates/' . $template . '.php');
+		require_once(BLOGPOST_METABOXES . '/templates/' . $template . '.php');
 	}
 
 }

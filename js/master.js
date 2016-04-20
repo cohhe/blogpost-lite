@@ -11,7 +11,7 @@ jQuery(window).load(function() {
 	// Hide loading effect
 	jQuery('.overlay-hide').hide();
 
-	jQuery('#vh_loading_effect').addClass( 'hide' ).delay(500).queue(function(next){
+	jQuery('#blogpost_loading_effect').addClass( 'hide' ).delay(500).queue(function(next){
 		jQuery(this).hide();
 		next();
 	});
@@ -137,15 +137,15 @@ var blogpost = {};
 			jQuery('body').addClass('disable-animations');
 			$('body').removeClass('ajax-main-content-loading-end ajax-content-wrapper-loading-end');
 			if ( !$('.page-wrapper').hasClass('menu-active') ) {
-				$('#vh_loading_effect').addClass('full');
+				$('#blogpost_loading_effect').addClass('full');
 			} else {
-				$('#vh_loading_effect').removeClass('full');
+				$('#blogpost_loading_effect').removeClass('full');
 			}
-			// $('#vh_loading_effect').show().animate({
+			// $('#blogpost_loading_effect').show().animate({
 			// 	opacity: "1"
 			// }, 300);
 
-			jQuery('#vh_loading_effect').removeClass( 'hide' ).show();
+			jQuery('#blogpost_loading_effect').removeClass( 'hide' ).show();
 
 			var timeStarted = 0;
 
@@ -182,7 +182,7 @@ var blogpost = {};
 							if ( $data.find('#contact-us-map').length ) {
 								var script = document.createElement("script");
 								script.type = "text/javascript";
-								script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&ver=3&callback=vh_contact_map";
+								script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&ver=3&callback=blogpost_contact_map";
 								document.head.appendChild(script);
 							};
 						}
@@ -197,7 +197,7 @@ var blogpost = {};
 
 						$('body').attr('class', $data.find('#body-classes').attr('class'));
 						setTimeout(function() {
-							jQuery('#vh_loading_effect').addClass( 'hide' ).delay(500).queue(function(next){
+							jQuery('#blogpost_loading_effect').addClass( 'hide' ).delay(500).queue(function(next){
 								jQuery(this).hide();
 								next();
 							});
@@ -218,7 +218,7 @@ var blogpost = {};
 						jQuery(".nano").nanoScroller({ scroll: 'top' });
 						setTimeout(function() {
 							jQuery('body').removeClass('disable-animations');
-							jQuery('#vh_loading_effect').addClass( 'hide' ).delay(500).queue(function(next){
+							jQuery('#blogpost_loading_effect').addClass( 'hide' ).delay(500).queue(function(next){
 								jQuery(this).hide();
 								next();
 							});
@@ -256,12 +256,12 @@ var blogpost = {};
 	$(document).on( 'blogpost:ajaxBlogLoad', BlogMasonry );
 
 	function ResizeContentElements() {
-		if ( jQuery.cookie('vh_menu_state') == '1' && ( jQuery.cookie('vh_sidebar_state') == '1' && jQuery('.sidebar-right').length && !jQuery('body').hasClass('reading-mode') ) ) {
+		if ( jQuery.cookie('blogpost_menu_state') == '1' && ( jQuery.cookie('blogpost_sidebar_state') == '1' && jQuery('.sidebar-right').length && !jQuery('body').hasClass('reading-mode') ) ) {
 			jQuery('header.header, .page-wrapper, .side-menu-container, body').addClass('menu-active sidebar-active');
-		} else if ( jQuery.cookie('vh_menu_state') == '1' && ( jQuery.cookie('vh_sidebar_state') == '0' || !jQuery('.sidebar-right').length && !jQuery('body').hasClass('reading-mode') ) ) {
+		} else if ( jQuery.cookie('blogpost_menu_state') == '1' && ( jQuery.cookie('blogpost_sidebar_state') == '0' || !jQuery('.sidebar-right').length && !jQuery('body').hasClass('reading-mode') ) ) {
 			jQuery('header.header, .page-wrapper, .side-menu-container, body').addClass('menu-active');
 			jQuery('header.header, .page-wrapper, .side-menu-container, body').removeClass('sidebar-active');
-		} else if ( jQuery.cookie('vh_menu_state') == '0' && ( jQuery.cookie('vh_sidebar_state') == '1' && jQuery('.sidebar-right').length && !jQuery('body').hasClass('reading-mode') ) ) {
+		} else if ( jQuery.cookie('blogpost_menu_state') == '0' && ( jQuery.cookie('blogpost_sidebar_state') == '1' && jQuery('.sidebar-right').length && !jQuery('body').hasClass('reading-mode') ) ) {
 			jQuery('header.header, .page-wrapper, .side-menu-container, body').addClass('sidebar-active');
 			jQuery('header.header, .page-wrapper, .side-menu-container, body').removeClass('menu-active');
 		}
@@ -469,7 +469,7 @@ jQuery(document).ready(function($) {
 
 			$('body').removeClass('ajax-main-content-loading-end ajax-content-wrapper-loading-end');
 			if ( !$('.page-wrapper').hasClass('menu-active') ) {
-				$('#vh_loading_effect').addClass('full');
+				$('#blogpost_loading_effect').addClass('full');
 			};
 			
 			jQuery('.main-inner .loading-effect').css('opacity', '1');
@@ -748,10 +748,10 @@ jQuery(document).ready(function($) {
 	// });
 
 	jQuery('.header-menu-button').click(function() {
-		if (jQuery.cookie('vh_menu_state') == '1' ) {
-			jQuery.cookie('vh_menu_state', '0', { path: '/' });
+		if (jQuery.cookie('blogpost_menu_state') == '1' ) {
+			jQuery.cookie('blogpost_menu_state', '0', { path: '/' });
 		} else {
-			jQuery.cookie('vh_menu_state', '1', { path: '/' });
+			jQuery.cookie('blogpost_menu_state', '1', { path: '/' });
 		}
 
 		if ( jQuery('.rev_slider_wrapper .rev_slider').length ) {
@@ -778,10 +778,10 @@ jQuery(document).ready(function($) {
 	};
 
 	jQuery(document.body).on('click', '.header-sidebar-button', function() {
-		if (jQuery.cookie('vh_sidebar_state') == '1' ) {
-			jQuery.cookie('vh_sidebar_state', '0', { path: '/' });
+		if (jQuery.cookie('blogpost_sidebar_state') == '1' ) {
+			jQuery.cookie('blogpost_sidebar_state', '0', { path: '/' });
 		} else {
-			jQuery.cookie('vh_sidebar_state', '1', { path: '/' });
+			jQuery.cookie('blogpost_sidebar_state', '1', { path: '/' });
 		}
 
 		jQuery('header.header, .page-wrapper, .side-menu-container, body').toggleClass('sidebar-active');
@@ -815,12 +815,12 @@ jQuery(document).ready(function($) {
 		jQuery('.header-sidebar-button:not(sidebar)').hide();
 	};
 
-	if (jQuery.cookie('vh_sidebar_state') == null) {
-		jQuery.cookie('vh_sidebar_state', '1', { path: '/' });
+	if (jQuery.cookie('blogpost_sidebar_state') == null) {
+		jQuery.cookie('blogpost_sidebar_state', '1', { path: '/' });
 	};
 
-	if (jQuery.cookie('vh_menu_state') == null) {
-		jQuery.cookie('vh_menu_state', '1', { path: '/' });
+	if (jQuery.cookie('blogpost_menu_state') == null) {
+		jQuery.cookie('blogpost_menu_state', '1', { path: '/' });
 	};
 
 	jQuery(document.body).on('click', '.header-search-button', function() {	
@@ -1045,11 +1045,11 @@ jQuery(document).ready(function($) {
 	jQuery(document).on('click', '.header-reading-button', function() {
 		jQuery('body').toggleClass('reading-mode');
 		if ( !jQuery('body').hasClass('reading-mode') ) {
-			if (jQuery.cookie('vh_menu_state') == '1' ) {
+			if (jQuery.cookie('blogpost_menu_state') == '1' ) {
 				jQuery('header.header, .page-wrapper, .side-menu-container, body').addClass('menu-active');
 			}
 
-			if (jQuery.cookie('vh_sidebar_state') == '1' ) {
+			if (jQuery.cookie('blogpost_sidebar_state') == '1' ) {
 				jQuery('header.header, .page-wrapper, .side-menu-container, body').addClass('sidebar-active');
 			}
 		} else {
@@ -1153,12 +1153,12 @@ function clearInput (input, inputValue) {
 jQuery(document).ready(function() {
 	"use strict";
 
-	if ( jQuery.cookie('vh_menu_state') == '1' && ( jQuery.cookie('vh_sidebar_state') == '1' && jQuery('.sidebar-right').length ) ) {
+	if ( jQuery.cookie('blogpost_menu_state') == '1' && ( jQuery.cookie('blogpost_sidebar_state') == '1' && jQuery('.sidebar-right').length ) ) {
 		jQuery('header.header, .page-wrapper, .side-menu-container, body').addClass('menu-active sidebar-active');
-	} else if ( jQuery.cookie('vh_menu_state') == '1' && ( jQuery.cookie('vh_sidebar_state') == '0' || !jQuery('.sidebar-right').length ) ) {
+	} else if ( jQuery.cookie('blogpost_menu_state') == '1' && ( jQuery.cookie('blogpost_sidebar_state') == '0' || !jQuery('.sidebar-right').length ) ) {
 		jQuery('header.header, .page-wrapper, .side-menu-container, body').addClass('menu-active');
 		jQuery('header.header, .page-wrapper, .side-menu-container, body').removeClass('sidebar-active');
-	} else if ( jQuery.cookie('vh_menu_state') == '0' && ( jQuery.cookie('vh_sidebar_state') == '1' && jQuery('.sidebar-right').length ) ) {
+	} else if ( jQuery.cookie('blogpost_menu_state') == '0' && ( jQuery.cookie('blogpost_sidebar_state') == '1' && jQuery('.sidebar-right').length ) ) {
 		jQuery('header.header, .page-wrapper, .side-menu-container, body').addClass('sidebar-active');
 		jQuery('header.header, .page-wrapper, .side-menu-container, body').removeClass('menu-active');
 	}

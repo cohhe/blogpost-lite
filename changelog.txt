@@ -1,5 +1,13 @@
 Blogspot Lite changelog
 
+= Version 1.3 =
+* Fixed theme URI
+* Removed unnecessary files that are not in-use
+* Used the right prefix for functions
+* Removed some recommended plugins
+* Updated license for fonts
+* Removed build-in plugins
+
 = Version 1.2 =
 * Fixed PHP notices
 * Moved gallery image functionality

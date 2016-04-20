@@ -12,11 +12,11 @@
  */
 get_header();
 
-global $vh_from_archive;
-$vh_from_archive = true;
+global $blogpost_from_archive;
+$blogpost_from_archive = true;
 $author_id = get_query_var( 'author' );
 ?>
-<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
+<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php blogpost_get_cookie_classess(); ?>">
 	<div id="page-inner-container">
 		<div class="clearfix"></div>
 		<?php if ( is_author() ) { ?>
@@ -139,7 +139,7 @@ $author_id = get_query_var( 'author' );
 					</div>
 				</div>
 			</div>
-			<?php $vh_is_in_sidebar = false; ?>
+			<?php $blogpost_is_in_sidebar = false; ?>
 			<div class="clearfix"></div>
 		</div><!--end of content-->
 		<div class="clearfix"></div>

@@ -7,7 +7,7 @@ get_header();
 $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large-image' );
 
 ?>
-<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?> <?php if ( !is_front_page() ) { echo 'not_front_page';}?>">
+<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php blogpost_get_cookie_classess(); ?> <?php if ( !is_front_page() ) { echo 'not_front_page';}?>">
 	<?php echo do_shortcode('[rev_slider main]'); ?>
 	<div id="page-inner-container">
 		<div class="clearfix"></div>
@@ -55,15 +55,15 @@ $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large-image' );
 				<div class="clearfix"></div>
 				<div class="sidebar-inner">
 				<?php
-					global $vh_is_in_sidebar;
-					$vh_is_in_sidebar = true;
+					global $blogpost_is_in_sidebar;
+					$blogpost_is_in_sidebar = true;
 					generated_dynamic_sidebar();
 				?>
 				<div class="clearfix"></div>
 				</div>
 			</div><!--end of span3-->
 			<?php } ?>
-			<?php $vh_is_in_sidebar = false; ?>
+			<?php $blogpost_is_in_sidebar = false; ?>
 			<div class="clearfix"></div>
 		</div><!--end of content-->
 		<div class="clearfix"></div>

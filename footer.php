@@ -3,8 +3,8 @@
  * The template for displaying the footer.
  */
 
-global $vh_is_footer;
-$vh_is_footer = true;
+global $blogpost_is_footer;
+$blogpost_is_footer = true;
 
 $retina_logo_class = '';
 $logo_size_html = '';

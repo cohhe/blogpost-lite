@@ -6,7 +6,7 @@
  * @subpackage BlogPost
  */
 
-global $vh_from_home_page, $post;
+global $blogpost_from_home_page, $post;
 
 $tc = 0;
 $excerpt = get_the_excerpt();
@@ -24,11 +24,11 @@ $img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'post-gallery-medium
 				<div class="post-image">
 					<a href="<?php the_permalink(); ?>" class="post-image-link"><img src="<?php echo esc_url( $img[0] ); ?>" alt="post-img" class="post-inner-picture"></a>
 					<?php if ( get_the_category_list(', ') != '' ) { ?>
-						<div class="blog-category <?php echo vh_get_random_circle(); ?>">
+						<div class="blog-category <?php echo blogpost_get_random_circle(); ?>">
 							<?php echo get_the_category_list(', '); ?>
 						</div>
 					<?php } ?>
-					<?php vh_get_favorite_icon(get_the_ID()); ?>
+					<?php blogpost_get_favorite_icon(get_the_ID()); ?>
 				</div>
 			<?php } ?>
 			<div class="post-inner entry-content <?php echo get_post_type(); ?>">
@@ -61,7 +61,7 @@ $img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'post-gallery-medium
 						?>
 					</div>
 					<?php if( empty($img[0]) ) {
-						vh_get_favorite_icon(get_the_ID());
+						blogpost_get_favorite_icon(get_the_ID());
 					} ?>
 					<a href="<?php echo get_permalink( $post->ID ); ?>" class="blog-read-more ripple-slow wpb_button wpb_btn-danger wpb_regularsize square"><?php _e('Read', 'vh'); ?></a>
 					<div class="clearfix"></div>

@@ -8,60 +8,56 @@
  */
 
 // Define file directories
-define('VH_HOME', get_template_directory());
-define('VH_FUNCTIONS', get_template_directory() . '/functions');
-define('VH_GLOBAL', get_template_directory() . '/functions/global');
-define('VH_WIDGETS', get_template_directory() . '/functions/widgets');
-define('VH_CUSTOM_PLUGINS', get_template_directory() . '/functions/plugins');
-define('VH_ADMIN', get_template_directory() . '/functions/admin');
-define('VH_ADMIN_IMAGES', get_template_directory_uri() . '/functions/admin/images');
-define('VH_METABOXES', get_template_directory() . '/functions/admin/metaboxes');
-define('VH_SIDEBARS', get_template_directory() . '/functions/admin/sidebars');
+define('BLOGPOST_HOME', get_template_directory());
+define('BLOGPOST_FUNCTIONS', get_template_directory() . '/functions');
+define('BLOGPOST_GLOBAL', get_template_directory() . '/functions/global');
+define('BLOGPOST_WIDGETS', get_template_directory() . '/functions/widgets');
+define('BLOGPOST_CUSTOM_PLUGINS', get_template_directory() . '/functions/plugins');
+define('BLOGPOST_ADMIN', get_template_directory() . '/functions/admin');
+define('BLOGPOST_ADMIN_IMAGES', get_template_directory_uri() . '/functions/admin/images');
+define('BLOGPOST_METABOXES', get_template_directory() . '/functions/admin/metaboxes');
+define('BLOGPOST_SIDEBARS', get_template_directory() . '/functions/admin/sidebars');
 
 // Define theme URI
-define('VH_URI', get_template_directory_uri() .'/');
-define('VH_GLOBAL_URI', VH_URI . 'functions/global');
+define('BLOGPOST_URI', get_template_directory_uri() .'/');
+define('BLOGPOST_GLOBAL_URI', BLOGPOST_URI . 'functions/global');
 
 define('THEMENAME', 'BlogPost');
 define('SHORTNAME', 'VH');
-define('VH_HOME_TITLE', 'Front page');
-define('VH_DEVELOPER_NAME_DISPLAY', 'Cohhe themes');
-define('VH_DEVELOPER_URL', 'http://cohhe.com');
+define('BLOGPOST_HOME_TITLE', 'Front page');
+define('BLOGPOST_DEVELOPER_NAME_DISPLAY', 'Cohhe themes');
+define('BLOGPOST_DEVELOPER_URL', 'http://cohhe.com');
 define('DEMO_COMMENTS', false);
 
 define('TESTENVIRONMENT', FALSE);
 
-add_action('after_setup_theme', 'vh_setup');
+add_action('after_setup_theme', 'blogpost_setup');
 
 // Set max content width
 if (!isset($content_width)) {
 	$content_width = 900;
 }
 
-if (!function_exists('vh_setup')) {
+if (!function_exists('blogpost_setup')) {
 
-	function vh_setup() {
+	function blogpost_setup() {
 
 		// Load Admin elements
-		require_once(VH_ADMIN . '/menu-custom-field.php');
-		require_once(VH_METABOXES . '/layouts.php');
-		require_once(VH_METABOXES . '/contact_map.php');
+		require_once(BLOGPOST_ADMIN . '/menu-custom-field.php');
+		require_once(BLOGPOST_METABOXES . '/layouts.php');
 
-		// Load global elements
-		require_once(VH_GLOBAL . '/wp_pagenavi/wp-pagenavi.php');
-
-		// if (file_exists(VH_CUSTOM_PLUGINS . '/landing-pages/landing-pages.php')) {
-		//  require_once(VH_CUSTOM_PLUGINS . '/landing-pages/landing-pages.php');
+		// if (file_exists(BLOGPOST_CUSTOM_PLUGINS . '/landing-pages/landing-pages.php')) {
+		//  require_once(BLOGPOST_CUSTOM_PLUGINS . '/landing-pages/landing-pages.php');
 		// }
 
 		// TGM plugins activation
-		require_once(VH_FUNCTIONS . '/tgm-activation/class-tgm-plugin-activation.php');
+		require_once(BLOGPOST_FUNCTIONS . '/tgm-activation/class-tgm-plugin-activation.php');
 
 		require_once(get_template_directory() . '/inc/admin/welcome-screen/welcome-screen.php');
 
 		// Shortcodes list
 		$shortcodes = array (
-			//VH_SHORTCODES . '/test.php'
+			//BLOGPOST_SHORTCODES . '/test.php'
 		);
 
 		// Load shortcodes
@@ -82,7 +78,7 @@ if (!function_exists('vh_setup')) {
 	}
 }
 
-function vh_rename_post_formats($translation, $text, $context, $domain) {
+function blogpost_rename_post_formats($translation, $text, $context, $domain) {
 	$names = array(
 		'Quote'  => 'Ad',
 		'Status' => 'Tweet'
@@ -92,15 +88,15 @@ function vh_rename_post_formats($translation, $text, $context, $domain) {
 	}
 	return $translation;
 }
-add_filter('gettext_with_context', 'vh_rename_post_formats', 10, 4);
+add_filter('gettext_with_context', 'blogpost_rename_post_formats', 10, 4);
 
-function vh_localization() {
+function blogpost_localization() {
 	$lang = get_template_directory() . '/languages';
 	load_theme_textdomain('vh', $lang);
 }
-add_action('after_setup_theme', 'vh_localization');
+add_action('after_setup_theme', 'blogpost_localization');
 
-function vh_register_widgets () {
+function blogpost_register_widgets () {
 	register_sidebar( array(
 		'name'          => __( 'Normal', 'vh' ),
 		'id'            => 'sidebar-5',
@@ -111,7 +107,7 @@ function vh_register_widgets () {
 		'after_title'   => '</h4>'
 	) );
 }
-add_action( 'widgets_init', 'vh_register_widgets' );
+add_action( 'widgets_init', 'blogpost_register_widgets' );
 
 // Add quote post format support
 add_theme_support( 'post-formats', array( 'quote' ) );
@@ -165,7 +161,7 @@ function the_excerpt_max_charlength($charlength) {
 	}
 }
 
-function vh_comment_count( $count ) {
+function blogpost_comment_count( $count ) {
 	if ( ! is_admin() ) {
 		global $id;
 
@@ -178,7 +174,7 @@ function vh_comment_count( $count ) {
 		return $count;
 	}
 }
-add_filter('get_comments_number', 'vh_comment_count', 0);
+add_filter('get_comments_number', 'blogpost_comment_count', 0);
 
 function tgm_cpt_search( $query ) {
 	if ( $query->is_search ) {
@@ -202,8 +198,8 @@ if ( function_exists('add_image_size')) {
 }
 
 // Public JS scripts
-if (!function_exists('vh_scripts_method')) {
-	function vh_scripts_method() {
+if (!function_exists('blogpost_scripts_method')) {
+	function blogpost_scripts_method() {
 		wp_enqueue_script('jquery');
 
 		wp_enqueue_script('jquery.debouncedresize', get_template_directory_uri() . '/js/jquery.debouncedresize.js', array('jquery'), '', TRUE);
@@ -220,7 +216,7 @@ if (!function_exists('vh_scripts_method')) {
 
 		wp_enqueue_script( 'jquery-ui-dialog' );
 
-		if ( !is_admin() && vh_has_shortcode(get_the_ID(), 'vh_contact_us') ) {
+		if ( !is_admin() && blogpost_has_shortcode(get_the_ID(), 'blogpost_contact_us') ) {
 			wp_enqueue_script('blogpost-googlemap-script', '//maps.googleapis.com/maps/api/js?sensor=false', array(), '3', FALSE);
 		}
 
@@ -256,9 +252,9 @@ if (!function_exists('vh_scripts_method')) {
 		wp_add_inline_style( 'master-css', get_theme_mod('blogpost_custom_css', '') );
 	}
 }
-add_action('wp_enqueue_scripts', 'vh_scripts_method'); 
+add_action('wp_enqueue_scripts', 'blogpost_scripts_method'); 
 
-function vh_has_shortcode( $postid, $shortcode ) {
+function blogpost_has_shortcode( $postid, $shortcode ) {
 	if ( !$postid ) {
 		return false;
 	}
@@ -271,8 +267,8 @@ function vh_has_shortcode( $postid, $shortcode ) {
 require get_template_directory() . '/functions/customizer.php';
 
 // Public CSS files
-if (!function_exists('vh_style_method')) {
-	function vh_style_method() {
+if (!function_exists('blogpost_style_method')) {
+	function blogpost_style_method() {
 		wp_enqueue_style('master-css', get_template_directory_uri() . '/style.css');
 		wp_enqueue_style('vh-normalize', get_template_directory_uri() . '/css/normalize.css');
 		wp_enqueue_style('prettyphoto');
@@ -284,7 +280,7 @@ if (!function_exists('vh_style_method')) {
 		if (file_exists(TEMPLATEPATH . '/css/gfonts.css')) {
 			wp_enqueue_style('front-gfonts', get_template_directory_uri() . '/css/gfonts.css');
 		}
-		wp_add_inline_style( 'master-css', vh_get_typography_style() );
+		wp_add_inline_style( 'master-css', blogpost_get_typography_style() );
 
 		// Check blog columns
 		$blog_width = 100/get_theme_mod('blogpost_blog_columns', '3');
@@ -292,29 +288,27 @@ if (!function_exists('vh_style_method')) {
 		wp_add_inline_style( 'master-css', $blog_css );
 	}
 }
-add_action('wp_enqueue_scripts', 'vh_style_method');
+add_action('wp_enqueue_scripts', 'blogpost_style_method');
 
-function vh_get_typography_style() {
+function blogpost_get_typography_style() {
 	return "html .main-inner p,.ac-device .description,.pricing-table .pricing-content .pricing-desc-1,body .vc_progress_bar .vc_single_bar .vc_label,.page-wrapper .member-desc,.page-wrapper .member-position,.page-wrapper .main-inner ul:not(.ui-tabs-nav) li,.page-wrapper .bg-style-2 p,.header-search-form input[type='text'],.header-input-container .header-input-title{font-family:'Libre Baskerville';font-size:16px;line-height:26px;color:#212121;font-weight:normal}.sidebar-inner,.blogpost-contactform.widget input:not(.btn),.blogpost-recentpostsplus.widget .news-item p,.wrapper .text.widget p,.blogpost-fastflickrwidget.widget,.widget li,.wrapper .search.widget .sb-search-input,.widget .content-form .textarea.input-block-level,.text.widget .textwidget,.newsletter-email,.wrapper .widget li,.widget p{font-family:'Libre Baskerville';font-size:14px;line-height:20px;color:#212121;font-weight:300}.wrapper h1,body .wrapper .page_info .page-title h1{font-family:'Open Sans';font-size:36px;line-height:46px;color:#212121;font-weight:bold}.page-wrapper h2,h2,.content .entry-title,.teaser_grid_container .post-title{font-family:'Open Sans';font-size:28px;line-height:38px;color:#212121;font-weight:bold}.wrapper h3{font-family:'Open Sans';font-size:20px;line-height:30px;color:#212121;font-weight:bold}.wrapper h4{font-family:'Open Sans';font-size:18px;line-height:28px;color:#212121;font-weight:normal}.wrapper h5{font-family:'Open Sans';font-size:13px;line-height:32px;color:#212121;font-weight:bold}.wrapper h6{font-family:'Open Sans';font-size:11px;line-height:30px;color:#212121;font-weight:bold}.wpb_wrapper a,#author-link a,.blogpost-usefullinks.widget a,.widget li a,.widget a{font-family:'Libre Baskerville';font-size:16px;line-height:26px;color:#3599dc;font-weight:normal}@media (min-width:1200px){.wrapper .sidebar-inner .item-title-bg h4,.wrapper .sidebar-inner .widget-title,.wrapper h3.widget-title a{font-family:'Open Sans';font-size:20px;line-height:24px;color:#212121;font-weight:bold}}body .wrapper .page_info .page-title h1{font-family:'Open Sans';font-size:36px;line-height:40px;color:#212121;font-weight:bold}";
 }
 
 // Admin CSS
 function blogpost_admin_css() {
 	wp_enqueue_style( 'blogpost-admin-css', get_template_directory_uri() . '/functions/admin/css/wp-admin.css' );
-	wp_enqueue_style('jquery.tags', get_template_directory_uri() . '/css/jquery.tagit.css');
-	wp_enqueue_style('jquery-style', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css');
 }
 add_action('admin_head','blogpost_admin_css');
 
 // Admin JS
-function vh_admin_js() {
+function blogpost_admin_js() {
 	wp_enqueue_script('jquery-ui-slider');
 }
-add_action( 'admin_enqueue_scripts', 'vh_admin_js' );
+add_action( 'admin_enqueue_scripts', 'blogpost_admin_js' );
 
-add_action( 'wp_ajax_nopriv_ajax-blog-posts', 'vh_load_next_posts' );
-add_action( 'wp_ajax_ajax-blog-posts', 'vh_load_next_posts' );
-function vh_load_next_posts() {
+add_action( 'wp_ajax_nopriv_ajax-blog-posts', 'blogpost_load_next_posts' );
+add_action( 'wp_ajax_ajax-blog-posts', 'blogpost_load_next_posts' );
+function blogpost_load_next_posts() {
 	$initial_posts = sanitize_text_field($_POST['initial_posts']);
 	$next_posts = sanitize_text_field($_POST['next_posts']);
 	$post_categories = sanitize_text_field($_POST['post_categories']);
@@ -334,7 +328,7 @@ function vh_load_next_posts() {
 			'post_type' => 'post',
 			'posts_per_page' => $next_posts,
 			'offset' => $post_paged,
-			'post__in' => vh_get_user_favorites()
+			'post__in' => blogpost_get_user_favorites()
 		));
 	}
 
@@ -367,11 +361,11 @@ function vh_load_next_posts() {
 						<div class="post-image">
 							<a href="<?php the_permalink(); ?>" class="post-image-link"><img src="<?php echo esc_url( $img[0] ); ?>" alt="post-img" class="post-inner-picture"></a>
 							<?php if ( get_the_category_list(', ') != '' ) { ?>
-								<div class="blog-category <?php echo vh_get_random_circle(); ?>">
+								<div class="blog-category <?php echo blogpost_get_random_circle(); ?>">
 									<?php echo get_the_category_list(', '); ?>
 								</div>
 							<?php } ?>
-							<?php vh_get_favorite_icon(get_the_ID()); ?>
+							<?php blogpost_get_favorite_icon(get_the_ID()); ?>
 						</div>
 					<?php } ?>
 					<div class="post-inner entry-content <?php echo get_post_type(); ?>">
@@ -404,7 +398,7 @@ function vh_load_next_posts() {
 								?>
 							</div>
 							<?php if( empty($img[0]) ) {
-								vh_get_favorite_icon(get_the_ID());
+								blogpost_get_favorite_icon(get_the_ID());
 							} ?>
 							<a href="<?php echo get_permalink( $post->ID ); ?>" class="blog-read-more ripple-slow wpb_button wpb_btn-danger wpb_regularsize square"><?php _e('Read', 'vh'); ?></a>
 							<div class="clearfix"></div>
@@ -428,16 +422,16 @@ function vh_load_next_posts() {
 	die(1);
 }
 
-add_action( 'wp_ajax_nopriv_ajax_favorite_post', 'vh_favorite_article' );
-add_action( 'wp_ajax_ajax_favorite_post', 'vh_favorite_article' );
-function vh_favorite_article() {
+add_action( 'wp_ajax_nopriv_ajax_favorite_post', 'blogpost_favorite_article' );
+add_action( 'wp_ajax_ajax_favorite_post', 'blogpost_favorite_article' );
+function blogpost_favorite_article() {
 	$post_id = sanitize_text_field($_POST['fpost_id']);
 	$fav_action = sanitize_text_field($_POST['fav_action']);
 
 	$favorite_articles = array();
 
-	if ( isset($_COOKIE['vh_favorite_articles']) ) {
-		$user_favorites = json_decode(str_replace('\\', '', $_COOKIE['vh_favorite_articles']), true);
+	if ( isset($_COOKIE['blogpost_favorite_articles']) ) {
+		$user_favorites = json_decode(str_replace('\\', '', $_COOKIE['blogpost_favorite_articles']), true);
 	} else {
 		$user_favorites = array();
 	}
@@ -448,10 +442,10 @@ function vh_favorite_article() {
 
 	if ( $fav_action == 'favorite' && !array_key_exists($post_id, $favorite_articles) ) {
 		$favorite_articles[$post_id] = 'favorite';
-		setcookie("vh_favorite_articles", json_encode($favorite_articles), time() + (10 * 365 * 24 * 60 * 60), '/');
+		setcookie("blogpost_favorite_articles", json_encode($favorite_articles), time() + (10 * 365 * 24 * 60 * 60), '/');
 	} else if ( $fav_action == 'unfavorite' && array_key_exists($post_id, $favorite_articles) ) {
 		unset($favorite_articles[$post_id]);
-		setcookie("vh_favorite_articles", json_encode($favorite_articles), time() + (10 * 365 * 24 * 60 * 60), '/');
+		setcookie("blogpost_favorite_articles", json_encode($favorite_articles), time() + (10 * 365 * 24 * 60 * 60), '/');
 	}
 
 	echo json_encode($favorite_articles);
@@ -459,10 +453,10 @@ function vh_favorite_article() {
 	die(1);
 }
 
-function vh_get_favorite_icon( $post_id ) {
+function blogpost_get_favorite_icon( $post_id ) {
 
-	if ( isset($_COOKIE['vh_favorite_articles']) ) {
-		$user_favorites = json_decode(str_replace('\\', '', $_COOKIE['vh_favorite_articles']), true);
+	if ( isset($_COOKIE['blogpost_favorite_articles']) ) {
+		$user_favorites = json_decode(str_replace('\\', '', $_COOKIE['blogpost_favorite_articles']), true);
 	} else {
 		$user_favorites = array();
 	}
@@ -474,9 +468,9 @@ function vh_get_favorite_icon( $post_id ) {
 	}
 }
 
-function vh_get_user_favorites() {
-	if ( isset($_COOKIE['vh_favorite_articles']) ) {
-		$user_favorites = json_decode(str_replace('\\', '', $_COOKIE['vh_favorite_articles']), true);
+function blogpost_get_user_favorites() {
+	if ( isset($_COOKIE['blogpost_favorite_articles']) ) {
+		$user_favorites = json_decode(str_replace('\\', '', $_COOKIE['blogpost_favorite_articles']), true);
 	} else {
 		$user_favorites = array();
 	}
@@ -492,8 +486,8 @@ function vh_get_user_favorites() {
 	return $favorite_articles;
 }
 
-add_filter( 'wp_title', 'vh_custom_title' );
-function vh_custom_title( $title ) {
+add_filter( 'wp_title', 'blogpost_custom_title' );
+function blogpost_custom_title( $title ) {
 
 	if ( empty( $title ) ) {
 		return get_bloginfo('name');
@@ -502,21 +496,21 @@ function vh_custom_title( $title ) {
 	return $title;
 }
 
-function vh_get_cookie_classess() {
+function blogpost_get_cookie_classess() {
 	$cookie_class = '';
 	$layout = get_post_meta(get_the_ID(), 'layouts', true);
-	if ( ( !isset( $_COOKIE['vh_sidebar_state'] ) && $layout == 'right' ) || ( isset( $_COOKIE['vh_sidebar_state'] ) && $_COOKIE['vh_sidebar_state'] == '1' && $layout == 'right' ) ) {
+	if ( ( !isset( $_COOKIE['blogpost_sidebar_state'] ) && $layout == 'right' ) || ( isset( $_COOKIE['blogpost_sidebar_state'] ) && $_COOKIE['blogpost_sidebar_state'] == '1' && $layout == 'right' ) ) {
 		$cookie_class .= 'sidebar-active';
 	}
 
-	if ( !isset( $_COOKIE['vh_menu_state'] ) || ( isset( $_COOKIE['vh_menu_state'] ) && $_COOKIE['vh_menu_state'] == '1' ) ) {
+	if ( !isset( $_COOKIE['blogpost_menu_state'] ) || ( isset( $_COOKIE['blogpost_menu_state'] ) && $_COOKIE['blogpost_menu_state'] == '1' ) ) {
 		$cookie_class .= ' menu-active';
 	}
 
 	echo $cookie_class;
 }
 
-function vh_get_random_circle() {
+function blogpost_get_random_circle() {
 	$rand_class = rand(1,3);
 	$output = '';
 
@@ -531,7 +525,7 @@ function vh_get_random_circle() {
 	return $output;
 }
 
-function vh_get_carousel_bullets( $count ) {
+function blogpost_get_carousel_bullets( $count ) {
 	$output = '';
 
 	$output .= '<div class="post-gallery-controls">';
@@ -547,7 +541,7 @@ function vh_get_carousel_bullets( $count ) {
 	return $output;
 }
 
-function vh_get_blog_url_info() {
+function blogpost_get_blog_url_info() {
 	global $wp_query;
 	$max_pages = $wp_query->max_num_pages;
 	$wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
@@ -574,7 +568,7 @@ function filter_categories($list) {
 add_filter('wp_list_categories', 'filter_categories');
 
 // Custom Login Logo
-function vh_login_logo() {
+function blogpost_login_logo() {
 	$login_logo = get_theme_mod('blogpost_login_logo', false);
 
 	if ($login_logo != false) {
@@ -584,21 +578,21 @@ function vh_login_logo() {
 	</style>';
 	}
 }
-add_action('login_head', 'vh_login_logo');
+add_action('login_head', 'blogpost_login_logo');
 
 // Sets the post excerpt length to 40 words.
-function vh_excerpt_length($length) {
+function blogpost_excerpt_length($length) {
 	return 9;
 }
-add_filter('excerpt_length', 'vh_excerpt_length');
+add_filter('excerpt_length', 'blogpost_excerpt_length');
 
-function vh_new_excerpt_more( $more ) {
+function blogpost_new_excerpt_more( $more ) {
 	return '...';
 }
-add_filter('excerpt_more', 'vh_new_excerpt_more');
+add_filter('excerpt_more', 'blogpost_new_excerpt_more');
 
 // Returns a "Continue Reading" link for excerpts
-function vh_continue_reading_link() {
+function blogpost_continue_reading_link() {
 	return ' </p><p><a href="' . esc_url(get_permalink()) . '" class="read_more_link">' . __('Read more', 'vh') . '</a>';
 }
 
@@ -613,7 +607,7 @@ function my_widget_class($params) {
 }
 add_filter('dynamic_sidebar_params', 'my_widget_class');
 
-function vh_startsWith($haystack,$needle,$case=true) {
+function blogpost_startsWith($haystack,$needle,$case=true) {
 	if($case){return (strcmp(substr($haystack, 0, strlen($needle)),$needle)===0);}
 	return (strcasecmp(substr($haystack, 0, strlen($needle)),$needle)===0);
 }
@@ -630,7 +624,7 @@ function curPageURL() {
 	return $pageURL;
 }
 
-function vh_convertToHoursMins($time, $format = '%d:%d') {
+function blogpost_convertToHoursMins($time, $format = '%d:%d') {
 	settype($time, 'integer');
 	if ($time < 1) {
 		return;
@@ -640,30 +634,30 @@ function vh_convertToHoursMins($time, $format = '%d:%d') {
 	return sprintf($format, $hours, $minutes);
 }
 
-function vh_wp_tag_cloud_filter($return, $args) {
+function blogpost_wp_tag_cloud_filter($return, $args) {
 	return '<div class="tag_cloud_' . $args['taxonomy'] . '">' . $return . '</div>';
 }
-add_filter('wp_tag_cloud', 'vh_wp_tag_cloud_filter', 10, 2);
+add_filter('wp_tag_cloud', 'blogpost_wp_tag_cloud_filter', 10, 2);
 
 // Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
-function vh_page_menu_args($args) {
+function blogpost_page_menu_args($args) {
 	$args['show_home'] = true;
 	return $args;
 }
-add_filter('wp_page_menu_args', 'vh_page_menu_args');
+add_filter('wp_page_menu_args', 'blogpost_page_menu_args');
 
 // Register menus
-function register_vh_menus () {
+function register_blogpost_menus () {
 	register_nav_menus(
 		array (
 			'primary-menu' => __('Primary Menu', 'vh')
 		)
 	);
 }
-add_action('init', 'register_vh_menus');
+add_action('init', 'register_blogpost_menus');
 
 // Adds classes to the array of body classes.
-function vh_body_classes($classes) {
+function blogpost_body_classes($classes) {
 	global $post, $wp_version;
 
 	if (is_singular() && !is_home()) {
@@ -682,10 +676,10 @@ function vh_body_classes($classes) {
 	}
 
 	// Color scheme class
-	$vh_color_scheme = get_theme_mod( 'vh_color_scheme');
+	$blogpost_color_scheme = get_theme_mod( 'blogpost_color_scheme');
 
-	if ( !empty($vh_color_scheme) ) {
-		$classes[] = $vh_color_scheme;
+	if ( !empty($blogpost_color_scheme) ) {
+		$classes[] = $blogpost_color_scheme;
 	}
 
 	// If blog shortcode
@@ -698,7 +692,7 @@ function vh_body_classes($classes) {
 	}
 
 	// Breadcrumbs class
-	$disable_breadcrumb = get_option('vh_breadcrumb') ? get_option('vh_breadcrumb') : 'false';
+	$disable_breadcrumb = get_option('blogpost_breadcrumb') ? get_option('blogpost_breadcrumb') : 'false';
 	if (!is_home() && !is_front_page() && $disable_breadcrumb == 'false') {
 		$classes[] = 'has_breadcrumb';
 	}
@@ -711,12 +705,12 @@ function vh_body_classes($classes) {
 
 	return $classes;
 }
-add_filter('body_class', 'vh_body_classes');
+add_filter('body_class', 'blogpost_body_classes');
 
-if (!function_exists('vh_posted_on')) {
+if (!function_exists('blogpost_posted_on')) {
 
 	// Prints HTML with meta information for the current post.
-	function vh_posted_on() {
+	function blogpost_posted_on() {
 		printf(__('<span>Posted: </span><a href="%1$s" title="%2$s" rel="bookmark">%4$s</a><span class="by-author"> by <a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span>', 'vh'),
 			esc_url(get_permalink()),
 			esc_attr(get_the_time()),
@@ -794,7 +788,7 @@ function checkShortcode($string) {
 }
 
 // custom comment fields
-function vh_custom_comment_fields($fields) {
+function blogpost_custom_comment_fields($fields) {
 	global $post, $commenter;
 
 	$fields['author'] = '<div class="comment_auth_email"><div class="comment-form-author">
@@ -814,9 +808,9 @@ function vh_custom_comment_fields($fields) {
 	$fields = array( $fields['author'], $fields['email'] );
 	return $fields;
 }
-add_filter( 'comment_form_default_fields', 'vh_custom_comment_fields' );
+add_filter( 'comment_form_default_fields', 'blogpost_custom_comment_fields' );
 
-if ( ! function_exists( 'vh_comment' ) ) {
+if ( ! function_exists( 'blogpost_comment' ) ) {
 	/**
 	 * Template for comments and pingbacks.
 	 *
@@ -826,7 +820,7 @@ if ( ! function_exists( 'vh_comment' ) ) {
 	 * Used as a callback by wp_list_comments() for displaying the comments.
 	 *
 	 */
-	function vh_comment( $comment, $args, $depth ) {
+	function blogpost_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 	switch ( $comment->comment_type ) :
 		case 'pingback' :
@@ -896,7 +890,7 @@ if ( ! function_exists( 'vh_comment' ) ) {
 	endswitch; // end comment_type check
 }
 
-	function vh_comment_sidebar( $comment, $args, $depth ) {
+	function blogpost_comment_sidebar( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 	switch ( $comment->comment_type ) :
 		case 'pingback' :
@@ -973,10 +967,10 @@ function c_parent_comment_counter($id) {
 	return $parents->count;
 }
 
-function vh_breadcrumbs() {
+function blogpost_breadcrumbs() {
 
-	$disable_breadcrumb = get_option('vh_breadcrumb') ? get_option('vh_breadcrumb') : 'false';
-	$delimiter          = get_option('vh_breadcrumb_delimiter') ? sanitize_text_field( get_option('vh_breadcrumb_delimiter') ) : '<span class="delimiter icon-angle-circled-right"></span>';
+	$disable_breadcrumb = get_option('blogpost_breadcrumb') ? get_option('blogpost_breadcrumb') : 'false';
+	$delimiter          = get_option('blogpost_breadcrumb_delimiter') ? sanitize_text_field( get_option('blogpost_breadcrumb_delimiter') ) : '<span class="delimiter icon-angle-circled-right"></span>';
 
 	$home   = __('Home', 'vh'); // text for the 'Home' link
 	$before = '<span class="current">'; // tag before the current crumb
@@ -1054,8 +1048,8 @@ function vh_breadcrumbs() {
 		} elseif (is_tag()) {
 			$output .= $before . 'Posts tagged "' . single_tag_title('', false) . '"' . $after;
 		} elseif (is_author()) {
-			global $vh_author;
-			$userdata = get_userdata($vh_author);
+			global $blogpost_author;
+			$userdata = get_userdata($blogpost_author);
 			$output .= $before . 'Articles posted by ' . get_the_author() . $after;
 		} elseif (is_404()) {
 			$output .= $before . 'Error 404' . $after;
@@ -1083,26 +1077,26 @@ add_theme_support( 'custom-background', array(
 	'default-color' => 'fcfcfc'
 ) );
 
-function vh_sanitize_color( $input ) {
+function blogpost_sanitize_color( $input ) {
 	return (string) $input;
 }
 
 /**
  * Add postMessage support for the Theme Customizer.
  */
-function vh_customize_register( $wp_customize ) {
+function blogpost_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 }
-add_action( 'customize_register', 'vh_customize_register' );
+add_action( 'customize_register', 'blogpost_customize_register' );
 
 /**
  * Binds CSS and JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function vh_customize_preview_js_css() {
+function blogpost_customize_preview_js_css() {
 	wp_enqueue_script( 'vh-customizer-js', get_template_directory_uri() . '/functions/admin/js/theme-customizer.js', array( 'jquery', 'customize-preview' ), '', true );
 }
-add_action( 'customize_preview_init', 'vh_customize_preview_js_css' );
+add_action( 'customize_preview_init', 'blogpost_customize_preview_js_css' );
 
 /**
  * Register the required plugins for this theme.
@@ -1116,7 +1110,7 @@ add_action( 'customize_preview_init', 'vh_customize_preview_js_css' );
  * This function is hooked into tgmpa_init, which is fired within the
  * TGM_Plugin_Activation class constructor.
  */
-function vh_register_required_plugins() {
+function blogpost_register_required_plugins() {
 
 	/**
 	 * Array of plugin arrays. Required keys are name and slug.
@@ -1127,34 +1121,7 @@ function vh_register_required_plugins() {
 			'name'                  => 'Functionality for Blogpost Lite theme', // The plugin name
 			'slug'                  => 'functionality-for-blogpostlite-theme', // The plugin slug (typically the folder name)
 			'required'              => false, // If false, the plugin is only 'recommended' instead of required
-			'version'               => '1.0', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-			'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-			'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-			'external_url'          => '', // If set, overrides default API URL and points to an external URL
-		),
-		array(
-			'name'                  => 'Contact Form 7', // The plugin name
-			'slug'                  => 'contact-form-7', // The plugin slug (typically the folder name)
-			'required'              => false, // If false, the plugin is only 'recommended' instead of required
-			'version'               => '4.3', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-			'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-			'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-			'external_url'          => '', // If set, overrides default API URL and points to an external URL
-		),
-		array(
-			'name'                  => 'Profile Editor', // The plugin name
-			'slug'                  => 'profile-editor', // The plugin slug (typically the folder name)
-			'required'              => false, // If false, the plugin is only 'recommended' instead of required
 			'version'               => '1.1', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
-			'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
-			'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
-			'external_url'          => '', // If set, overrides default API URL and points to an external URL
-		),
-		array(
-			'name'                  => 'Newsletter', // The plugin name
-			'slug'                  => 'newsletter', // The plugin slug (typically the folder name)
-			'required'              => false, // If false, the plugin is only 'recommended' instead of required
-			'version'               => '4.0.2', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 			'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 			'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
 			'external_url'          => '', // If set, overrides default API URL and points to an external URL
@@ -1201,14 +1168,14 @@ function vh_register_required_plugins() {
 
 	tgmpa( $plugins, $config );
 }
-add_action( 'tgmpa_register', 'vh_register_required_plugins' );
+add_action( 'tgmpa_register', 'blogpost_register_required_plugins' );
 
-function vh_vcSetAsTheme() {
+function blogpost_vcSetAsTheme() {
 	vc_set_as_theme( true );
 }
-add_action( 'vc_before_init', 'vh_vcSetAsTheme' );
+add_action( 'vc_before_init', 'blogpost_vcSetAsTheme' );
 
-function vh_profile_editor_activation() {
+function blogpost_profile_editor_activation() {
 	global $wpdb;
 	$skype = $wpdb->get_results('SELECT NAME FROM ' . $wpdb->prefix . 'profile_editor_fields WHERE NAME = "skype"');
 	$twitter = $wpdb->get_results('SELECT NAME FROM ' . $wpdb->prefix . 'profile_editor_fields WHERE NAME = "twitter"');
@@ -1251,13 +1218,13 @@ function vh_profile_editor_activation() {
 
 		// Set for prodile-editor
 		foreach ($user_backgrounds as $pe_key => $pe_value) {
-			update_user_meta($pe_value->USER_ID, 'pe_profile_background', vh_get_image_id($pe_value->VALUE));
+			update_user_meta($pe_value->USER_ID, 'pe_profile_background', blogpost_get_image_id($pe_value->VALUE));
 		}
 	}
 }
-register_activation_hook( WP_PLUGIN_DIR.'/profile-editor/profile-editor.php', 'vh_profile_editor_activation' );
+register_activation_hook( WP_PLUGIN_DIR.'/profile-editor/profile-editor.php', 'blogpost_profile_editor_activation' );
 
-function vh_get_image_id($image_url) {
+function blogpost_get_image_id($image_url) {
 	global $wpdb;
 	$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url )); 
 	return $attachment[0]; 

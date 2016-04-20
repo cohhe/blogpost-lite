@@ -6,7 +6,7 @@
  * @subpackage BlogPost
  */
 
-global $vh_from_home_page, $post;
+global $blogpost_from_home_page, $post;
 
 $tc = 0;
 $excerpt = get_the_excerpt();
@@ -23,7 +23,7 @@ if ( empty($img[0]) ) {
 		<div class="post-image">
 			<?php
 			$i = 1;
-			$posts_slideshow   = ( get_option('vh_posts_slideshow_number') ) ? get_option('vh_posts_slideshow_number') : 5;
+			$posts_slideshow   = ( get_option('blogpost_posts_slideshow_number') ) ? get_option('blogpost_posts_slideshow_number') : 5;
 			$attachments_count = 0;
 			$images_arr = array();
 
@@ -51,11 +51,11 @@ if ( empty($img[0]) ) {
 					</div>
 				</div>
 				<a href="<?php the_permalink(); ?>" class="post-image-link gallery-link"></a>
-				<?php vh_get_favorite_icon(get_the_ID()); ?>
+				<?php blogpost_get_favorite_icon(get_the_ID()); ?>
 			<?php } ?>
-			<?php echo vh_get_carousel_bullets( $attachments_count ); ?>
+			<?php echo blogpost_get_carousel_bullets( $attachments_count ); ?>
 			<?php if ( get_the_category_list(', ') != '' ) { ?>
-				<div class="blog-category <?php echo vh_get_random_circle(); ?>">
+				<div class="blog-category <?php echo blogpost_get_random_circle(); ?>">
 					<?php echo get_the_category_list(', '); ?>
 				</div>
 			<?php } ?>
@@ -91,7 +91,7 @@ if ( empty($img[0]) ) {
 					?>
 				</div>
 				<?php if ( $attachments_count < 1 ) {
-					vh_get_favorite_icon(get_the_ID());
+					blogpost_get_favorite_icon(get_the_ID());
 				} ?>
 				<a href="<?php echo get_permalink( $post->ID ); ?>" class="blog-read-more ripple-slow wpb_button wpb_btn-danger wpb_regularsize square"><?php _e('Read', 'vh'); ?></a>
 				<div class="clearfix"></div>

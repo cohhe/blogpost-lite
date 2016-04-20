@@ -16,7 +16,7 @@
 		<title><?php wp_title('&laquo;', true, 'right'); ?></title>
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 		<?php
-			global $vh_class,$wpdb,$map_canvas_arr;
+			global $blogpost_class,$wpdb,$map_canvas_arr;
 			$logo_size_html = '';
 
 			// Get theme logo
@@ -30,8 +30,8 @@
 		?>
 		<?php wp_head(); ?>
 	</head>
-	<body <?php body_class($vh_class); ?>>
-		<div class="vh_wrapper" id="vh_wrappers">
+	<body <?php body_class($blogpost_class); ?>>
+		<div class="blogpost_wrapper" id="blogpost_wrappers">
 		<div class="main-body-color"></div>
 		<div class="overlay-hide"></div>
 		<div class="pushy pushy-left">
@@ -47,8 +47,8 @@
 				);
 			?>
 		</div>
-		<div id="vh_loading_effect" class="full"></div>
-		<input type="hidden" id="body-classes" <?php body_class($vh_class); ?>>
+		<div id="blogpost_loading_effect" class="full"></div>
+		<input type="hidden" id="body-classes" <?php body_class($blogpost_class); ?>>
 		<div class="wrapper st-effect-3 w_display_none" id="container">
 			<button id="mobile-menu-icon" class="wpb_button  wpb_btn-success wpb_regularsize wpb_menu rounded">
 				<span>
@@ -64,7 +64,7 @@
 				if ( $scroll_to_top != false ) { ?>
 					<a href="javascript:void(0)" class="scroll-to-top icon-up"></a>
 				<?php } ?>
-				<header class="header <?php vh_get_cookie_classess(); ?> vc_row-fluid vc_col-sm-12">
+				<header class="header <?php blogpost_get_cookie_classess(); ?> vc_row-fluid vc_col-sm-12">
 					<div class="top-header">
 						<a href="javascript:void(0)" class="header-menu-button icon-menu-2"></a>
 						<div class="header-button-container">
@@ -73,7 +73,7 @@
 								<a href="javascript:void(0)" class="header-search-button icon-search"></a>
 								<div class="clearfix"></div>
 							</div>
-							<?php if ( function_exists('vh_display_menu_social_icons') ) { echo vh_display_menu_social_icons('main'); } ?>
+							<?php if ( function_exists('blogpost_display_menu_social_icons') ) { echo blogpost_display_menu_social_icons('main'); } ?>
 							<a href="javascript:void(0)" class="header-reading-button icon-book"></a>
 						</div>
 						<div class="clearfix"></div>
@@ -86,7 +86,7 @@
 						$menu_background = 'url('.esc_url( get_theme_mod('blogpost_side_menu_img', '') ).') no-repeat';
 					}
 				?>
-				<div class="side-menu-container <?php vh_get_cookie_classess(); ?>" style="background: <?php echo $menu_background; ?>">
+				<div class="side-menu-container <?php blogpost_get_cookie_classess(); ?>" style="background: <?php echo $menu_background; ?>">
 					<a href="javascript:void(0)" class="header-menu-button active icon-cancel"></a>
 					<div class="logo vc_col-sm-8">
 						<a href="<?php echo home_url(); ?>"><img src="<?php echo esc_url( $logo ); ?>"<?php echo $logo_size_html ; ?> class="web-logo" alt="<?php bloginfo('name'); ?>" /></a>
@@ -113,7 +113,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="header-button-container menu">
-						<?php if ( function_exists('vh_display_menu_social_icons') ) { echo vh_display_menu_social_icons('menu'); } ?>
+						<?php if ( function_exists('blogpost_display_menu_social_icons') ) { echo blogpost_display_menu_social_icons('menu'); } ?>
 						<a href="javascript:void(0)" class="header-reading-button icon-book"></a>
 					</div>
 					<div class="made-with">

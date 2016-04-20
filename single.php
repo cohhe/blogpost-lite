@@ -13,7 +13,7 @@ if(empty($layout_type)) {
 $img       = wp_get_attachment_image_src( get_post_thumbnail_id(), 'offer-image-large' );
 $span_size = 'vc_col-sm-10';
 ?>
-<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
+<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php blogpost_get_cookie_classess(); ?>">
 	<div id="page-inner-container">
 		<div class="content vc_row wpb_row vc_row-fluid">
 			<?php
@@ -57,7 +57,7 @@ $span_size = 'vc_col-sm-10';
 													</div>
 													<div class="prev-post-info">
 														<?php if ( get_the_category_list(', ', '', $prev_post->ID) != '' ) { ?>
-															<div class="blog-categories <?php echo vh_get_random_circle(); ?>">
+															<div class="blog-categories <?php echo blogpost_get_random_circle(); ?>">
 																<?php echo get_the_category_list(', ', '', $prev_post->ID); ?>
 															</div>
 														<?php } ?>
@@ -95,7 +95,7 @@ $span_size = 'vc_col-sm-10';
 													</div>
 													<div class="next-post-info">
 														<?php if ( get_the_category_list(', ', '', $next_post->ID) != '' ) { ?>
-															<div class="blog-categories <?php echo vh_get_random_circle(); ?>">
+															<div class="blog-categories <?php echo blogpost_get_random_circle(); ?>">
 																<?php echo get_the_category_list(', ', '', $next_post->ID); ?>
 															</div>
 														<?php } ?>
@@ -139,15 +139,15 @@ $span_size = 'vc_col-sm-10';
 				<div class="clearfix"></div>
 				<div class="sidebar-inner">
 				<?php
-					global $vh_is_in_sidebar;
-					$vh_is_in_sidebar = true;
+					global $blogpost_is_in_sidebar;
+					$blogpost_is_in_sidebar = true;
 					generated_dynamic_sidebar();
 				?>
 				<div class="clearfix"></div>
 				</div>
 			</div><!--end of span3-->
 			<?php } ?>
-			<?php $vh_is_in_sidebar = false; ?>
+			<?php $blogpost_is_in_sidebar = false; ?>
 			<div class="clearfix"></div>
 			</div>
 		</div><!--end of content-->

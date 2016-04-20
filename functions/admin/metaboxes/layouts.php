@@ -4,7 +4,7 @@
  */
 
 $config = array(
-	'id'       => 'vh_layouts',
+	'id'       => 'blogpost_layouts',
 	'title'    => __('Layouts', 'vh'),
 	'pages'    => array('page', 'post'),
 	'context'  => 'normal',
@@ -19,5 +19,5 @@ $options = array(array(
 	'default' => get_option('default-layout'),
 ));
 
-require_once(VH_METABOXES . '/add_metaboxes.php');
+require_once(BLOGPOST_METABOXES . '/add_metaboxes.php');
 new create_meta_boxes($config, $options);

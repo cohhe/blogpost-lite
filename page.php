@@ -7,7 +7,7 @@ get_header();
 $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large-image' );
 
 ?>
-<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?> <?php if ( !is_front_page() ) { echo 'not_front_page';}?>">
+<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php blogpost_get_cookie_classess(); ?> <?php if ( !is_front_page() ) { echo 'not_front_page';}?>">
 	<div id="page-inner-container">
 		<div class="clearfix"></div>
 		<?php if ( !is_front_page() && !is_home() ) { ?>
@@ -50,7 +50,7 @@ $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large-image' );
 									<div class="featured-title tp-caption white-title"><a href=""><?php the_title(); ?></a></div>
 									<div class="featured-excerpt tp-caption white-excerpt"><?php the_excerpt(); ?></div>
 									<?php if ( get_the_category_list(', ', '', $featured_post) != '' ) { ?>
-										<div class="featured-category blog-categories <?php echo vh_get_random_circle(); ?> tp-caption Category-text">
+										<div class="featured-category blog-categories <?php echo blogpost_get_random_circle(); ?> tp-caption Category-text">
 											<?php echo get_the_category_list(', ', '', $featured_post); ?>
 										</div>
 									<?php } ?>
@@ -87,15 +87,15 @@ $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large-image' );
 				<div class="clearfix"></div>
 				<div class="sidebar-inner">
 				<?php
-					global $vh_is_in_sidebar;
-					$vh_is_in_sidebar = true;
+					global $blogpost_is_in_sidebar;
+					$blogpost_is_in_sidebar = true;
 					generated_dynamic_sidebar();
 				?>
 				<div class="clearfix"></div>
 				</div>
 			</div><!--end of span3-->
 			<?php } ?>
-			<?php $vh_is_in_sidebar = false; ?>
+			<?php $blogpost_is_in_sidebar = false; ?>
 			<div class="clearfix"></div>
 		</div><!--end of content-->
 		<div class="clearfix"></div>

@@ -74,6 +74,21 @@ TweenMax, Copyright 2008-2015, GreenSock
 TweenMax is subject to the terms at http://greensock.com/standard-license
 Source: http://greensock.com
 
+Font Awesome is licensed under SIL license
+Source: http://fortawesome.github.io/Font-Awesome/
+
+Entypo is licensed under SIL license
+Source: http://www.entypo.com/
+
+Typicons is licensed under SIL license
+Source: http://typicons.com/
+
+Iconic is licensed under SIL license
+Source: http://somerandomdude.com/work/iconic/
+
+MFG Labs is licensed under SIL license
+Source: http://mfglabs.com/
+
 Used images in screenshot.png, licensed under CC0 Public Domain, free for commercial use / no attribution required
 https://pixabay.com/en/sky-clouds-mountains-peak-snow-690813/
 https://pixabay.com/en/camera-vintage-retro-old-820018/

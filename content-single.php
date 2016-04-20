@@ -6,7 +6,7 @@
  * @subpackage BlogPost
  */
 
-global $vh_blog_image_layout;
+global $blogpost_blog_image_layout;
 
 $show_sep       = FALSE;
 $style          = '';
@@ -55,16 +55,16 @@ if ( 'post' == get_post_type() ) {
 $entry_utility_bottom .= '</div>';
 ?>
 <div class="entry no_left_margin first-entry <?php echo esc_attr( $is_author_desc ); ?> <?php if ( !isset($img[0]) ) { echo ' no-image'; } ?><?php echo (BLOGPOST_LAYOUT != 'sidebar-no') ? ' vc_col-sm-12' : ' vc_col-sm-12'; ?>">
-	<div class="entry-image vh_animate_when_almost_visible with_full_image <?php echo esc_attr( $vh_blog_image_layout ) . esc_attr( $is_author_desc ); ?>"<?php echo $clear; ?>>
+	<div class="entry-image blogpost_animate_when_almost_visible with_full_image <?php echo esc_attr( $blogpost_blog_image_layout ) . esc_attr( $is_author_desc ); ?>"<?php echo $clear; ?>>
 		<?php
 		$i                 = 2;
-		$posts_slideshow   = ( get_option('vh_posts_slideshow_number') ) ? get_option('vh_posts_slideshow_number') : 5;
+		$posts_slideshow   = ( get_option('blogpost_posts_slideshow_number') ) ? get_option('blogpost_posts_slideshow_number') : 5;
 		$attachments_count = 1;
 		?>
 		<div class="main_image_wrapper <?php echo get_post_format(); ?>">
 			<?php
 			$i = 1;
-			$posts_slideshow   = ( get_option('vh_posts_slideshow_number') ) ? get_option('vh_posts_slideshow_number') : 5;
+			$posts_slideshow   = ( get_option('blogpost_posts_slideshow_number') ) ? get_option('blogpost_posts_slideshow_number') : 5;
 			$attachments_count = 0;
 			$images_arr = array();
 
@@ -127,7 +127,7 @@ $entry_utility_bottom .= '</div>';
 				if ( isset($img[0]) ) {
 					$attachments_count++;
 				}
-				echo vh_get_carousel_bullets( $attachments_count );
+				echo blogpost_get_carousel_bullets( $attachments_count );
 				?>
 				<div class="open-post-carousel-text">
 					<span class="carousel-text-title"><?php the_title(); ?></span>
@@ -147,7 +147,7 @@ $entry_utility_bottom .= '</div>';
 						</p>
 					</div>
 					<div class="open-post-meta">
-						<span class="carousel-text-category <?php echo vh_get_random_circle(); ?>">
+						<span class="carousel-text-category <?php echo blogpost_get_random_circle(); ?>">
 							<?php
 							echo wp_kses( 
 								$categories_list, 
@@ -187,7 +187,7 @@ $entry_utility_bottom .= '</div>';
 						</p>
 					</div>
 					<div class="open-post-meta">
-						<span class="carousel-text-category <?php echo vh_get_random_circle(); ?>">
+						<span class="carousel-text-category <?php echo blogpost_get_random_circle(); ?>">
 							<?php
 							echo wp_kses( 
 								$categories_list, 
@@ -238,7 +238,7 @@ $entry_utility_bottom .= '</div>';
 		<span class="author-text"><?php _e('Author', 'vh'); ?></span>
 		<div class="author-infobox">
 			<div id="author-avatar">
-				<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'vh_author_bio_avatar_size', 300 ) ); ?>
+				<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'blogpost_author_bio_avatar_size', 300 ) ); ?>
 			</div>
 			<div id="author-description">
 				<a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author" class="author-link"><?php echo get_the_author(); ?></a>

@@ -7,11 +7,11 @@
  */
 
 get_header();
-global $vh_from_search, $vh_blog_image_layout;
-$vh_blog_image_layout = 'with_full_image';
+global $blogpost_from_search, $blogpost_blog_image_layout;
+$blogpost_blog_image_layout = 'with_full_image';
 ?>
 
-<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
+<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php blogpost_get_cookie_classess(); ?>">
 	<div id="page-inner-container">
 		<div class="search-page-top">
 			<?php
@@ -46,7 +46,7 @@ $vh_blog_image_layout = 'with_full_image';
 					<div class="main-inner">
 						<?php
 						if ( have_posts() ) {
-							$vh_from_search = true;
+							$blogpost_from_search = true;
 
 							// Include the Post-Format-specific template for the content.
 							get_template_part( 'loop', get_post_format() );
@@ -55,7 +55,7 @@ $vh_blog_image_layout = 'with_full_image';
 							<div class="vc_row wpb_row vc_row-fluid">
 								<p><?php _e('Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'vh'); ?></p>
 								<?php
-								$vh_is_in_sidebar = 'content';
+								$blogpost_is_in_sidebar = 'content';
 								get_search_form();
 								?>
 							</div><!--end of entry-content-->
@@ -63,7 +63,7 @@ $vh_blog_image_layout = 'with_full_image';
 					</div>
 				</div>
 			</div>
-			<?php $vh_is_in_sidebar = false; ?>
+			<?php $blogpost_is_in_sidebar = false; ?>
 			<div class="clearfix"></div>
 		</div><!--end of content-->
 		<div class="clearfix"></div>

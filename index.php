@@ -6,12 +6,12 @@
 */
 get_header();
 if ( have_posts() ) {
-	global $vh_blog_image_layout, $vh_from_home_page;
+	global $blogpost_blog_image_layout, $blogpost_from_home_page;
 
-	$vh_blog_image_layout = $vh_from_home_page = TRUE;
+	$blogpost_blog_image_layout = $blogpost_from_home_page = TRUE;
 	?>
 	
-	<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
+	<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php blogpost_get_cookie_classess(); ?>">
 		<div id="page-inner-container">
 			<div class="clearfix"></div>
 			<div class="content vc_row wpb_row vc_row-fluid">
@@ -30,15 +30,15 @@ if ( have_posts() ) {
 				<div class="vc_col-sm-3 pull-right <?php echo BLOGPOST_LAYOUT; ?>">
 					<div class="sidebar-inner">
 					<?php
-						global $vh_is_in_sidebar;
-						$vh_is_in_sidebar = true;
+						global $blogpost_is_in_sidebar;
+						$blogpost_is_in_sidebar = true;
 						generated_dynamic_sidebar();
 					?>
 					<div class="clearfix"></div>
 					</div>
 				</div><!--end of span3-->
 				<?php } ?>
-				<?php $vh_is_in_sidebar = false; ?>
+				<?php $blogpost_is_in_sidebar = false; ?>
 				<div class="clearfix"></div>
 			</div><!--end of content-->
 			<div class="clearfix"></div>
@@ -48,7 +48,7 @@ if ( have_posts() ) {
 } else {
 	?>
 	
-	<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php vh_get_cookie_classess(); ?>">
+	<div class="page-<?php echo BLOGPOST_LAYOUT; ?> page-wrapper nano-content <?php blogpost_get_cookie_classess(); ?>">
 		<div id="page-inner-container">
 			<div class="clearfix"></div>
 			<div class="page-title">

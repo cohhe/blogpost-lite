@@ -1,9 +1,9 @@
 <?php
 
 	// Vars
-	global $vh_search_form_button, $vh_is_in_sidebar;
+	global $blogpost_search_form_button, $blogpost_is_in_sidebar;
 
-	if ($vh_search_form_button == 'searchButton') {
+	if ($blogpost_search_form_button == 'searchButton') {
 		$search_string = '';
 	} elseif (get_search_query() == '') {
 		$search_string = '';
@@ -11,17 +11,17 @@
 		$search_string = get_search_query();
 	}
 
-	if (empty($vh_search_form_button)) {
-		$vh_search_form_button = 'submitButton';
+	if (empty($blogpost_search_form_button)) {
+		$blogpost_search_form_button = 'submitButton';
 	}
 
 	$class      = 'footer_search_input';
 	$form_class = ' gray-form';
-	if ( $vh_is_in_sidebar === true ) {
+	if ( $blogpost_is_in_sidebar === true ) {
 		$class      = 'sb-search-input';
 		$search_string = '';
 		$form_class = '';
-	} elseif ( is_search() && $vh_is_in_sidebar === 'content' ) {
+	} elseif ( is_search() && $blogpost_is_in_sidebar === 'content' ) {
 		$class      = 'span5';
 		$form_class = '';
 	}

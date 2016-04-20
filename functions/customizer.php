@@ -14,7 +14,7 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function blogpost_customize_register( $wp_customize ) {
+function blogpost_customizer_register( $wp_customize ) {
 	// Add General setting panel and configure settings inside it
 	$wp_customize->add_panel( 'blogpost_general_panel', array(
 		'priority'       => 250,
@@ -405,7 +405,7 @@ function blogpost_customize_register( $wp_customize ) {
 		)
 	);
 }
-add_action( 'customize_register', 'blogpost_customize_register' );
+add_action( 'customize_register', 'blogpost_customizer_register' );
 
 if ( class_exists( 'WP_Customize_Section' ) && !class_exists( 'blogpost_Customized_Section' ) ) {
 	class blogpost_Customized_Section extends WP_Customize_Section {

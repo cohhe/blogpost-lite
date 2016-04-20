@@ -4,7 +4,7 @@
  *
  * The area of the page that contains both current comments
  * and the comment form. The actual display of comments is
- * handled by a callback to vh_comment() which is
+ * handled by a callback to blogpost_comment() which is
  * located in the functions.php file.
  *
  * @package WordPress
@@ -43,10 +43,10 @@
 		<ul class="commentlist">
 			<?php
 				/* Loop through and list the comments. Tell wp_list_comments()
-				 * to use vh_comment() to format the comments.
-				 * See vh_comment() for more.
+				 * to use blogpost_comment() to format the comments.
+				 * See blogpost_comment() for more.
 				 */
-				wp_list_comments( array( 'callback' => 'vh_comment' ) );
+				wp_list_comments( array( 'callback' => 'blogpost_comment' ) );
 			?>
 			<div class="clearfix"></div>
 		</ul>

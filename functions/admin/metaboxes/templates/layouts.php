@@ -12,7 +12,7 @@ $selected = get_option($id, $default);
 	<div class="content layouts">
 		<?php foreach($layouts as $layout) { ?>
 			<input type="radio" name="<?php echo esc_attr($id); ?>" id="<?php echo esc_attr($id) . '-' . $layout; ?>" style="display: none;" value="<?php echo esc_attr($layout); ?>" <?php checked($selected, $layout); ?>/>
-			<label for="<?php echo esc_attr($id) . '-' . $layout; ?>"><img src="<?php echo VH_ADMIN_IMAGES; ?>/layout/layout-<?php echo esc_attr($layout); ?>.png" alt="" class="<?php if($selected == $layout) echo 'selected'; ?>" /></label>
+			<label for="<?php echo esc_attr($id) . '-' . $layout; ?>"><img src="<?php echo BLOGPOST_ADMIN_IMAGES; ?>/layout/layout-<?php echo esc_attr($layout); ?>.png" alt="" class="<?php if($selected == $layout) echo 'selected'; ?>" /></label>
 		<?php } ?>
 	</div>
 </div>

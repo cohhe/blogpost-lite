@@ -6,7 +6,7 @@
  * @subpackage BlogPost
  */
 
-global $vh_from_home_page, $post;
+global $blogpost_from_home_page, $post;
 
 $tc = 0;
 $excerpt = get_the_excerpt();
