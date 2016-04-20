@@ -76,15 +76,19 @@ $author_id = get_query_var( 'author' );
 		<?php } elseif ( is_category() ) { ?>
 			<?php
 			$category_id = get_query_var( 'cat' );
-			$category_image = get_tax_meta( $category_id, 'image_field_id' );
+			if ( function_exists('get_tax_meta') ) {
+				$category_image = get_tax_meta( $category_id, 'image_field_id' );
+			}
 			$category_info = get_category( $category_id );
 			if ( !empty($category_image) ) { ?>
 				<div class="category-page-top">
 					<?php
-						echo '
-						<div class="category-background">
-							<img src="' . esc_url( $category_image['url'] ) . '" class="category-background-picture" alt="'.__('Category background picture', 'vh').'" />
-						</div>';
+						if ( function_exists('get_tax_meta') ) {
+							echo '
+							<div class="category-background">
+								<img src="' . esc_url( $category_image['url'] ) . '" class="category-background-picture" alt="'.__('Category background picture', 'vh').'" />
+							</div>';
+						}
 					?>
 					<div class="category-information">
 						<span class="category-name"><?php echo esc_html( $category_info->name ); ?></span>

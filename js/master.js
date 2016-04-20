@@ -1049,7 +1049,7 @@ jQuery(document).ready(function($) {
 				jQuery('header.header, .page-wrapper, .side-menu-container, body').addClass('menu-active');
 			}
 
-			if (jQuery.cookie('blogpost_sidebar_state') == '1' ) {
+			if (jQuery.cookie('blogpost_sidebar_state') == '1' && jQuery('.sidebar-right-pull').length ) {
 				jQuery('header.header, .page-wrapper, .side-menu-container, body').addClass('sidebar-active');
 			}
 		} else {

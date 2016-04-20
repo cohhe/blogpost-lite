@@ -53,6 +53,7 @@ if ( empty($img[0]) ) {
 				<a href="<?php the_permalink(); ?>" class="post-image-link gallery-link"></a>
 				<?php blogpost_get_favorite_icon(get_the_ID()); ?>
 			<?php } ?>
+			<img src="<?php echo esc_url( $img[0] ); ?>" class="post-inner-picture" alt="post-img" />
 			<?php echo blogpost_get_carousel_bullets( $attachments_count ); ?>
 			<?php if ( get_the_category_list(', ') != '' ) { ?>
 				<div class="blog-category <?php echo blogpost_get_random_circle(); ?>">

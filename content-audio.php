@@ -21,7 +21,7 @@ if ( empty($img[0]) ) {
 <li class="isotope-item blog-inner-container <?php echo get_post_format(); ?>-format">
 	<div  <?php post_class(); ?>>
 		<div class="post-image">
-		<?php if ( function_exists('get_embed_code') ) { get_embed_code( $post->ID ) } ?>
+		<?php if ( function_exists('get_embed_code') ) { get_embed_code( $post->ID ); } ?>
 		</div>
 		<div class="post-inner entry-content <?php echo get_post_type(); ?>">
 			<div class="blog-title">

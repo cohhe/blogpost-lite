@@ -117,7 +117,7 @@
 						<a href="javascript:void(0)" class="header-reading-button icon-book"></a>
 					</div>
 					<div class="made-with">
-						Theme by <a href="https://cohhe.com">Cohhe</a>
+						Theme by <a href="https://cohhe.com" target="_blank">Cohhe</a>
 					</div>
 				</div>
 				<div class="clearfix"></div>

@@ -326,6 +326,8 @@ input[type="submit"] {
 
 .teaser_grid_container {
 	margin: 0 -15px;
+	padding-left: 21px;
+	padding-right: 14px;
 }
 
 /* Text meant only for screen readers. */

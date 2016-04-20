@@ -7,6 +7,10 @@ Blogspot Lite changelog
 * Removed some recommended plugins
 * Updated license for fonts
 * Removed build-in plugins
+* Fixed gallery image issue
+* Fixed post view padding
+* Fixed some errors
+* Fixed reading mode sidebar issue
 
 = Version 1.2 =
 * Fixed PHP notices

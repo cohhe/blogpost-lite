@@ -141,7 +141,7 @@ $span_size = 'vc_col-sm-10';
 				<?php
 					global $blogpost_is_in_sidebar;
 					$blogpost_is_in_sidebar = true;
-					generated_dynamic_sidebar();
+					if ( function_exists('generated_dynamic_sidebar') ) { generated_dynamic_sidebar(); }
 				?>
 				<div class="clearfix"></div>
 				</div>

@@ -46,22 +46,9 @@ if (!function_exists('blogpost_setup')) {
 		require_once(BLOGPOST_ADMIN . '/menu-custom-field.php');
 		require_once(BLOGPOST_METABOXES . '/layouts.php');
 
-		// if (file_exists(BLOGPOST_CUSTOM_PLUGINS . '/landing-pages/landing-pages.php')) {
-		//  require_once(BLOGPOST_CUSTOM_PLUGINS . '/landing-pages/landing-pages.php');
-		// }
-
 		// TGM plugins activation
 		require_once(BLOGPOST_FUNCTIONS . '/tgm-activation/class-tgm-plugin-activation.php');
-
 		require_once(get_template_directory() . '/inc/admin/welcome-screen/welcome-screen.php');
-
-		// Shortcodes list
-		$shortcodes = array (
-			//BLOGPOST_SHORTCODES . '/test.php'
-		);
-
-		// Load shortcodes
-		load_files($shortcodes);
 
 		// This theme styles the visual editor with editor-style.css to match the theme style.
 		add_editor_style();
@@ -111,13 +98,6 @@ add_action( 'widgets_init', 'blogpost_register_widgets' );
 
 // Add quote post format support
 add_theme_support( 'post-formats', array( 'quote' ) );
-
-// Load Widgets
-function load_files ($files) {
-	foreach ($files as $file) {
-		require_once($file);
-	}
-}
 
 if (function_exists('add_theme_support')) {
 	add_theme_support('post-thumbnails');
