@@ -52,14 +52,14 @@ if ( have_posts() ) {
 		<div id="page-inner-container">
 			<div class="clearfix"></div>
 			<div class="page-title">
-				<h1><?php _e( 'Nothing Found!', 'vh' ); ?></h1>
+				<h1><?php _e( 'Nothing Found!', 'blogpost' ); ?></h1>
 			</div>
 			<div class="content vc_row-fluid">
 				<?php wp_reset_postdata(); ?>
 				<div class="<?php echo BLOGPOST_LAYOUT; ?>-pull vc_col-sm-12">
 					<div class="main-content vc_col-sm-12">
 						<div class="main-inner">
-							<p><?php _e( 'Sorry, nothing found!', 'vh' ); ?></p>
+							<p><?php _e( 'Sorry, nothing found!', 'blogpost' ); ?></p>
 						</div>
 					</div>
 				</div>

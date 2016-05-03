@@ -42,11 +42,11 @@ $entry_utility_bottom = '<div class="entry-bottom-utility">';
 if ( 'post' == get_post_type() ) {
 
 	/* translators: used between list items, there is a space after the comma */
-	$categories_list = get_the_category_list( __( ', ', 'vh' ) );
+	$categories_list = get_the_category_list( __( ', ', 'blogpost' ) );
 	if ( $categories_list ) {
 		$entry_utility_bottom .= '
 		<div class="category-link">
-		' . sprintf( __( '<span class="%1$s"></span> %2$s', 'vh' ), 'entry-utility-prep entry-utility-prep-cat-links icon-folder-open', $categories_list );
+		' . sprintf( __( '<span class="%1$s"></span> %2$s', 'blogpost' ), 'entry-utility-prep entry-utility-prep-cat-links icon-folder-open', $categories_list );
 		$show_sep = TRUE;
 		$entry_utility_bottom .= '
 		</div>';
@@ -91,7 +91,7 @@ $entry_utility_bottom .= '</div>';
 					<?php
 						$post_content = '';
 						if( empty($excerpt) ) {
-							_e( 'No excerpt for this posting.', 'vh' );
+							_e( 'No excerpt for this posting.', 'blogpost' );
 						} else {
 							echo wp_kses( 
 								$excerpt, 
@@ -222,8 +222,8 @@ $entry_utility_bottom .= '</div>';
 
 			} elseif ( get_post_format() != 'status' ) {
 				echo '<div class="blog-open-content">';
-					the_content(__('Read more', 'vh'));
-					wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'vh' ) . '</span>', 'after' => '</div>', 'link_before' => '<span class="page-link-wrap">', 'link_after' => '</span>', ) );
+					the_content(__('Read more', 'blogpost'));
+					wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'blogpost' ) . '</span>', 'after' => '</div>', 'link_before' => '<span class="page-link-wrap">', 'link_after' => '</span>', ) );
 				echo '<div class="clearfix"></div></div>';
 			}
 			?>
@@ -235,7 +235,7 @@ $entry_utility_bottom .= '</div>';
 	// If a user has filled out their description, show a bio on their entries
 	if ( get_post_type( $post ) == 'post' && get_the_author_meta( 'description' ) ) { ?>
 	<div id="author-info">
-		<span class="author-text"><?php _e('Author', 'vh'); ?></span>
+		<span class="author-text"><?php _e('Author', 'blogpost'); ?></span>
 		<div class="author-infobox">
 			<div id="author-avatar">
 				<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'blogpost_author_bio_avatar_size', 300 ) ); ?>

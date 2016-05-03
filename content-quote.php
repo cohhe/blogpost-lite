@@ -20,7 +20,7 @@ if ( empty($img[0]) ) {
 if ( function_exists('get_ad_button_text') ) {
 	$ad_button = get_ad_button_text( $post->ID );
 } else {
-	$ad_button = __('Open ad', 'vh');
+	$ad_button = __('Open ad', 'blogpost');
 }
 
 if ( function_exists('get_ad_button_url') ) {
@@ -44,7 +44,7 @@ if ( function_exists('get_ad_background') ) {
 			<div class="blog-excerpt">
 			<?php
 				if( empty($excerpt) ) {
-					_e( 'No excerpt for this posting.', 'vh' );
+					_e( 'No excerpt for this posting.', 'blogpost' );
 				} else {
 					echo wp_kses( 
 						$excerpt, 

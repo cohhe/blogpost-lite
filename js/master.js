@@ -1199,26 +1199,6 @@ jQuery(document).ready(function() {
 	});
 	// !Social icons hover effect
 
-	// Widget contact form - send
-	jQuery("#contact_form").submit(function() {
-		jQuery("#contact_form").parent().find("#error, #success").hide();
-		var str = jQuery(this).serialize();
-		jQuery.ajax({
-			type: "POST",
-			url: my_ajax.ajaxurl,
-			data: 'action=contact_form&' + str,
-			success: function(msg) {
-				if(msg === 'sent') {
-					jQuery("#contact_form").parent().find("#success").fadeIn("slow");
-				} else {
-					jQuery("#contact_form").parent().find("#error").fadeIn("slow");
-				}
-			}
-		});
-		return false;
-	});
-	// !Widget contact form - send
-
 	/* Merge gallery */
 	jQuery('.merge-gallery div').mouseenter(function() {
 		jQuery(this).find('.gallery-caption').animate({

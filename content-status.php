@@ -28,7 +28,7 @@ if ( empty($img[0]) ) {
 			<?php
 				$post_content = '';
 				if( empty($excerpt) ) {
-					_e( 'No excerpt for this posting.', 'vh' );
+					_e( 'No excerpt for this posting.', 'blogpost' );
 				} else {
 					echo wp_kses( 
 						$excerpt, 

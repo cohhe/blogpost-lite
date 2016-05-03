@@ -23,7 +23,7 @@ define('BLOGPOST_URI', get_template_directory_uri() .'/');
 define('BLOGPOST_GLOBAL_URI', BLOGPOST_URI . 'functions/global');
 
 define('THEMENAME', 'BlogPost');
-define('SHORTNAME', 'VH');
+define('SHORTNAME', 'blogpost');
 define('BLOGPOST_HOME_TITLE', 'Front page');
 define('BLOGPOST_DEVELOPER_NAME_DISPLAY', 'Cohhe themes');
 define('BLOGPOST_DEVELOPER_URL', 'http://cohhe.com');
@@ -79,13 +79,13 @@ add_filter('gettext_with_context', 'blogpost_rename_post_formats', 10, 4);
 
 function blogpost_localization() {
 	$lang = get_template_directory() . '/languages';
-	load_theme_textdomain('vh', $lang);
+	load_theme_textdomain('blogpost', $lang);
 }
 add_action('after_setup_theme', 'blogpost_localization');
 
 function blogpost_register_widgets () {
 	register_sidebar( array(
-		'name'          => __( 'Normal', 'vh' ),
+		'name'          => __( 'Normal', 'blogpost' ),
 		'id'            => 'sidebar-5',
 		'class'         => 'normal',
 		'before_widget' => '<div class="widget">',
@@ -156,7 +156,7 @@ function blogpost_comment_count( $count ) {
 }
 add_filter('get_comments_number', 'blogpost_comment_count', 0);
 
-function tgm_cpt_search( $query ) {
+function blogpost_tgm_cpt_search( $query ) {
 	if ( $query->is_search ) {
 		if ( !is_admin() ) {
 			$query->set( 'post_type', array( 'post' ) );
@@ -165,7 +165,7 @@ function tgm_cpt_search( $query ) {
 		
 	return $query;
 }
-add_filter( 'pre_get_posts', 'tgm_cpt_search' );
+add_filter( 'pre_get_posts', 'blogpost_tgm_cpt_search' );
 
 // Add new image sizes
 if ( function_exists('add_image_size')) {
@@ -183,8 +183,8 @@ if (!function_exists('blogpost_scripts_method')) {
 		wp_enqueue_script('jquery');
 
 		wp_enqueue_script('jquery.debouncedresize', get_template_directory_uri() . '/js/jquery.debouncedresize.js', array('jquery'), '', TRUE);
-		wp_enqueue_script('master', get_template_directory_uri() . '/js/master.js', array('jquery', 'jquery.debouncedresize'), '', TRUE);
-		wp_enqueue_script('isotope', get_template_directory_uri() . '/js/jquery.isotope.min.js', array('jquery', 'master'), '', TRUE);
+		wp_enqueue_script('blogpost-master', get_template_directory_uri() . '/js/master.js', array('jquery', 'jquery.debouncedresize'), '', TRUE);
+		wp_enqueue_script('isotope', get_template_directory_uri() . '/js/jquery.isotope.min.js', array('jquery', 'blogpost-master'), '', TRUE);
 
 		wp_enqueue_script('jquery.date', get_template_directory_uri() . '/js/date.js', array('jquery'), '', TRUE);
 		
@@ -217,19 +217,19 @@ if (!function_exists('blogpost_scripts_method')) {
 		if ( is_singular() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
-		wp_localize_script( 'master', 'ajax_login_object', array( 
+		wp_localize_script( 'blogpost-master', 'ajax_login_object', array( 
 			'ajaxurl'         => admin_url( 'admin-ajax.php' ),
 			'redirecturl'     => home_url(),
-			'loadingmessage'  => __('Sending user info, please wait...', "vh" ),
-			'registermessage' => __('A password will be emailed to you for future use', "vh" )
+			'loadingmessage'  => __('Sending user info, please wait...', "blogpost" ),
+			'registermessage' => __('A password will be emailed to you for future use', "blogpost" )
 		));
 
-		wp_localize_script( 'master', 'my_ajax', array(
+		wp_localize_script( 'blogpost-master', 'my_ajax', array(
 			'ajaxurl'     => admin_url( 'admin-ajax.php' )
 		));
 
 		// Load custom CSS
-		wp_add_inline_style( 'master-css', get_theme_mod('blogpost_custom_css', '') );
+		wp_add_inline_style( 'blogpost-master-css', get_theme_mod('blogpost_custom_css', '') );
 	}
 }
 add_action('wp_enqueue_scripts', 'blogpost_scripts_method'); 
@@ -249,7 +249,7 @@ require get_template_directory() . '/functions/customizer.php';
 // Public CSS files
 if (!function_exists('blogpost_style_method')) {
 	function blogpost_style_method() {
-		wp_enqueue_style('master-css', get_template_directory_uri() . '/style.css');
+		wp_enqueue_style('blogpost-master-css', get_template_directory_uri() . '/style.css');
 		wp_enqueue_style('vh-normalize', get_template_directory_uri() . '/css/normalize.css');
 		wp_enqueue_style('prettyphoto');
 		wp_enqueue_style('vh-responsive', get_template_directory_uri() . '/css/responsive.css');
@@ -260,12 +260,12 @@ if (!function_exists('blogpost_style_method')) {
 		if (file_exists(TEMPLATEPATH . '/css/gfonts.css')) {
 			wp_enqueue_style('front-gfonts', get_template_directory_uri() . '/css/gfonts.css');
 		}
-		wp_add_inline_style( 'master-css', blogpost_get_typography_style() );
+		wp_add_inline_style( 'blogpost-master-css', blogpost_get_typography_style() );
 
 		// Check blog columns
 		$blog_width = 100/get_theme_mod('blogpost_blog_columns', '3');
 		$blog_css = '.teaser_grid_container ul li { width: '.$blog_width.'% }';
-		wp_add_inline_style( 'master-css', $blog_css );
+		wp_add_inline_style( 'blogpost-master-css', $blog_css );
 	}
 }
 add_action('wp_enqueue_scripts', 'blogpost_style_method');
@@ -356,7 +356,7 @@ function blogpost_load_next_posts() {
 						<?php
 							$post_content = '';
 							if( empty($excerpt) ) {
-								_e( 'No excerpt for this posting.', 'vh' );
+								_e( 'No excerpt for this posting.', 'blogpost' );
 							} else {
 								echo wp_kses( 
 									$excerpt, 
@@ -380,7 +380,7 @@ function blogpost_load_next_posts() {
 							<?php if( empty($img[0]) ) {
 								blogpost_get_favorite_icon(get_the_ID());
 							} ?>
-							<a href="<?php echo get_permalink( $post->ID ); ?>" class="blog-read-more ripple-slow wpb_button wpb_btn-danger wpb_regularsize square"><?php _e('Read', 'vh'); ?></a>
+							<a href="<?php echo get_permalink( $post->ID ); ?>" class="blog-read-more ripple-slow wpb_button wpb_btn-danger wpb_regularsize square"><?php _e('Read', 'blogpost'); ?></a>
 							<div class="clearfix"></div>
 						</div>
 					</div>
@@ -466,16 +466,6 @@ function blogpost_get_user_favorites() {
 	return $favorite_articles;
 }
 
-add_filter( 'wp_title', 'blogpost_custom_title' );
-function blogpost_custom_title( $title ) {
-
-	if ( empty( $title ) ) {
-		return get_bloginfo('name');
-	}
-
-	return $title;
-}
-
 function blogpost_get_cookie_classess() {
 	$cookie_class = '';
 	$layout = get_post_meta(get_the_ID(), 'layouts', true);
@@ -525,7 +515,7 @@ function blogpost_get_blog_url_info() {
 	global $wp_query;
 	$max_pages = $wp_query->max_num_pages;
 	$wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
-	$current_url = curPageURL();
+	$current_url = blogpost_curPageURL();
 
 	$output = '<input type="hidden" id="blog-page-href" value="' . home_url() . '" />
 				<input type="hidden" id="blog-page-pagination" value="' . $current . '|' . $max_pages . '" />';
@@ -534,7 +524,7 @@ function blogpost_get_blog_url_info() {
 }
 
 /* Filter categories */
-function filter_categories($list) {
+function blogpost_filter_categories($list) {
 
 	$find    = '(';
 	$replace = '[';
@@ -545,7 +535,7 @@ function filter_categories($list) {
 
 	return $list;
 }
-add_filter('wp_list_categories', 'filter_categories');
+add_filter('wp_list_categories', 'blogpost_filter_categories');
 
 // Custom Login Logo
 function blogpost_login_logo() {
@@ -573,10 +563,10 @@ add_filter('excerpt_more', 'blogpost_new_excerpt_more');
 
 // Returns a "Continue Reading" link for excerpts
 function blogpost_continue_reading_link() {
-	return ' </p><p><a href="' . esc_url(get_permalink()) . '" class="read_more_link">' . __('Read more', 'vh') . '</a>';
+	return ' </p><p><a href="' . esc_url(get_permalink()) . '" class="read_more_link">' . __('Read more', 'blogpost') . '</a>';
 }
 
-function my_widget_class($params) {
+function blogpost_widget_class($params) {
 
 	// its your widget so you add  your classes
 	$classe_to_add = (strtolower(str_replace(array(' '), array(''), $params[0]['widget_name']))); // make sure you leave a space at the end
@@ -585,14 +575,14 @@ function my_widget_class($params) {
 
 	return $params;
 }
-add_filter('dynamic_sidebar_params', 'my_widget_class');
+add_filter('dynamic_sidebar_params', 'blogpost_widget_class');
 
 function blogpost_startsWith($haystack,$needle,$case=true) {
 	if($case){return (strcmp(substr($haystack, 0, strlen($needle)),$needle)===0);}
 	return (strcasecmp(substr($haystack, 0, strlen($needle)),$needle)===0);
 }
 
-function curPageURL() {
+function blogpost_curPageURL() {
 	$pageURL = 'http';
 	if ( isset( $_SERVER["HTTPS"] ) && strtolower( $_SERVER["HTTPS"] ) == "on") {$pageURL .= "s";}
 	$pageURL .= "://";
@@ -627,14 +617,14 @@ function blogpost_page_menu_args($args) {
 add_filter('wp_page_menu_args', 'blogpost_page_menu_args');
 
 // Register menus
-function register_blogpost_menus () {
+function blogpost_register_menus () {
 	register_nav_menus(
 		array (
-			'primary-menu' => __('Primary Menu', 'vh')
+			'primary-menu' => __('Primary Menu', 'blogpost')
 		)
 	);
 }
-add_action('init', 'register_blogpost_menus');
+add_action('init', 'blogpost_register_menus');
 
 // Adds classes to the array of body classes.
 function blogpost_body_classes($classes) {
@@ -691,74 +681,37 @@ if (!function_exists('blogpost_posted_on')) {
 
 	// Prints HTML with meta information for the current post.
 	function blogpost_posted_on() {
-		printf(__('<span>Posted: </span><a href="%1$s" title="%2$s" rel="bookmark">%4$s</a><span class="by-author"> by <a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span>', 'vh'),
+		printf(__('<span>Posted: </span><a href="%1$s" title="%2$s" rel="bookmark">%4$s</a><span class="by-author"> by <a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span>', 'blogpost'),
 			esc_url(get_permalink()),
 			esc_attr(get_the_time()),
 			esc_attr(get_the_date('c')),
 			esc_html(get_the_date()),
 			esc_url(get_author_posts_url(get_the_author_meta('ID'))),
-			sprintf(esc_attr__('View all posts by %s', 'vh'), get_the_author()),
+			sprintf(esc_attr__('View all posts by %s', 'blogpost'), get_the_author()),
 			esc_html(get_the_author())
 		);
 	}
 }
 
-function clear_nav_menu_item_id($id, $item, $args) {
+function blogpost_clear_nav_menu_item_id($id, $item, $args) {
 	return "";
 }
-add_filter('nav_menu_item_id', 'clear_nav_menu_item_id', 10, 3);
+add_filter('nav_menu_item_id', 'blogpost_clear_nav_menu_item_id', 10, 3);
 
-function add_nofollow_cat( $text ) {
+function blogpost_add_nofollow_cat( $text ) {
 	$text = str_replace('rel="category"', "", $text);
 	return $text;
 }
-add_filter( 'the_category', 'add_nofollow_cat' );
+add_filter( 'the_category', 'blogpost_add_nofollow_cat' );
 
-function ajax_contact() {
-	if(!empty($_POST)) {
-		$sitename = get_bloginfo('name');
-		$siteurl  = home_url();
-		$to       = isset($_POST['contact_to'])? sanitize_email(trim($_POST['contact_to'])) : '';
-		$name     = isset($_POST['contact_name'])? sanitize_text_field(trim($_POST['contact_name'])) : '';
-		$email    = isset($_POST['contact_email'])? sanitize_email(trim($_POST['contact_email'])) : '';
-		$content  = isset($_POST['contact_content'])? sanitize_text_field(trim($_POST['contact_content'])) : '';
-
-		$error = false;
-		$error = ($to === '' || $email === '' || $content === '' || $name === '') ||
-				 (!preg_match('/^[^@]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$/', $email)) ||
-				 (!preg_match('/^[^@]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$/', $to));
-
-		if($error == false) {
-			$subject = "$sitename message from $name";
-			$body    = "Site: $sitename ($siteurl) \n\nName: $name \n\nEmail: $email \n\nMessage: $content";
-			$headers = "From: $name ($sitename) <$email>\r\nReply-To: $email\r\n";
-			$sent    = wp_mail($to, $subject, $body, $headers);
-
-			// If sent
-			if ($sent) {
-				echo 'sent';
-				die();
-			} else {
-				echo 'error';
-				die();
-			}
-		} else {
-			echo _e('Please fill all fields!', 'vh');
-			die();
-		}
-	}
-}
-add_action('wp_ajax_nopriv_contact_form', 'ajax_contact');
-add_action('wp_ajax_contact_form', 'ajax_contact');
-
-function addhttp($url) {
+function blogpost_addhttp($url) {
 	if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
 		$url = "http://" . $url;
 	}
 	return $url;
 }
 
-function checkShortcode($string) {
+function blogpost_checkShortcode($string) {
 	global $post;
 	if (isset($post->post_content) && false !== stripos($post->post_content, $string)) {
 		return true;
@@ -772,17 +725,17 @@ function blogpost_custom_comment_fields($fields) {
 	global $post, $commenter;
 
 	$fields['author'] = '<div class="comment_auth_email"><div class="comment-form-author">
-							<input id="author" name="author" type="text" class="span4" placeholder="' . __( 'Your name', 'vh' ) . '" value="' . esc_attr( $commenter['comment_author'] ) . '" aria-required="true" size="30" />
-							<span class="comment-form-error">' . __('Enter your name', 'vh') . '</span>
+							<input id="author" name="author" type="text" class="span4" placeholder="' . __( 'Your name', 'blogpost' ) . '" value="' . esc_attr( $commenter['comment_author'] ) . '" aria-required="true" size="30" />
+							<span class="comment-form-error">' . __('Enter your name', 'blogpost') . '</span>
 						 </div>';
 
 	$fields['email'] = '<div class="comment-form-email">
-							<input id="email" name="email" type="text" class="span4" placeholder="' . __( 'Your email', 'vh' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" aria-required="true" size="30" />
-							<span class="comment-form-error">' . __('Enter your email', 'vh') . '</span>
+							<input id="email" name="email" type="text" class="span4" placeholder="' . __( 'Your email', 'blogpost' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" aria-required="true" size="30" />
+							<span class="comment-form-error">' . __('Enter your email', 'blogpost') . '</span>
 						</div></div>';
 
 	$fields['url'] = '<p class="comment-form-url">
-						<input id="url" name="url" type="text" class="span4" placeholder="' . __( 'Website', 'vh' ) . '" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />
+						<input id="url" name="url" type="text" class="span4" placeholder="' . __( 'Website', 'blogpost' ) . '" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />
 						</p>';
 
 	$fields = array( $fields['author'], $fields['email'] );
@@ -808,7 +761,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 		// Display trackbacks differently than normal comments.
 	?>
 	<li <?php comment_class('geodir-comment'); ?> id="comment-<?php comment_ID(); ?>">
-		<p><?php _e( 'Pingback:','vh' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)','vh' ), '<span class="edit-link">', '</span>' ); ?></p>
+		<p><?php _e( 'Pingback:','blogpost' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)','blogpost' ), '<span class="edit-link">', '</span>' ); ?></p>
 	<?php
 			break;
 		default :
@@ -818,7 +771,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 		$comment_time = get_comment_time("g/i/s/n/j/Y");
 		$comment_time_exploded = explode("/", $comment_time);
 		$comment_timestamp = mktime($comment_time_exploded["0"], $comment_time_exploded["1"], $comment_time_exploded["2"], $comment_time_exploded["3"], $comment_time_exploded["4"], $comment_time_exploded["5"]);
-		$comment_time_full = human_time_diff($comment_timestamp, current_time('timestamp')) . " " . __("ago", "vh");
+		$comment_time_full = human_time_diff($comment_timestamp, current_time('timestamp')) . " " . __("ago", "blogpost");
 		$comment_id = get_comment_ID();
 		$comment_data = get_comment( $comment_id );
 
@@ -843,13 +796,13 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 					<?php echo $author_link; ?>
 
 					<div class="reply comment-controls">
-						<?php edit_comment_link( __( 'Edit','vh' ) ); ?>
-						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Add reply','vh' ), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+						<?php edit_comment_link( __( 'Edit','blogpost' ) ); ?>
+						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Add reply','blogpost' ), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 					</div><!-- .reply -->
 
 					<?php
-					if ( c_parent_comment_counter( get_comment_ID() ) != 0 ) {
-						echo '<span class="reply-count icon-comment-1">' . c_parent_comment_counter( get_comment_ID() ) . ' ' . __("replies", "vh") . '</span>';
+					if ( blogpost_c_parent_comment_counter( get_comment_ID() ) != 0 ) {
+						echo '<span class="reply-count icon-comment-1">' . blogpost_c_parent_comment_counter( get_comment_ID() ) . ' ' . __("replies", "blogpost") . '</span>';
 					}
 					?>
 
@@ -860,7 +813,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 				<?php comment_text(); ?>
 
 				<?php if ( '0' == $comment->comment_approved ) { ?>
-					<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.','vh' ); ?></span>
+					<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.','blogpost' ); ?></span>
 				<?php } ?>
 			</div><!-- .comment-content -->
 			<div class="clearfix"></div>
@@ -878,7 +831,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 		// Display trackbacks differently than normal comments.
 	?>
 	<li <?php comment_class('geodir-comment'); ?> id="comment-<?php comment_ID(); ?>">
-		<p><?php _e( 'Pingback:','vh' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)','vh' ), '<span class="edit-link">', '</span>' ); ?></p>
+		<p><?php _e( 'Pingback:','blogpost' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)','blogpost' ), '<span class="edit-link">', '</span>' ); ?></p>
 	<?php
 			break;
 		default :
@@ -888,7 +841,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 		$comment_time = get_comment_time("g/i/s/n/j/Y");
 		$comment_time_exploded = explode("/", $comment_time);
 		$comment_timestamp = mktime($comment_time_exploded["0"], $comment_time_exploded["1"], $comment_time_exploded["2"], $comment_time_exploded["3"], $comment_time_exploded["4"], $comment_time_exploded["5"]);
-		$comment_time_full = human_time_diff($comment_timestamp, current_time('timestamp')) . " " . __("ago", "vh");
+		$comment_time_full = human_time_diff($comment_timestamp, current_time('timestamp')) . " " . __("ago", "blogpost");
 		$comment_id = get_comment_ID();
 		$comment_data = get_comment( $comment_id );
 
@@ -915,12 +868,12 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 
 				<div class="comment-bottom">
 					<div class="reply comment-controls">
-						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Add reply','vh' ), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Add reply','blogpost' ), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 					</div><!-- .reply -->
 
 					<?php
-					if ( c_parent_comment_counter( get_comment_ID() ) != 0 ) {
-						echo '<span class="reply-count icon-comment-1">' . c_parent_comment_counter( get_comment_ID() ) . ' ' . __("replies", "vh") . '</span>';
+					if ( blogpost_c_parent_comment_counter( get_comment_ID() ) != 0 ) {
+						echo '<span class="reply-count icon-comment-1">' . blogpost_c_parent_comment_counter( get_comment_ID() ) . ' ' . __("replies", "blogpost") . '</span>';
 					}
 					?>
 
@@ -929,7 +882,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 				</div>
 
 				<?php if ( '0' == $comment->comment_approved ) : ?>
-					<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.','vh' ); ?></span>
+					<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.','blogpost' ); ?></span>
 				<?php endif; ?>
 			</div><!-- .comment-content -->
 			<div class="clearfix"></div>
@@ -940,7 +893,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 }
 }
 
-function c_parent_comment_counter($id) {
+function blogpost_c_parent_comment_counter($id) {
 	global $wpdb;
 	$query = $wpdb->prepare("SELECT COUNT(comment_post_id) AS count FROM $wpdb->comments WHERE `comment_approved` = 1 AND `comment_parent` = %s", $id);
 	$parents = $wpdb->get_row($query);
@@ -952,7 +905,7 @@ function blogpost_breadcrumbs() {
 	$disable_breadcrumb = get_option('blogpost_breadcrumb') ? get_option('blogpost_breadcrumb') : 'false';
 	$delimiter          = get_option('blogpost_breadcrumb_delimiter') ? sanitize_text_field( get_option('blogpost_breadcrumb_delimiter') ) : '<span class="delimiter icon-angle-circled-right"></span>';
 
-	$home   = __('Home', 'vh'); // text for the 'Home' link
+	$home   = __('Home', 'blogpost'); // text for the 'Home' link
 	$before = '<span class="current">'; // tag before the current crumb
 	$after  = '</span>'; // tag after the current crumb
 
@@ -1038,7 +991,7 @@ function blogpost_breadcrumbs() {
 		if (get_query_var('paged')) {
 			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author())
 				$output .= ' (';
-			$output .= __('Page', 'vh') . ' ' . get_query_var('paged');
+			$output .= __('Page', 'blogpost') . ' ' . get_query_var('paged');
 			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author())
 				$output .= ')';
 		}
@@ -1116,32 +1069,31 @@ function blogpost_register_required_plugins() {
 	 * end of each line for what each argument will be.
 	 */
 	$config = array(
-		'domain'            => 'vh',            // Text domain - likely want to be the same as your theme.
+		'domain'            => 'blogpost',            // Text domain - likely want to be the same as your theme.
 		'default_path'      => '',                          // Default absolute path to pre-packaged plugins
-		'parent_menu_slug'  => 'themes.php',                // Default parent menu slug
-		'parent_url_slug'   => 'themes.php',                // Default parent URL slug
+		'parent_slug'       => 'themes.php',                // Default parent slug
 		'menu'              => 'install-required-plugins',  // Menu slug
 		'has_notices'       => true,                        // Show admin notices or not
 		'is_automatic'      => true,                        // Automatically activate plugins after installation or not
 		'message'           => '',                          // Message to output right before the plugins table
 		'strings'           => array(
-			'page_title'                                => __( 'Install Required Plugins', 'vh' ),
-			'menu_title'                                => __( 'Install Plugins', 'vh' ),
-			'installing'                                => __( 'Installing Plugin: %s', 'vh' ), // %1$s = plugin name
-			'oops'                                      => __( 'Something went wrong with the plugin API.', 'vh' ),
-			'notice_can_install_required'               => _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.', 'vh' ), // %1$s = plugin name(s)
-			'notice_can_install_recommended'            => _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.', 'vh' ), // %1$s = plugin name(s)
-			'notice_cannot_install'                     => _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.', 'vh' ), // %1$s = plugin name(s)
-			'notice_can_activate_required'              => _n_noop( 'The following required plugin is currently inactive: %1$s.', 'The following required plugins are currently inactive: %1$s.', 'vh' ), // %1$s = plugin name(s)
-			'notice_can_activate_recommended'           => _n_noop( 'The following recommended plugin is currently inactive: %1$s.', 'The following recommended plugins are currently inactive: %1$s.', 'vh' ), // %1$s = plugin name(s)
-			'notice_cannot_activate'                    => _n_noop( 'Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated.', 'Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated.', 'vh' ), // %1$s = plugin name(s)
-			'notice_ask_to_update'                      => _n_noop( 'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.', 'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.', 'vh' ), // %1$s = plugin name(s)
-			'notice_cannot_update'                      => _n_noop( 'Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated.', 'Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.', 'vh' ), // %1$s = plugin name(s)
-			'install_link'                              => _n_noop( 'Begin installing plugin', 'Begin installing plugins', 'vh' ),
-			'activate_link'                             => _n_noop( 'Activate installed plugin', 'Activate installed plugins', 'vh' ),
-			'return'                                    => __( 'Return to Required Plugins Installer', 'vh' ),
-			'plugin_activated'                          => __( 'Plugin activated successfully.', 'vh' ),
-			'complete'                                  => __( 'All plugins installed and activated successfully. %s', 'vh' ), // %1$s = dashboard link
+			'page_title'                                => __( 'Install Required Plugins', 'blogpost' ),
+			'menu_title'                                => __( 'Install Plugins', 'blogpost' ),
+			'installing'                                => __( 'Installing Plugin: %s', 'blogpost' ), // %1$s = plugin name
+			'oops'                                      => __( 'Something went wrong with the plugin API.', 'blogpost' ),
+			'notice_can_install_required'               => _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.', 'blogpost' ), // %1$s = plugin name(s)
+			'notice_can_install_recommended'            => _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.', 'blogpost' ), // %1$s = plugin name(s)
+			'notice_cannot_install'                     => _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.', 'blogpost' ), // %1$s = plugin name(s)
+			'notice_can_activate_required'              => _n_noop( 'The following required plugin is currently inactive: %1$s.', 'The following required plugins are currently inactive: %1$s.', 'blogpost' ), // %1$s = plugin name(s)
+			'notice_can_activate_recommended'           => _n_noop( 'The following recommended plugin is currently inactive: %1$s.', 'The following recommended plugins are currently inactive: %1$s.', 'blogpost' ), // %1$s = plugin name(s)
+			'notice_cannot_activate'                    => _n_noop( 'Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated.', 'Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated.', 'blogpost' ), // %1$s = plugin name(s)
+			'notice_ask_to_update'                      => _n_noop( 'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.', 'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.', 'blogpost' ), // %1$s = plugin name(s)
+			'notice_cannot_update'                      => _n_noop( 'Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated.', 'Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.', 'blogpost' ), // %1$s = plugin name(s)
+			'install_link'                              => _n_noop( 'Begin installing plugin', 'Begin installing plugins', 'blogpost' ),
+			'activate_link'                             => _n_noop( 'Activate installed plugin', 'Activate installed plugins', 'blogpost' ),
+			'return'                                    => __( 'Return to Required Plugins Installer', 'blogpost' ),
+			'plugin_activated'                          => __( 'Plugin activated successfully.', 'blogpost' ),
+			'complete'                                  => __( 'All plugins installed and activated successfully. %s', 'blogpost' ), // %1$s = dashboard link
 			'nag_type'                                  => 'updated' // Determines admin notice type - can only be 'updated' or 'error'
 		)
 	);

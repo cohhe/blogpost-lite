@@ -35,7 +35,7 @@ $span_size = 'vc_col-sm-10';
 											$next_post = get_next_post();
 											if (!empty( $prev_post )) { ?>
 												<div class="nav_button left">
-													<a href="<?php the_permalink( $prev_post->ID ); ?>" class="prev-post-text icon-left"><?php _e('Previous', 'vh'); ?></a>
+													<a href="<?php the_permalink( $prev_post->ID ); ?>" class="prev-post-text icon-left"><?php _e('Previous', 'blogpost'); ?></a>
 													<div class="clearfix"></div>
 													<div class="prev-post-img">
 														<?php echo '<a href="' . get_permalink( $prev_post->ID ) . '">'.get_the_post_thumbnail( $prev_post->ID, 'post-gallery-medium' ).'</a>'; ?>
@@ -73,7 +73,7 @@ $span_size = 'vc_col-sm-10';
 											<?php }
 											if (!empty( $next_post )) { ?>
 												<div class="nav_button right">
-													<a href="<?php the_permalink( $next_post->ID ); ?>" class="next-post-text icon-right"><?php _e('Next', 'vh'); ?></a>
+													<a href="<?php the_permalink( $next_post->ID ); ?>" class="next-post-text icon-right"><?php _e('Next', 'blogpost'); ?></a>
 													<div class="clearfix"></div>
 													<div class="next-post-img">
 														<?php echo '<a href="' . get_permalink( $next_post->ID ) . '">'.get_the_post_thumbnail( $next_post->ID, 'post-gallery-medium' ).'</a>'; ?>
@@ -123,8 +123,8 @@ $span_size = 'vc_col-sm-10';
 									}
 								}
 							} else {
-								echo '<h2>' . __('Nothing Found', 'vh') . '</h2>
-									<p>' . __('Sorry, it appears there is no content in this section', 'vh') . '.</p>';
+								echo '<h2>' . __('Nothing Found', 'blogpost') . '</h2>
+									<p>' . __('Sorry, it appears there is no content in this section', 'blogpost') . '.</p>';
 							}
 							?>
 						</div>

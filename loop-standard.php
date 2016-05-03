@@ -39,7 +39,7 @@ $img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'post-gallery-medium
 				<?php
 					$post_content = '';
 					if( empty($excerpt) ) {
-						_e( 'No excerpt for this posting.', 'vh' );
+						_e( 'No excerpt for this posting.', 'blogpost' );
 					} else {
 						echo wp_kses( 
 							$excerpt, 
@@ -63,7 +63,7 @@ $img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'post-gallery-medium
 					<?php if( empty($img[0]) ) {
 						blogpost_get_favorite_icon(get_the_ID());
 					} ?>
-					<a href="<?php echo get_permalink( $post->ID ); ?>" class="blog-read-more ripple-slow wpb_button wpb_btn-danger wpb_regularsize square"><?php _e('Read', 'vh'); ?></a>
+					<a href="<?php echo get_permalink( $post->ID ); ?>" class="blog-read-more ripple-slow wpb_button wpb_btn-danger wpb_regularsize square"><?php _e('Read', 'blogpost'); ?></a>
 					<div class="clearfix"></div>
 				</div>
 			</div>
