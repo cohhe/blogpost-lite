@@ -1,5 +1,9 @@
 Blogspot Lite changelog
 
+= Version 1.5 =
+* Prefixed some values
+* Moved favorite functionality to plugin
+
 = Version 1.4 =
 * Updated TGMPA
 * Removed some plugin territory functions

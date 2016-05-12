@@ -1,5 +1,5 @@
 // On window load. This waits until images have loaded which is essential
-/*global jQuery:false, my_ajax:false, on_resize:false */
+/*global jQuery:false, blogpost_ajax:false, on_resize:false */
 /*jshint unused:false */
 jQuery(window).load(function() {
 	"use strict";
@@ -564,7 +564,7 @@ jQuery(document).ready(function($) {
 
 				jQuery.ajax({
 					type: 'POST',
-					url: my_ajax.ajaxurl,
+					url: blogpost_ajax.ajaxurl,
 					data: {"action": "ajax-blog-posts", initial_posts: initial, next_posts: next, post_categories: categories, post_paged: paged, favorite: fav},
 					success: function(response) {
 
@@ -635,7 +635,7 @@ jQuery(document).ready(function($) {
 
 			jQuery.ajax({
 				type: 'POST',
-				url: my_ajax.ajaxurl,
+				url: blogpost_ajax.ajaxurl,
 				data: {"action": "ajax-blog-posts", initial_posts: initial, next_posts: next, post_categories: categories, post_paged: paged},
 				success: function(response) {
 
@@ -678,7 +678,7 @@ jQuery(document).ready(function($) {
 
 		jQuery.ajax({
 			type: 'POST',
-			url: my_ajax.ajaxurl,
+			url: blogpost_ajax.ajaxurl,
 			data: {"action": "ajax_favorite_post", fpost_id: jQuery(this).attr('data-id'), fav_action: jQuery(this).attr('data-favorite')},
 			success: function(response) {
 				current_article.toggleClass('icon-heart-filled');

@@ -67,7 +67,7 @@ $img = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large-image' );
 								the_content();
 							}
 							$comment_page = get_page_by_title('Sidebar comments');
-							if ( ( get_theme_mod('blogpost_sidebar_comments', false) != true || DEMO_COMMENTS ) && ( !is_null($comment_page) && get_the_ID() != $comment_page->ID ) ) {
+							if ( ( get_theme_mod('blogpost_sidebar_comments', false) != true || BLOGPOST_DEMO_COMMENTS ) && ( !is_null($comment_page) && get_the_ID() != $comment_page->ID ) ) {
 								comments_template( '', true );
 							}
 						} else {

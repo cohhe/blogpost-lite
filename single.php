@@ -111,7 +111,7 @@ $span_size = 'vc_col-sm-10';
 											<?php } ?>
 											<div class="clearfix"></div>
 										</nav><!-- .nav-single -->
-										<?php if ( get_theme_mod('blogpost_sidebar_comments', false) != true || DEMO_COMMENTS ) { ?>
+										<?php if ( get_theme_mod('blogpost_sidebar_comments', false) != true || BLOGPOST_DEMO_COMMENTS ) { ?>
 											<div class="comments_container vc_col-sm-12">
 												<div class="clearfix"></div>
 												<?php

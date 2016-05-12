@@ -22,14 +22,14 @@ define('BLOGPOST_SIDEBARS', get_template_directory() . '/functions/admin/sidebar
 define('BLOGPOST_URI', get_template_directory_uri() .'/');
 define('BLOGPOST_GLOBAL_URI', BLOGPOST_URI . 'functions/global');
 
-define('THEMENAME', 'BlogPost');
-define('SHORTNAME', 'blogpost');
+define('BLOGPOST_THEMENAME', 'BlogPost');
+define('BLOGPOST_SHORTNAME', 'blogpost');
 define('BLOGPOST_HOME_TITLE', 'Front page');
 define('BLOGPOST_DEVELOPER_NAME_DISPLAY', 'Cohhe themes');
 define('BLOGPOST_DEVELOPER_URL', 'http://cohhe.com');
-define('DEMO_COMMENTS', false);
+define('BLOGPOST_DEMO_COMMENTS', false);
 
-define('TESTENVIRONMENT', FALSE);
+define('BLOGPOST_TESTENVIRONMENT', FALSE);
 
 add_action('after_setup_theme', 'blogpost_setup');
 
@@ -184,7 +184,7 @@ if (!function_exists('blogpost_scripts_method')) {
 
 		wp_enqueue_script('jquery.debouncedresize', get_template_directory_uri() . '/js/jquery.debouncedresize.js', array('jquery'), '', TRUE);
 		wp_enqueue_script('blogpost-master', get_template_directory_uri() . '/js/master.js', array('jquery', 'jquery.debouncedresize'), '', TRUE);
-		wp_enqueue_script('isotope', get_template_directory_uri() . '/js/jquery.isotope.min.js', array('jquery', 'blogpost-master'), '', TRUE);
+		wp_enqueue_script('blogpost-isotope', get_template_directory_uri() . '/js/jquery.isotope.min.js', array('jquery', 'blogpost-master'), '', TRUE);
 
 		wp_enqueue_script('jquery.date', get_template_directory_uri() . '/js/date.js', array('jquery'), '', TRUE);
 		
@@ -217,14 +217,14 @@ if (!function_exists('blogpost_scripts_method')) {
 		if ( is_singular() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
-		wp_localize_script( 'blogpost-master', 'ajax_login_object', array( 
+		wp_localize_script( 'blogpost-master', 'blogpost_login_object', array( 
 			'ajaxurl'         => admin_url( 'admin-ajax.php' ),
 			'redirecturl'     => home_url(),
 			'loadingmessage'  => __('Sending user info, please wait...', "blogpost" ),
 			'registermessage' => __('A password will be emailed to you for future use', "blogpost" )
 		));
 
-		wp_localize_script( 'blogpost-master', 'my_ajax', array(
+		wp_localize_script( 'blogpost-master', 'blogpost_ajax', array(
 			'ajaxurl'     => admin_url( 'admin-ajax.php' )
 		));
 
@@ -402,37 +402,6 @@ function blogpost_load_next_posts() {
 	die(1);
 }
 
-add_action( 'wp_ajax_nopriv_ajax_favorite_post', 'blogpost_favorite_article' );
-add_action( 'wp_ajax_ajax_favorite_post', 'blogpost_favorite_article' );
-function blogpost_favorite_article() {
-	$post_id = sanitize_text_field($_POST['fpost_id']);
-	$fav_action = sanitize_text_field($_POST['fav_action']);
-
-	$favorite_articles = array();
-
-	if ( isset($_COOKIE['blogpost_favorite_articles']) ) {
-		$user_favorites = json_decode(str_replace('\\', '', $_COOKIE['blogpost_favorite_articles']), true);
-	} else {
-		$user_favorites = array();
-	}
-
-	if ( !empty($user_favorites) ) {
-		$favorite_articles = $user_favorites;
-	}
-
-	if ( $fav_action == 'favorite' && !array_key_exists($post_id, $favorite_articles) ) {
-		$favorite_articles[$post_id] = 'favorite';
-		setcookie("blogpost_favorite_articles", json_encode($favorite_articles), time() + (10 * 365 * 24 * 60 * 60), '/');
-	} else if ( $fav_action == 'unfavorite' && array_key_exists($post_id, $favorite_articles) ) {
-		unset($favorite_articles[$post_id]);
-		setcookie("blogpost_favorite_articles", json_encode($favorite_articles), time() + (10 * 365 * 24 * 60 * 60), '/');
-	}
-
-	echo json_encode($favorite_articles);
-	
-	die(1);
-}
-
 function blogpost_get_favorite_icon( $post_id ) {
 
 	if ( isset($_COOKIE['blogpost_favorite_articles']) ) {
@@ -441,9 +410,9 @@ function blogpost_get_favorite_icon( $post_id ) {
 		$user_favorites = array();
 	}
 
-	if ( !array_key_exists($post_id, $user_favorites) ) {
+	if ( !array_key_exists($post_id, $user_favorites) && function_exists('blogpost_activate_blogpost_func') ) {
 		echo '<a href="javascript:void(0)" class="favorite-article cookies icon-heart-empty" data-id="'.$post_id.'" data-favorite="favorite"></a>';
-	} else if ( array_key_exists($post_id, $user_favorites) ) {
+	} else if ( array_key_exists($post_id, $user_favorites) && function_exists('blogpost_activate_blogpost_func') ) {
 		echo '<a href="javascript:void(0)" class="favorite-article cookies icon-heart-filled" data-id="'.$post_id.'" data-favorite="unfavorite"></a>';
 	}
 }
@@ -657,7 +626,7 @@ function blogpost_body_classes($classes) {
 		$classes[] = 'page-template-blog';
 	}
 
-	if ( DEMO_COMMENTS ) {
+	if ( BLOGPOST_DEMO_COMMENTS ) {
 		$classes[] = 'demo_comments';
 	}
 
