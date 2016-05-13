@@ -4,7 +4,7 @@ Theme URI: https://cohhe.com/project-view/blogpost/
 Author: Cohhe
 Author URI: https://www.cohhe.com/
 Description: BlogPost is a powerful, feature-rich theme that lets you customize a wide variety of features from the comfort of your Dashboard.
-Version: 1.5
+Version: 1.4
 Tags: right-sidebar, custom-background, custom-menu, editor-style, featured-images, post-formats, sticky-post, theme-options
 License: GNU General Public License
 License URI: license.txt
@@ -2637,11 +2637,11 @@ body.single .entry-content {
 }
 
 .comment-content .comment-bottom,
-.demo_comments .comment > .guest-comment  {
+.BLOGPOST_DEMO_COMMENTS .comment > .guest-comment  {
 	display: none;
 }
 
-.demo_comments .comment-content .comment-top {
+.BLOGPOST_DEMO_COMMENTS .comment-content .comment-top {
 	top: -9px;
 }
 
@@ -5382,11 +5382,11 @@ body .blog-post-info .favorite-article {
 
 /* Comments in sidebar */
 
-body.demo_comments .commentlist .comment > .reply.comment-controls {
+body.BLOGPOST_DEMO_COMMENTS .commentlist .comment > .reply.comment-controls {
 	display: none;
 }
 
-body.demo_comments .blogpost-sidebarcomments.widget .commentlist .comment > .reply.comment-controls {
+body.BLOGPOST_DEMO_COMMENTS .blogpost-sidebarcomments.widget .commentlist .comment > .reply.comment-controls {
 	display: block;
 }
 
