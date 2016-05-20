@@ -77,7 +77,7 @@ jQuery( document ).ready( function( $ ) {
 							} else {
 								$(".vhman-message.quick-setup .step-demoimport").addClass("step-completed");
 
-								// update option "BLOGPOST_THEMENAME . '_democontent_imported'"
+								// update option "BLOGPOST_BLOGPOST_THEMENAME . '_democontent_imported'"
 								// with 'true' value
 								$.ajax({
 									cache: false,
