@@ -4,7 +4,7 @@ Theme URI: https://cohhe.com/project-view/blogpost/
 Author: Cohhe
 Author URI: https://www.cohhe.com/
 Description: BlogPost is a powerful, feature-rich theme that lets you customize a wide variety of features from the comfort of your Dashboard.
-Version: 1.6
+Version: 1.6.1
 Tags: right-sidebar, custom-background, custom-menu, editor-style, featured-images, post-formats, sticky-post, theme-options
 Text Domain: blogpost-lite
 License: GNU General Public License
@@ -3128,19 +3128,25 @@ body .wrapper .main_image_wrapper.gallery .article-back {
 	color: #fff;
 }
 
-.menu.share.opened ul {
+/*.menu.share.opened ul {
 	width: 100%;
-}
+}*/
 
 .menu.share ul {
 	position: absolute;
-	top: -5px;
-	left: 80px;
-	width: 0%;
+	top: 1px;
+	left: 32px;
+	width: 100%;
 	height: 36px;
-	white-space: nowrap;
-	overflow: hidden;
 	display: block;
+	z-index: -1
+}
+
+.menu.share .share-item {
+	position: absolute;
+	visibility: hidden;
+	opacity: 0;
+	left: 0;
 
 	-webkit-transition: all 0.3s linear;
 	-moz-transition: all 0.3s linear;
@@ -3149,8 +3155,48 @@ body .wrapper .main_image_wrapper.gallery .article-back {
 	transition: all 0.3s linear;
 }
 
-.menu.share .share-item {
-	margin-top: 5px;
+.menu.share.opened .share-item {
+	opacity: 1;
+	visibility: visible;
+}
+
+/*.menu.share .share-item:nth-child(1) {
+	-webkit-animation-delay: 2s;
+    animation-delay: 2s;
+}*/
+
+.menu.share.opened .share-item:nth-child(1) {
+	left: 45px;
+}
+
+.menu.share.opened .share-item:nth-child(2) {
+	left: 90px;
+	-webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
+}
+
+.menu.share.opened .share-item:nth-child(3) {
+	left: 135px;
+	-webkit-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.menu.share.opened .share-item:nth-child(4) {
+	left: 180px;
+	-webkit-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+
+.menu.share.opened .share-item:nth-child(5) {
+	left: 225px;
+	-webkit-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
+
+.menu.share.opened .share-item:nth-child(6) {
+	left: 270px;
+	-webkit-transition-delay: 0.5s;
+    transition-delay: 0.5s;
 }
 
 a.share-button {

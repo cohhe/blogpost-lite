@@ -184,8 +184,8 @@ if (!function_exists('blogpost_scripts_method')) {
 
 		wp_enqueue_script( 'jquery-ui-dialog' );
 
-		if ( !is_admin() && blogpost_has_shortcode(get_the_ID(), 'blogpost_contact_us') ) {
-			wp_enqueue_script('blogpost-googlemap-script', '//maps.googleapis.com/maps/api/js?sensor=false', array(), '3', FALSE);
+		if ( !is_admin() && blogpost_has_shortcode(get_the_ID(), 'vh_contact_us') && get_theme_mod('blogpost_gmap_key', '') ) {
+			wp_enqueue_script('blogpost-googlemap-script', '//maps.googleapis.com/maps/api/js?sensor=false&key='.get_theme_mod('blogpost_gmap_key', ''), array(), '3', FALSE);
 		}
 
 		wp_enqueue_script('jquery.cookie', get_template_directory_uri() . '/js/jquery.cookie.js', array('jquery'), '', TRUE);
@@ -1009,7 +1009,7 @@ function blogpost_register_required_plugins() {
 			'name'                  => 'Functionality for Blogpost Lite theme', // The plugin name
 			'slug'                  => 'functionality-for-blogpost-lite-theme', // The plugin slug (typically the folder name)
 			'required'              => false, // If false, the plugin is only 'recommended' instead of required
-			'version'               => '1.3', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+			'version'               => '1.3.1', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 			'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 			'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
 			'external_url'          => '', // If set, overrides default API URL and points to an external URL
