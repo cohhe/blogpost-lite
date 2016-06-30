@@ -11,7 +11,7 @@ global $blogpost_from_home_page, $post;
 $tc = 0;
 $excerpt = get_the_excerpt();
 
-$img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'post-gallery-medium');
+$img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'blogpost-post-gallery-medium');
 
 if ( empty($img[0]) ) {
 	$img[0] = get_template_directory_uri() . '/images/default-image.jpg';
@@ -44,7 +44,7 @@ if ( empty($img[0]) ) {
 						<?php
 						foreach ($images_arr as $image_value) {
 							$attachment_id = kd_mfi_get_featured_image_id( $image_value, 'post' );
-							$attachment_image = wp_get_attachment_image_src( $attachment_id, 'post-gallery-medium-cropped' );
+							$attachment_image = wp_get_attachment_image_src( $attachment_id, 'blogpost-post-gallery-medium-cropped' );
 							?> <img src="<?php echo esc_url( $attachment_image[0] ); ?>" class="post-carousel-image" alt="Carousel image" /> <?php
 						}
 						?>
@@ -70,7 +70,7 @@ if ( empty($img[0]) ) {
 			<?php
 				$post_content = '';
 				if( empty($excerpt) ) {
-					_e( 'No excerpt for this posting.', 'blogpost' );
+					_e( 'No excerpt for this posting.', 'blogpost-lite' );
 				} else {
 					echo wp_kses( 
 						$excerpt, 
@@ -94,7 +94,7 @@ if ( empty($img[0]) ) {
 				<?php if ( $attachments_count < 1 ) {
 					blogpost_get_favorite_icon(get_the_ID());
 				} ?>
-				<a href="<?php echo get_permalink( $post->ID ); ?>" class="blog-read-more ripple-slow wpb_button wpb_btn-danger wpb_regularsize square"><?php _e('Read', 'blogpost'); ?></a>
+				<a href="<?php echo get_permalink( $post->ID ); ?>" class="blog-read-more ripple-slow wpb_button wpb_btn-danger wpb_regularsize square"><?php _e('Read', 'blogpost-lite'); ?></a>
 				<div class="clearfix"></div>
 			</div>
 		</div>

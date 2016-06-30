@@ -58,19 +58,19 @@ global $blogpost_from_search, $blogpost_from_archive, $blogpost_blog_image_layou
 
 									if ( 'post' == get_post_type() ) {
 										/* translators: used between list items, there is a space after the comma */
-										$categories_list = get_the_category_list( __( ', ', 'blogpost' ) );
+										$categories_list = get_the_category_list( __( ', ', 'blogpost-lite' ) );
 										if ( $categories_list ) {
 											$entry_utility .= '
 											<div class="category-link">
 											<i class="icon-folder"></i>
-											' . sprintf( __( '<span class="%1$s"></span> %2$s', 'blogpost' ), 'entry-utility-prep entry-utility-prep-cat-links', $categories_list );
+											' . sprintf( __( '<span class="%1$s"></span> %2$s', 'blogpost-lite' ), 'entry-utility-prep entry-utility-prep-cat-links', $categories_list );
 											$show_sep = true;
 											$entry_utility .= '
 											</div>';
 										}
 
 										/* translators: used between list items, there is a space after the comma */
-										$tags_list = get_the_tag_list( '', __( ', ', 'blogpost' ) );
+										$tags_list = get_the_tag_list( '', __( ', ', 'blogpost-lite' ) );
 										if ( $tags_list ) {
 											$style = '';
 											if ( $show_sep ) {
@@ -79,7 +79,7 @@ global $blogpost_from_search, $blogpost_from_archive, $blogpost_blog_image_layou
 											$entry_utility .= '
 											<div class="tag-link"' . $style . '>
 											<i class="icon-tags"></i>
-											' . sprintf( __( '<span class="%1$s"></span> %2$s', 'blogpost' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list );
+											' . sprintf( __( '<span class="%1$s"></span> %2$s', 'blogpost-lite' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list );
 											$show_sep = true;
 											$entry_utility .= '
 											</div>';
@@ -99,9 +99,9 @@ global $blogpost_from_search, $blogpost_from_archive, $blogpost_blog_image_layou
 							<?php $m++; } ?>
 						</ul>
 					</div>
-					<button id="load-more-posts" class="wpb_button wpb_btn-danger wpb_regularsize square"><span><?php _e('Load more', 'blogpost'); ?></span></button>
+					<button id="load-more-posts" class="wpb_button wpb_btn-danger wpb_regularsize square"><span><?php _e('Load more', 'blogpost-lite'); ?></span></button>
 					<div class="loading-effect"></div>
-					<div class="no-more-posts"><?php _e('No more posts', 'blogpost'); ?></div>
+					<div class="no-more-posts"><?php _e('No more posts', 'blogpost-lite'); ?></div>
 				</div>
 			</div>
 		</div>

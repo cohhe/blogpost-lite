@@ -35,10 +35,10 @@ $span_size = 'vc_col-sm-10';
 											$next_post = get_next_post();
 											if (!empty( $prev_post )) { ?>
 												<div class="nav_button left">
-													<a href="<?php the_permalink( $prev_post->ID ); ?>" class="prev-post-text icon-left"><?php _e('Previous', 'blogpost'); ?></a>
+													<a href="<?php the_permalink( $prev_post->ID ); ?>" class="prev-post-text icon-left"><?php _e('Previous', 'blogpost-lite'); ?></a>
 													<div class="clearfix"></div>
 													<div class="prev-post-img">
-														<?php echo '<a href="' . get_permalink( $prev_post->ID ) . '">'.get_the_post_thumbnail( $prev_post->ID, 'post-gallery-medium' ).'</a>'; ?>
+														<?php echo '<a href="' . get_permalink( $prev_post->ID ) . '">'.get_the_post_thumbnail( $prev_post->ID, 'blogpost-post-gallery-medium' ).'</a>'; ?>
 													</div>
 													<div class="prev-post-link">
 														<a href="<?php echo get_permalink( $prev_post->ID ); ?>" class="prev_blog_post"><?php echo get_the_title( $prev_post->ID ); ?></a>
@@ -73,10 +73,10 @@ $span_size = 'vc_col-sm-10';
 											<?php }
 											if (!empty( $next_post )) { ?>
 												<div class="nav_button right">
-													<a href="<?php the_permalink( $next_post->ID ); ?>" class="next-post-text icon-right"><?php _e('Next', 'blogpost'); ?></a>
+													<a href="<?php the_permalink( $next_post->ID ); ?>" class="next-post-text icon-right"><?php _e('Next', 'blogpost-lite'); ?></a>
 													<div class="clearfix"></div>
 													<div class="next-post-img">
-														<?php echo '<a href="' . get_permalink( $next_post->ID ) . '">'.get_the_post_thumbnail( $next_post->ID, 'post-gallery-medium' ).'</a>'; ?>
+														<?php echo '<a href="' . get_permalink( $next_post->ID ) . '">'.get_the_post_thumbnail( $next_post->ID, 'blogpost-post-gallery-medium' ).'</a>'; ?>
 													</div>
 													<div class="next-post-link">
 														<a href="<?php echo get_permalink( $next_post->ID ); ?>" class="next_blog_post"><?php echo get_the_title( $next_post->ID ); ?></a>
@@ -123,8 +123,8 @@ $span_size = 'vc_col-sm-10';
 									}
 								}
 							} else {
-								echo '<h2>' . __('Nothing Found', 'blogpost') . '</h2>
-									<p>' . __('Sorry, it appears there is no content in this section', 'blogpost') . '.</p>';
+								echo '<h2>' . __('Nothing Found', 'blogpost-lite') . '</h2>
+									<p>' . __('Sorry, it appears there is no content in this section', 'blogpost-lite') . '.</p>';
 							}
 							?>
 						</div>

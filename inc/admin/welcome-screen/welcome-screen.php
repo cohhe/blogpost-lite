@@ -60,8 +60,8 @@ class blogpost_Welcome {
 	public function blogpost_welcome_admin_notice() {
 		?>
 			<div class="updated notice is-dismissible">
-				<p><?php echo sprintf( esc_html__( 'Welcome! Thank you for choosing Blogpost Lite! To fully take advantage of the best our theme can offer please make sure you visit our %swelcome page%s.', 'blogpost' ), '<a href="' . esc_url( admin_url( 'themes.php?page=blogpost-welcome-screen' ) ) . '">', '</a>' ); ?></p>
-				<p><a href="<?php echo esc_url( admin_url( 'themes.php?page=blogpost-welcome-screen' ) ); ?>" class="button" style="text-decoration: none;"><?php _e( 'Get started with Blogpost Lite', 'blogpost' ); ?></a></p>
+				<p><?php echo sprintf( esc_html__( 'Welcome! Thank you for choosing Blogpost Lite! To fully take advantage of the best our theme can offer please make sure you visit our %swelcome page%s.', 'blogpost-lite' ), '<a href="' . esc_url( admin_url( 'themes.php?page=blogpost-welcome-screen' ) ) . '">', '</a>' ); ?></p>
+				<p><a href="<?php echo esc_url( admin_url( 'themes.php?page=blogpost-welcome-screen' ) ); ?>" class="button" style="text-decoration: none;"><?php _e( 'Get started with Blogpost Lite', 'blogpost-lite' ); ?></a></p>
 			</div>
 		<?php
 	}
@@ -99,7 +99,7 @@ class blogpost_Welcome {
 				'nr_actions_required' => $nr_actions_required,
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'template_directory' => get_template_directory_uri(),
-				'no_required_actions_text' => __( 'Hooray! There are no required actions for you right now.','blogpost' )
+				'no_required_actions_text' => __( 'Hooray! There are no required actions for you right now.','blogpost-lite' )
 			) );
 		}
 	}
@@ -136,7 +136,7 @@ class blogpost_Welcome {
 			'nr_actions_required' => $nr_actions_required,
 			'aboutpage' => esc_url( admin_url( 'themes.php?page=blogpost-welcome-screen#getting_started' ) ),
 			'customizerpage' => esc_url( admin_url( 'customize.php#getting_started' ) ),
-			'themeinfo' => __('View Theme Info','blogpost'),
+			'themeinfo' => __('View Theme Info','blogpost-lite'),
 		) );
 	}
 
@@ -204,9 +204,9 @@ class blogpost_Welcome {
 		?>
 
 		<ul class="welcome-screen-nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#getting_started" aria-controls="getting_started" role="tab" data-toggle="tab"><?php esc_html_e( 'Getting started','blogpost'); ?></a></li>
-			<li role="presentation"><a href="#github" aria-controls="github" role="tab" data-toggle="tab"><?php esc_html_e( 'Contribute','blogpost'); ?></a></li>
-			<li role="presentation"><a href="#free_pro" aria-controls="free_pro" role="tab" data-toggle="tab"><?php esc_html_e( 'Free VS PRO','blogpost'); ?></a></li>
+			<li role="presentation" class="active"><a href="#getting_started" aria-controls="getting_started" role="tab" data-toggle="tab"><?php esc_html_e( 'Getting started','blogpost-lite'); ?></a></li>
+			<li role="presentation"><a href="#github" aria-controls="github" role="tab" data-toggle="tab"><?php esc_html_e( 'Contribute','blogpost-lite'); ?></a></li>
+			<li role="presentation"><a href="#free_pro" aria-controls="free_pro" role="tab" data-toggle="tab"><?php esc_html_e( 'Free VS PRO','blogpost-lite'); ?></a></li>
 		</ul>
 
 		<div class="welcome-screen-tab-content">

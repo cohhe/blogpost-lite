@@ -70,10 +70,6 @@ Modernizr, Copyright 2011-2015 Faruk, Paul, Alex, Ryan, Patrick, Stu, and Richar
 Modernizr is licensed under the MIT licenses
 Source: https://github.com/modernizr/modernizr
 
-TweenMax, Copyright 2008-2015, GreenSock
-TweenMax is subject to the terms at http://greensock.com/standard-license
-Source: http://greensock.com
-
 Font Awesome is licensed under SIL license
 Source: http://fortawesome.github.io/Font-Awesome/
 

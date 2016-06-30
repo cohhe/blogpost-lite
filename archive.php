@@ -86,7 +86,7 @@ $author_id = get_query_var( 'author' );
 						if ( function_exists('get_tax_meta') ) {
 							echo '
 							<div class="category-background">
-								<img src="' . esc_url( $category_image['url'] ) . '" class="category-background-picture" alt="'.__('Category background picture', 'blogpost').'" />
+								<img src="' . esc_url( $category_image['url'] ) . '" class="category-background-picture" alt="'.__('Category background picture', 'blogpost-lite').'" />
 							</div>';
 						}
 					?>
@@ -113,13 +113,13 @@ $author_id = get_query_var( 'author' );
 				<div class="page-title">
 					<h1>
 					<?php if (is_day()) : ?>
-						<?php printf(__('Daily Archives: %s', 'blogpost'), '<span>' . get_the_date() . '</span>'); ?>
+						<?php printf(__('Daily Archives: %s', 'blogpost-lite'), '<span>' . get_the_date() . '</span>'); ?>
 					<?php elseif (is_month()) : ?>
-						<?php printf(__('Monthly Archives: %s', 'blogpost'), '<span>' . get_the_date('F Y') . '</span>'); ?>
+						<?php printf(__('Monthly Archives: %s', 'blogpost-lite'), '<span>' . get_the_date('F Y') . '</span>'); ?>
 					<?php elseif (is_year()) : ?>
-						<?php printf(__('Yearly Archives: %s', 'blogpost'), '<span>' . get_the_date('Y') . '</span>'); ?>
+						<?php printf(__('Yearly Archives: %s', 'blogpost-lite'), '<span>' . get_the_date('Y') . '</span>'); ?>
 					<?php else : ?>
-						<?php _e('Blog Archives', 'blogpost'); ?>
+						<?php _e('Blog Archives', 'blogpost-lite'); ?>
 					<?php endif; ?>
 					</h1>
 				</div>
@@ -136,7 +136,7 @@ $author_id = get_query_var( 'author' );
 							// Include the Post-Format-specific template for the content.
 							get_template_part('loop', get_post_format());
 						} else { ?>
-							<p><?php _e('Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'blogpost'); ?></p>
+							<p><?php _e('Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.', 'blogpost-lite'); ?></p>
 							<?php get_search_form(); ?>
 						<?php } ?>
 						<div class="clearer"></div>

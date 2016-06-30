@@ -65,27 +65,15 @@ if (!function_exists('blogpost_setup')) {
 	}
 }
 
-function blogpost_rename_post_formats($translation, $text, $context, $domain) {
-	$names = array(
-		'Quote'  => 'Ad',
-		'Status' => 'Tweet'
-	);
-	if ($context == 'Post format') {
-		$translation = str_replace(array_keys($names), array_values($names), $text);
-	}
-	return $translation;
-}
-add_filter('gettext_with_context', 'blogpost_rename_post_formats', 10, 4);
-
 function blogpost_localization() {
 	$lang = get_template_directory() . '/languages';
-	load_theme_textdomain('blogpost', $lang);
+	load_theme_textdomain('blogpost-lite', $lang);
 }
 add_action('after_setup_theme', 'blogpost_localization');
 
 function blogpost_register_widgets () {
 	register_sidebar( array(
-		'name'          => __( 'Normal', 'blogpost' ),
+		'name'          => __( 'Normal', 'blogpost-lite' ),
 		'id'            => 'sidebar-5',
 		'class'         => 'normal',
 		'before_widget' => '<div class="widget">',
@@ -170,11 +158,11 @@ add_filter( 'pre_get_posts', 'blogpost_tgm_cpt_search' );
 // Add new image sizes
 if ( function_exists('add_image_size')) {
 	# Gallery image Cropped sizes
-	add_image_size('gallery-large', 270, 270, true); // gallery-large gallery size
-	add_image_size('gallery-medium', 125, 125, true); // gallery-medium gallery size
-	add_image_size('post-gallery-medium', 400, 290, false); // gallery-medium gallery size
-	add_image_size('post-gallery-medium-cropped', 400, 290, true); // gallery-medium gallery size
-	add_image_size('post-wide', 1800, 490, true); // gallery-medium gallery size
+	add_image_size('blogpost-gallery-large', 270, 270, true); // gallery-large gallery size
+	add_image_size('blogpost-gallery-medium', 125, 125, true); // gallery-medium gallery size
+	add_image_size('blogpost-post-gallery-medium', 400, 290, false); // gallery-medium gallery size
+	add_image_size('blogpost-post-gallery-medium-cropped', 400, 290, true); // gallery-medium gallery size
+	add_image_size('blogpost-post-wide', 1800, 490, true); // gallery-medium gallery size
 }
 
 // Public JS scripts
@@ -208,8 +196,6 @@ if (!function_exists('blogpost_scripts_method')) {
 
 		wp_enqueue_script('jquery.nanoscroller', get_template_directory_uri() . '/js/jquery.nanoscroller.min.js', array('jquery'), '', TRUE);
 
-		wp_enqueue_script('jquery.tweenmax', get_template_directory_uri() . '/js/TweenMax.min.js', array('jquery'), '', false);
-
 		wp_enqueue_script("jquery-effects-core");
 		wp_enqueue_script("jquery-ui-tabs");
 		wp_enqueue_script("jquery-ui-accordion");
@@ -220,8 +206,8 @@ if (!function_exists('blogpost_scripts_method')) {
 		wp_localize_script( 'blogpost-master', 'blogpost_login_object', array( 
 			'ajaxurl'         => admin_url( 'admin-ajax.php' ),
 			'redirecturl'     => home_url(),
-			'loadingmessage'  => __('Sending user info, please wait...', "blogpost" ),
-			'registermessage' => __('A password will be emailed to you for future use', "blogpost" )
+			'loadingmessage'  => __('Sending user info, please wait...', "blogpost-lite" ),
+			'registermessage' => __('A password will be emailed to you for future use', "blogpost-lite" )
 		));
 
 		wp_localize_script( 'blogpost-master', 'blogpost_ajax', array(
@@ -229,7 +215,7 @@ if (!function_exists('blogpost_scripts_method')) {
 		));
 
 		// Load custom CSS
-		wp_add_inline_style( 'blogpost-master-css', get_theme_mod('blogpost_custom_css', '') );
+		wp_add_inline_style( 'blogpost-master-css', wp_strip_all_tags( get_theme_mod('blogpost_custom_css', '') ) );
 	}
 }
 add_action('wp_enqueue_scripts', 'blogpost_scripts_method'); 
@@ -329,7 +315,7 @@ function blogpost_load_next_posts() {
 		the_post();
 
 		$post_format = get_post_format();
-		$img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'post-gallery-medium');
+		$img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'blogpost-post-gallery-medium');
 		$excerpt = get_the_excerpt();
 
 		if ( $post_format != '' ) {
@@ -356,7 +342,7 @@ function blogpost_load_next_posts() {
 						<?php
 							$post_content = '';
 							if( empty($excerpt) ) {
-								_e( 'No excerpt for this posting.', 'blogpost' );
+								_e( 'No excerpt for this posting.', 'blogpost-lite' );
 							} else {
 								echo wp_kses( 
 									$excerpt, 
@@ -380,7 +366,7 @@ function blogpost_load_next_posts() {
 							<?php if( empty($img[0]) ) {
 								blogpost_get_favorite_icon(get_the_ID());
 							} ?>
-							<a href="<?php echo get_permalink( $post->ID ); ?>" class="blog-read-more ripple-slow wpb_button wpb_btn-danger wpb_regularsize square"><?php _e('Read', 'blogpost'); ?></a>
+							<a href="<?php echo get_permalink( $post->ID ); ?>" class="blog-read-more ripple-slow wpb_button wpb_btn-danger wpb_regularsize square"><?php _e('Read', 'blogpost-lite'); ?></a>
 							<div class="clearfix"></div>
 						</div>
 					</div>
@@ -532,7 +518,7 @@ add_filter('excerpt_more', 'blogpost_new_excerpt_more');
 
 // Returns a "Continue Reading" link for excerpts
 function blogpost_continue_reading_link() {
-	return ' </p><p><a href="' . esc_url(get_permalink()) . '" class="read_more_link">' . __('Read more', 'blogpost') . '</a>';
+	return ' </p><p><a href="' . esc_url(get_permalink()) . '" class="read_more_link">' . __('Read more', 'blogpost-lite') . '</a>';
 }
 
 function blogpost_widget_class($params) {
@@ -589,7 +575,7 @@ add_filter('wp_page_menu_args', 'blogpost_page_menu_args');
 function blogpost_register_menus () {
 	register_nav_menus(
 		array (
-			'primary-menu' => __('Primary Menu', 'blogpost')
+			'primary-menu' => __('Primary Menu', 'blogpost-lite')
 		)
 	);
 }
@@ -650,13 +636,13 @@ if (!function_exists('blogpost_posted_on')) {
 
 	// Prints HTML with meta information for the current post.
 	function blogpost_posted_on() {
-		printf(__('<span>Posted: </span><a href="%1$s" title="%2$s" rel="bookmark">%4$s</a><span class="by-author"> by <a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span>', 'blogpost'),
+		printf(__('<span>Posted: </span><a href="%1$s" title="%2$s" rel="bookmark">%4$s</a><span class="by-author"> by <a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span>', 'blogpost-lite'),
 			esc_url(get_permalink()),
 			esc_attr(get_the_time()),
 			esc_attr(get_the_date('c')),
 			esc_html(get_the_date()),
 			esc_url(get_author_posts_url(get_the_author_meta('ID'))),
-			sprintf(esc_attr__('View all posts by %s', 'blogpost'), get_the_author()),
+			sprintf(esc_attr__('View all posts by %s', 'blogpost-lite'), get_the_author()),
 			esc_html(get_the_author())
 		);
 	}
@@ -694,17 +680,17 @@ function blogpost_custom_comment_fields($fields) {
 	global $post, $commenter;
 
 	$fields['author'] = '<div class="comment_auth_email"><div class="comment-form-author">
-							<input id="author" name="author" type="text" class="span4" placeholder="' . __( 'Your name', 'blogpost' ) . '" value="' . esc_attr( $commenter['comment_author'] ) . '" aria-required="true" size="30" />
-							<span class="comment-form-error">' . __('Enter your name', 'blogpost') . '</span>
+							<input id="author" name="author" type="text" class="span4" placeholder="' . __( 'Your name', 'blogpost-lite' ) . '" value="' . esc_attr( $commenter['comment_author'] ) . '" aria-required="true" size="30" />
+							<span class="comment-form-error">' . __('Enter your name', 'blogpost-lite') . '</span>
 						 </div>';
 
 	$fields['email'] = '<div class="comment-form-email">
-							<input id="email" name="email" type="text" class="span4" placeholder="' . __( 'Your email', 'blogpost' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" aria-required="true" size="30" />
-							<span class="comment-form-error">' . __('Enter your email', 'blogpost') . '</span>
+							<input id="email" name="email" type="text" class="span4" placeholder="' . __( 'Your email', 'blogpost-lite' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" aria-required="true" size="30" />
+							<span class="comment-form-error">' . __('Enter your email', 'blogpost-lite') . '</span>
 						</div></div>';
 
 	$fields['url'] = '<p class="comment-form-url">
-						<input id="url" name="url" type="text" class="span4" placeholder="' . __( 'Website', 'blogpost' ) . '" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />
+						<input id="url" name="url" type="text" class="span4" placeholder="' . __( 'Website', 'blogpost-lite' ) . '" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />
 						</p>';
 
 	$fields = array( $fields['author'], $fields['email'] );
@@ -730,7 +716,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 		// Display trackbacks differently than normal comments.
 	?>
 	<li <?php comment_class('geodir-comment'); ?> id="comment-<?php comment_ID(); ?>">
-		<p><?php _e( 'Pingback:','blogpost' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)','blogpost' ), '<span class="edit-link">', '</span>' ); ?></p>
+		<p><?php _e( 'Pingback:','blogpost-lite' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)','blogpost-lite' ), '<span class="edit-link">', '</span>' ); ?></p>
 	<?php
 			break;
 		default :
@@ -740,7 +726,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 		$comment_time = get_comment_time("g/i/s/n/j/Y");
 		$comment_time_exploded = explode("/", $comment_time);
 		$comment_timestamp = mktime($comment_time_exploded["0"], $comment_time_exploded["1"], $comment_time_exploded["2"], $comment_time_exploded["3"], $comment_time_exploded["4"], $comment_time_exploded["5"]);
-		$comment_time_full = human_time_diff($comment_timestamp, current_time('timestamp')) . " " . __("ago", "blogpost");
+		$comment_time_full = human_time_diff($comment_timestamp, current_time('timestamp')) . " " . __("ago", "blogpost-lite");
 		$comment_id = get_comment_ID();
 		$comment_data = get_comment( $comment_id );
 
@@ -765,13 +751,13 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 					<?php echo $author_link; ?>
 
 					<div class="reply comment-controls">
-						<?php edit_comment_link( __( 'Edit','blogpost' ) ); ?>
-						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Add reply','blogpost' ), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+						<?php edit_comment_link( __( 'Edit','blogpost-lite' ) ); ?>
+						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Add reply','blogpost-lite' ), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 					</div><!-- .reply -->
 
 					<?php
 					if ( blogpost_c_parent_comment_counter( get_comment_ID() ) != 0 ) {
-						echo '<span class="reply-count icon-comment-1">' . blogpost_c_parent_comment_counter( get_comment_ID() ) . ' ' . __("replies", "blogpost") . '</span>';
+						echo '<span class="reply-count icon-comment-1">' . blogpost_c_parent_comment_counter( get_comment_ID() ) . ' ' . __("replies", "blogpost-lite") . '</span>';
 					}
 					?>
 
@@ -782,7 +768,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 				<?php comment_text(); ?>
 
 				<?php if ( '0' == $comment->comment_approved ) { ?>
-					<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.','blogpost' ); ?></span>
+					<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.','blogpost-lite' ); ?></span>
 				<?php } ?>
 			</div><!-- .comment-content -->
 			<div class="clearfix"></div>
@@ -800,7 +786,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 		// Display trackbacks differently than normal comments.
 	?>
 	<li <?php comment_class('geodir-comment'); ?> id="comment-<?php comment_ID(); ?>">
-		<p><?php _e( 'Pingback:','blogpost' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)','blogpost' ), '<span class="edit-link">', '</span>' ); ?></p>
+		<p><?php _e( 'Pingback:','blogpost-lite' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)','blogpost-lite' ), '<span class="edit-link">', '</span>' ); ?></p>
 	<?php
 			break;
 		default :
@@ -810,7 +796,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 		$comment_time = get_comment_time("g/i/s/n/j/Y");
 		$comment_time_exploded = explode("/", $comment_time);
 		$comment_timestamp = mktime($comment_time_exploded["0"], $comment_time_exploded["1"], $comment_time_exploded["2"], $comment_time_exploded["3"], $comment_time_exploded["4"], $comment_time_exploded["5"]);
-		$comment_time_full = human_time_diff($comment_timestamp, current_time('timestamp')) . " " . __("ago", "blogpost");
+		$comment_time_full = human_time_diff($comment_timestamp, current_time('timestamp')) . " " . __("ago", "blogpost-lite");
 		$comment_id = get_comment_ID();
 		$comment_data = get_comment( $comment_id );
 
@@ -837,12 +823,12 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 
 				<div class="comment-bottom">
 					<div class="reply comment-controls">
-						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Add reply','blogpost' ), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Add reply','blogpost-lite' ), 'after' => '', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
 					</div><!-- .reply -->
 
 					<?php
 					if ( blogpost_c_parent_comment_counter( get_comment_ID() ) != 0 ) {
-						echo '<span class="reply-count icon-comment-1">' . blogpost_c_parent_comment_counter( get_comment_ID() ) . ' ' . __("replies", "blogpost") . '</span>';
+						echo '<span class="reply-count icon-comment-1">' . blogpost_c_parent_comment_counter( get_comment_ID() ) . ' ' . __("replies", "blogpost-lite") . '</span>';
 					}
 					?>
 
@@ -851,7 +837,7 @@ if ( ! function_exists( 'blogpost_comment' ) ) {
 				</div>
 
 				<?php if ( '0' == $comment->comment_approved ) : ?>
-					<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.','blogpost' ); ?></span>
+					<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.','blogpost-lite' ); ?></span>
 				<?php endif; ?>
 			</div><!-- .comment-content -->
 			<div class="clearfix"></div>
@@ -874,7 +860,7 @@ function blogpost_breadcrumbs() {
 	$disable_breadcrumb = get_option('blogpost_breadcrumb') ? get_option('blogpost_breadcrumb') : 'false';
 	$delimiter          = get_option('blogpost_breadcrumb_delimiter') ? sanitize_text_field( get_option('blogpost_breadcrumb_delimiter') ) : '<span class="delimiter icon-angle-circled-right"></span>';
 
-	$home   = __('Home', 'blogpost'); // text for the 'Home' link
+	$home   = __('Home', 'blogpost-lite'); // text for the 'Home' link
 	$before = '<span class="current">'; // tag before the current crumb
 	$after  = '</span>'; // tag after the current crumb
 
@@ -960,7 +946,7 @@ function blogpost_breadcrumbs() {
 		if (get_query_var('paged')) {
 			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author())
 				$output .= ' (';
-			$output .= __('Page', 'blogpost') . ' ' . get_query_var('paged');
+			$output .= __('Page', 'blogpost-lite') . ' ' . get_query_var('paged');
 			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author())
 				$output .= ')';
 		}
@@ -1023,7 +1009,7 @@ function blogpost_register_required_plugins() {
 			'name'                  => 'Functionality for Blogpost Lite theme', // The plugin name
 			'slug'                  => 'functionality-for-blogpost-lite-theme', // The plugin slug (typically the folder name)
 			'required'              => false, // If false, the plugin is only 'recommended' instead of required
-			'version'               => '1.2', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+			'version'               => '1.3', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 			'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 			'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
 			'external_url'          => '', // If set, overrides default API URL and points to an external URL
@@ -1038,7 +1024,7 @@ function blogpost_register_required_plugins() {
 	 * end of each line for what each argument will be.
 	 */
 	$config = array(
-		'domain'            => 'blogpost',            // Text domain - likely want to be the same as your theme.
+		'domain'            => 'blogpost-lite',            // Text domain - likely want to be the same as your theme.
 		'default_path'      => '',                          // Default absolute path to pre-packaged plugins
 		'parent_slug'       => 'themes.php',                // Default parent slug
 		'menu'              => 'install-required-plugins',  // Menu slug
@@ -1046,23 +1032,23 @@ function blogpost_register_required_plugins() {
 		'is_automatic'      => true,                        // Automatically activate plugins after installation or not
 		'message'           => '',                          // Message to output right before the plugins table
 		'strings'           => array(
-			'page_title'                                => __( 'Install Required Plugins', 'blogpost' ),
-			'menu_title'                                => __( 'Install Plugins', 'blogpost' ),
-			'installing'                                => __( 'Installing Plugin: %s', 'blogpost' ), // %1$s = plugin name
-			'oops'                                      => __( 'Something went wrong with the plugin API.', 'blogpost' ),
-			'notice_can_install_required'               => _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.', 'blogpost' ), // %1$s = plugin name(s)
-			'notice_can_install_recommended'            => _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.', 'blogpost' ), // %1$s = plugin name(s)
-			'notice_cannot_install'                     => _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.', 'blogpost' ), // %1$s = plugin name(s)
-			'notice_can_activate_required'              => _n_noop( 'The following required plugin is currently inactive: %1$s.', 'The following required plugins are currently inactive: %1$s.', 'blogpost' ), // %1$s = plugin name(s)
-			'notice_can_activate_recommended'           => _n_noop( 'The following recommended plugin is currently inactive: %1$s.', 'The following recommended plugins are currently inactive: %1$s.', 'blogpost' ), // %1$s = plugin name(s)
-			'notice_cannot_activate'                    => _n_noop( 'Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated.', 'Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated.', 'blogpost' ), // %1$s = plugin name(s)
-			'notice_ask_to_update'                      => _n_noop( 'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.', 'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.', 'blogpost' ), // %1$s = plugin name(s)
-			'notice_cannot_update'                      => _n_noop( 'Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated.', 'Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.', 'blogpost' ), // %1$s = plugin name(s)
-			'install_link'                              => _n_noop( 'Begin installing plugin', 'Begin installing plugins', 'blogpost' ),
-			'activate_link'                             => _n_noop( 'Activate installed plugin', 'Activate installed plugins', 'blogpost' ),
-			'return'                                    => __( 'Return to Required Plugins Installer', 'blogpost' ),
-			'plugin_activated'                          => __( 'Plugin activated successfully.', 'blogpost' ),
-			'complete'                                  => __( 'All plugins installed and activated successfully. %s', 'blogpost' ), // %1$s = dashboard link
+			'page_title'                                => __( 'Install Required Plugins', 'blogpost-lite' ),
+			'menu_title'                                => __( 'Install Plugins', 'blogpost-lite' ),
+			'installing'                                => __( 'Installing Plugin: %s', 'blogpost-lite' ), // %1$s = plugin name
+			'oops'                                      => __( 'Something went wrong with the plugin API.', 'blogpost-lite' ),
+			'notice_can_install_required'               => _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.', 'blogpost-lite' ), // %1$s = plugin name(s)
+			'notice_can_install_recommended'            => _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.', 'blogpost-lite' ), // %1$s = plugin name(s)
+			'notice_cannot_install'                     => _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.', 'blogpost-lite' ), // %1$s = plugin name(s)
+			'notice_can_activate_required'              => _n_noop( 'The following required plugin is currently inactive: %1$s.', 'The following required plugins are currently inactive: %1$s.', 'blogpost-lite' ), // %1$s = plugin name(s)
+			'notice_can_activate_recommended'           => _n_noop( 'The following recommended plugin is currently inactive: %1$s.', 'The following recommended plugins are currently inactive: %1$s.', 'blogpost-lite' ), // %1$s = plugin name(s)
+			'notice_cannot_activate'                    => _n_noop( 'Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated.', 'Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated.', 'blogpost-lite' ), // %1$s = plugin name(s)
+			'notice_ask_to_update'                      => _n_noop( 'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.', 'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.', 'blogpost-lite' ), // %1$s = plugin name(s)
+			'notice_cannot_update'                      => _n_noop( 'Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated.', 'Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated.', 'blogpost-lite' ), // %1$s = plugin name(s)
+			'install_link'                              => _n_noop( 'Begin installing plugin', 'Begin installing plugins', 'blogpost-lite' ),
+			'activate_link'                             => _n_noop( 'Activate installed plugin', 'Activate installed plugins', 'blogpost-lite' ),
+			'return'                                    => __( 'Return to Required Plugins Installer', 'blogpost-lite' ),
+			'plugin_activated'                          => __( 'Plugin activated successfully.', 'blogpost-lite' ),
+			'complete'                                  => __( 'All plugins installed and activated successfully. %s', 'blogpost-lite' ), // %1$s = dashboard link
 			'nag_type'                                  => 'updated' // Determines admin notice type - can only be 'updated' or 'error'
 		)
 	);

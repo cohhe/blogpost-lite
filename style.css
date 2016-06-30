@@ -4,8 +4,9 @@ Theme URI: https://cohhe.com/project-view/blogpost/
 Author: Cohhe
 Author URI: https://www.cohhe.com/
 Description: BlogPost is a powerful, feature-rich theme that lets you customize a wide variety of features from the comfort of your Dashboard.
-Version: 1.5
+Version: 1.6
 Tags: right-sidebar, custom-background, custom-menu, editor-style, featured-images, post-formats, sticky-post, theme-options
+Text Domain: blogpost-lite
 License: GNU General Public License
 License URI: license.txt
 */
@@ -1665,6 +1666,8 @@ body .header-button-container.menu a:not(.share-button) {
 
 .side-menu-container.menu-active .logo img {
 	display: block;
+	max-width: none;
+	max-height: 100%;
 }
 
 .header.menu-active .top-header .logo {
@@ -3104,7 +3107,7 @@ body .wrapper .main_image_wrapper.gallery .article-back {
 
 .share-button,
 .share-toggle-button {
-	position: absolute;
+/*	position: absolute;*/
 	display: inline-block;
 	top: 50%;
 	border-radius: 50%;
@@ -3125,16 +3128,41 @@ body .wrapper .main_image_wrapper.gallery .article-back {
 	color: #fff;
 }
 
+.menu.share.opened ul {
+	width: 100%;
+}
+
+.menu.share ul {
+	position: absolute;
+	top: -5px;
+	left: 80px;
+	width: 0%;
+	height: 36px;
+	white-space: nowrap;
+	overflow: hidden;
+	display: block;
+
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	-ms-transition: all 0.3s linear;
+	-o-transition: all 0.3s linear;
+	transition: all 0.3s linear;
+}
+
+.menu.share .share-item {
+	margin-top: 5px;
+}
+
 a.share-button {
-	font-size: 20px;
-	-webkit-transform: scale(0.95, 0.95);
-	transform: scale(0.95, 0.95);
+	font-size: 14px;
+	/*-webkit-transform: scale(0.95, 0.95);
+	transform: scale(0.95, 0.95);*/
 	background: transparent;
-	border: 3px solid rgba(255,255,255,0.5);
-	width: 52px;
-	height: 52px;
-	line-height: 52px;
-	margin-left: 28px;
+	border: 2px solid rgba(255,255,255,0.5);
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	margin-left: 7px;
 	left: 0;
 	top: 16px;
 

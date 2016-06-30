@@ -11,7 +11,7 @@ global $blogpost_from_home_page, $post;
 $tc = 0;
 $excerpt = get_the_excerpt();
 
-$img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'post-gallery-medium');
+$img = wp_get_attachment_image_src(get_post_thumbnail_id(), 'blogpost-post-gallery-medium');
 
 if ( empty($img[0]) ) {
 	$img[0] = get_template_directory_uri() . '/images/default-image.jpg';
@@ -20,7 +20,7 @@ if ( empty($img[0]) ) {
 if ( function_exists('get_ad_button_text') ) {
 	$ad_button = get_ad_button_text( $post->ID );
 } else {
-	$ad_button = __('Open ad', 'blogpost');
+	$ad_button = __('Open ad', 'blogpost-lite');
 }
 
 if ( function_exists('get_ad_button_url') ) {
@@ -44,7 +44,7 @@ if ( function_exists('get_ad_background') ) {
 			<div class="blog-excerpt">
 			<?php
 				if( empty($excerpt) ) {
-					_e( 'No excerpt for this posting.', 'blogpost' );
+					_e( 'No excerpt for this posting.', 'blogpost-lite' );
 				} else {
 					echo wp_kses( 
 						$excerpt, 

@@ -19,39 +19,39 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_panel( 'blogpost_general_panel', array(
 		'priority'       => 250,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'General settings' , 'blogpost'),
-		'description'    => __( 'You can configure your general theme settings here' , 'blogpost')
+		'title'          => __( 'General settings' , 'blogpost-lite'),
+		'description'    => __( 'You can configure your general theme settings here' , 'blogpost-lite')
 	) );
 
 	// Add Header setting panel and configure settings inside it
 	$wp_customize->add_panel( 'blogpost_social_panel', array(
 		'priority'       => 250,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Side-menu settings' , 'blogpost'),
-		'description'    => __( 'You can configure your theme side-menu settings here.' , 'blogpost')
+		'title'          => __( 'Side-menu settings' , 'blogpost-lite'),
+		'description'    => __( 'You can configure your theme side-menu settings here.' , 'blogpost-lite')
 	) );
 
 	// Add 404 setting panel and configure settings inside it
 	$wp_customize->add_panel( 'blogpost_404_panel', array(
 		'priority'       => 250,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( '404 page' , 'blogpost'),
-		'description'    => __( 'You can configure your themes 404 page settings here.' , 'blogpost')
+		'title'          => __( '404 page' , 'blogpost-lite'),
+		'description'    => __( 'You can configure your themes 404 page settings here.' , 'blogpost-lite')
 	) );
 
 	// Website logo
 	$wp_customize->add_section( 'blogpost_general_logo', array(
 		'priority'       => 10,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Website logo' , 'blogpost'),
-		'description'    => __( 'Please upload your logo, recommended logo size should be between 262x80' , 'blogpost'),
+		'title'          => __( 'Website logo' , 'blogpost-lite'),
+		'description'    => __( 'Please upload your logo, recommended logo size should be between 262x80' , 'blogpost-lite'),
 		'panel'          => 'blogpost_general_panel'
 	) );
 
 	$wp_customize->add_setting( 'blogpost_logo', array( 'sanitize_callback' => 'esc_url_raw' ) );
 
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'blogpost_logo', array(
-		'label'    => __( 'Website logo', 'blogpost' ),
+		'label'    => __( 'Website logo', 'blogpost-lite' ),
 		'section'  => 'blogpost_general_logo',
 		'settings' => 'blogpost_logo',
 	) ) );
@@ -73,8 +73,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_general_layout', array(
 		'priority'       => 20,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Layout' , 'blogpost'),
-		'description'    => __( 'Select a layout style.<br />(full, left side sidebar, right side sidebar)' , 'blogpost'),
+		'title'          => __( 'Layout' , 'blogpost-lite'),
+		'description'    => __( 'Select a layout style.<br />(full, left side sidebar, right side sidebar)' , 'blogpost-lite'),
 		'panel'          => 'blogpost_general_panel'
 	) );
 
@@ -103,15 +103,15 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_general_search_bg', array(
 		'priority'       => 40,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Search background' , 'blogpost'),
-		'description'    => __( 'Upload an image to use as your search background' , 'blogpost'),
+		'title'          => __( 'Search background' , 'blogpost-lite'),
+		'description'    => __( 'Upload an image to use as your search background' , 'blogpost-lite'),
 		'panel'          => 'blogpost_general_panel'
 	) );
 
 	$wp_customize->add_setting( 'blogpost_search_background', array( 'sanitize_callback' => 'esc_url_raw' ) );
 
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'blogpost_search_background', array(
-		'label'    => __( 'Search background', 'blogpost' ),
+		'label'    => __( 'Search background', 'blogpost-lite' ),
 		'section'  => 'blogpost_general_search_bg',
 		'settings' => 'blogpost_search_background',
 	) ) );
@@ -120,8 +120,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_general_sidebar_comments', array(
 		'priority'       => 50,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Show comments at sidebar' , 'blogpost'),
-		'description'    => __( 'Remove comment form bottom of the post and relocate it at sidebar.' , 'blogpost'),
+		'title'          => __( 'Show comments at sidebar' , 'blogpost-lite'),
+		'description'    => __( 'Remove comment form bottom of the post and relocate it at sidebar.' , 'blogpost-lite'),
 		'panel'          => 'blogpost_general_panel'
 	) );
 
@@ -140,15 +140,15 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_general_side_image', array(
 		'priority'       => 60,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Side menu image' , 'blogpost'),
-		'description'    => __( 'Upload an image to use as your side menu background' , 'blogpost'),
+		'title'          => __( 'Side menu image' , 'blogpost-lite'),
+		'description'    => __( 'Upload an image to use as your side menu background' , 'blogpost-lite'),
 		'panel'          => 'blogpost_general_panel'
 	) );
 
 	$wp_customize->add_setting( 'blogpost_side_menu_img', array( 'sanitize_callback' => 'esc_url_raw' ) );
 
 	$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'blogpost_side_menu_img', array(
-		'label'    => __( 'Side menu image', 'blogpost' ),
+		'label'    => __( 'Side menu image', 'blogpost-lite' ),
 		'section'  => 'blogpost_general_side_image',
 		'settings' => 'blogpost_side_menu_img',
 	) ) );
@@ -157,8 +157,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_general_blog_columns', array(
 		'priority'       => 70,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Blog columns' , 'blogpost'),
-		'description'    => __( 'Select in how many columns will the blog posts be divided.' , 'blogpost'),
+		'title'          => __( 'Blog columns' , 'blogpost-lite'),
+		'description'    => __( 'Select in how many columns will the blog posts be divided.' , 'blogpost-lite'),
 		'panel'          => 'blogpost_general_panel'
 	) );
 
@@ -191,8 +191,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_general_scrolltotop', array(
 		'priority'       => 100,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Scroll to top' , 'blogpost'),
-		'description'    => __( 'Do you want to enable "Scroll to Top" button?' , 'blogpost'),
+		'title'          => __( 'Scroll to top' , 'blogpost-lite'),
+		'description'    => __( 'Do you want to enable "Scroll to Top" button?' , 'blogpost-lite'),
 		'panel'          => 'blogpost_general_panel'
 	) );
 
@@ -211,8 +211,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_featured_post', array(
 		'priority'       => 110,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Featured post' , 'blogpost'),
-		'description'    => __( 'The ID of the featured post to show at the front page.' , 'blogpost'),
+		'title'          => __( 'Featured post' , 'blogpost-lite'),
+		'description'    => __( 'The ID of the featured post to show at the front page.' , 'blogpost-lite'),
 		'panel'          => 'blogpost_general_panel'
 	) );
 
@@ -231,8 +231,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_social_twitter', array(
 		'priority'       => 10,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Twitter URL' , 'blogpost'),
-		'description'    => __( 'Twitter URL for your menu social icon.' , 'blogpost'),
+		'title'          => __( 'Twitter URL' , 'blogpost-lite'),
+		'description'    => __( 'Twitter URL for your menu social icon.' , 'blogpost-lite'),
 		'panel'          => 'blogpost_social_panel'
 	) );
 
@@ -251,8 +251,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_social_facebook', array(
 		'priority'       => 20,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Facebook URL' , 'blogpost'),
-		'description'    => __( 'Facebook URL for your menu social icon.' , 'blogpost'),
+		'title'          => __( 'Facebook URL' , 'blogpost-lite'),
+		'description'    => __( 'Facebook URL for your menu social icon.' , 'blogpost-lite'),
 		'panel'          => 'blogpost_social_panel'
 	) );
 
@@ -271,8 +271,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_social_gplus', array(
 		'priority'       => 30,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Google+ URL' , 'blogpost'),
-		'description'    => __( 'Google+ URL for your menu social icon.' , 'blogpost'),
+		'title'          => __( 'Google+ URL' , 'blogpost-lite'),
+		'description'    => __( 'Google+ URL for your menu social icon.' , 'blogpost-lite'),
 		'panel'          => 'blogpost_social_panel'
 	) );
 
@@ -291,8 +291,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_social_pinterest', array(
 		'priority'       => 40,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Pinterest URL' , 'blogpost'),
-		'description'    => __( 'Pinterest URL for your menu social icon.' , 'blogpost'),
+		'title'          => __( 'Pinterest URL' , 'blogpost-lite'),
+		'description'    => __( 'Pinterest URL for your menu social icon.' , 'blogpost-lite'),
 		'panel'          => 'blogpost_social_panel'
 	) );
 
@@ -311,8 +311,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_social_instagram', array(
 		'priority'       => 50,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'Instagram URL' , 'blogpost'),
-		'description'    => __( 'Instagram URL for your menu social icon.' , 'blogpost'),
+		'title'          => __( 'Instagram URL' , 'blogpost-lite'),
+		'description'    => __( 'Instagram URL for your menu social icon.' , 'blogpost-lite'),
 		'panel'          => 'blogpost_social_panel'
 	) );
 
@@ -331,8 +331,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_social_vkontakte', array(
 		'priority'       => 60,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( 'VKontakte URL' , 'blogpost'),
-		'description'    => __( 'VKontakte URL for your menu social icon.' , 'blogpost'),
+		'title'          => __( 'VKontakte URL' , 'blogpost-lite'),
+		'description'    => __( 'VKontakte URL for your menu social icon.' , 'blogpost-lite'),
 		'panel'          => 'blogpost_social_panel'
 	) );
 
@@ -351,8 +351,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_404_page_title', array(
 		'priority'       => 40,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( '404 Page Title' , 'blogpost'),
-		'description'    => __( 'Set the page title that is displayed on the 404 Error Page.' , 'blogpost'),
+		'title'          => __( '404 Page Title' , 'blogpost-lite'),
+		'description'    => __( 'Set the page title that is displayed on the 404 Error Page.' , 'blogpost-lite'),
 		'panel'          => 'blogpost_404_panel'
 	) );
 
@@ -371,8 +371,8 @@ function blogpost_customizer_register( $wp_customize ) {
 	$wp_customize->add_section( 'blogpost_404_page_message', array(
 		'priority'       => 40,
 		'capability'     => 'edit_theme_options',
-		'title'          => __( '404 Page Message' , 'blogpost'),
-		'description'    => __( 'Set the message that is displayed on the 404 Error Page.' , 'blogpost'),
+		'title'          => __( '404 Page Message' , 'blogpost-lite'),
+		'description'    => __( 'Set the message that is displayed on the 404 Error Page.' , 'blogpost-lite'),
 		'panel'          => 'blogpost_404_panel'
 	) );
 
@@ -428,18 +428,6 @@ if ( class_exists( 'WP_Customize_Section' ) && !class_exists( 'blogpost_Customiz
 						margin-right: 5px;
 						float: left;
 					}
-					.cohhe-social-profiles li i.twitter {
-						background: url(<?php echo get_template_directory_uri().'/images/icons/twitter.png'; ?>);
-					}
-					.cohhe-social-profiles li i.facebook {
-						background: url(<?php echo get_template_directory_uri().'/images/icons/facebook.png'; ?>);
-					}
-					.cohhe-social-profiles li i.googleplus {
-						background: url(<?php echo get_template_directory_uri().'/images/icons/googleplus.png'; ?>);
-					}
-					.cohhe-social-profiles li i.cohhe_logo {
-						background: url(<?php echo get_template_directory_uri().'/images/icons/cohhe.png'; ?>);
-					}
 					.cohhe-social-profiles li a {
 						height: 20px;
 						line-height: 20px;
@@ -453,10 +441,7 @@ if ( class_exists( 'WP_Customize_Section' ) && !class_exists( 'blogpost_Customiz
 					}
 				</style>
 				<ul class="cohhe-social-profiles">
-					<li class="social-twitter"><i class="twitter"></i><a href="https://twitter.com/Cohhe_Themes" target="_blank"><?php _e( 'Follow us on Twitter', 'blogpost' ); ?></a></li>
-					<li class="social-facebook"><i class="facebook"></i><a href="https://www.facebook.com/cohhethemes" target="_blank"><?php _e( 'Join us on Facebook', 'blogpost' ); ?></a></li>
-					<li class="social-googleplus"><i class="googleplus"></i><a href="https://plus.google.com/+Cohhe_Themes/posts" target="_blank"><?php _e( 'Join us on Google+', 'blogpost' ); ?></a></li>
-					<li class="social-cohhe"><i class="cohhe_logo"></i><a href="https://cohhe.com/" target="_blank"><?php _e( 'Cohhe.com', 'blogpost' ); ?></a></li>
+					<li class="documentation"><a href="http://documentation.cohhe.com/blogpost" class="button button-primary button-hero" target="_blank"><?php _e( 'Documentation', 'blogpost-lite' ); ?></a></li>
 				</ul>
 			</li>
 			<?php
@@ -509,12 +494,12 @@ function blogpost_contextual_help() {
 
 	get_current_screen()->add_help_tab( array(
 		'id'      => 'blogpost',
-		'title'   => __( 'Blogpost 1.0', 'blogpost' ),
+		'title'   => __( 'Blogpost 1.0', 'blogpost-lite' ),
 		'content' =>
 			'<ul>' .
-				'<li>' . sprintf( __( 'The home page features your choice of up to 6 posts prominently displayed in a grid or slider, controlled by the <a href="%1$s">featured</a> tag; you can change the tag and layout in <a href="%2$s">Appearance &rarr; Customize</a>. If no posts match the tag, <a href="%3$s">sticky posts</a> will be displayed instead.', 'blogpost' ), admin_url( '/edit.php?tag=featured' ), admin_url( 'customize.php' ), admin_url( '/edit.php?show_sticky=1' ) ) . '</li>' .
-				'<li>' . sprintf( __( 'Enhance your site design by using <a href="%s">Featured Images</a> for posts you&rsquo;d like to stand out (also known as post thumbnails). This allows you to associate an image with your post without inserting it. Blogpost 1.0 uses featured images for posts and pages&mdash;above the title&mdash;and in the Featured Content area on the home page.', 'blogpost' ), 'http://codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail' ) . '</li>' .
-				'<li>' . sprintf( __( 'For an in-depth tutorial, and more tips and tricks, visit the <a href="%s">Blogpost 1.0 documentation</a>.', 'blogpost' ), 'http://codex.wordpress.org/Blogpost' ) . '</li>' .
+				'<li>' . sprintf( __( 'The home page features your choice of up to 6 posts prominently displayed in a grid or slider, controlled by the <a href="%1$s">featured</a> tag; you can change the tag and layout in <a href="%2$s">Appearance &rarr; Customize</a>. If no posts match the tag, <a href="%3$s">sticky posts</a> will be displayed instead.', 'blogpost-lite' ), admin_url( '/edit.php?tag=featured' ), admin_url( 'customize.php' ), admin_url( '/edit.php?show_sticky=1' ) ) . '</li>' .
+				'<li>' . sprintf( __( 'Enhance your site design by using <a href="%s">Featured Images</a> for posts you&rsquo;d like to stand out (also known as post thumbnails). This allows you to associate an image with your post without inserting it. Blogpost 1.0 uses featured images for posts and pages&mdash;above the title&mdash;and in the Featured Content area on the home page.', 'blogpost-lite' ), 'http://codex.wordpress.org/Post_Thumbnails#Setting_a_Post_Thumbnail' ) . '</li>' .
+				'<li>' . sprintf( __( 'For an in-depth tutorial, and more tips and tricks, visit the <a href="%s">Blogpost 1.0 documentation</a>.', 'blogpost-lite' ), 'http://codex.wordpress.org/Blogpost' ) . '</li>' .
 			'</ul>',
 	) );
 }

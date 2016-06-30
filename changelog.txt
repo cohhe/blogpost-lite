@@ -1,5 +1,14 @@
 Blogspot Lite changelog
 
+= Version 1.6 =
+* Removed social links from customizer
+* Added and changed text domain to blogpost-lite
+* Removed wpml-config.xml
+* Removed the TweenMax javascript file
+* Removed the post format renaming function
+* Prefixed add_image_size()
+* Escaped custom CSS
+
 = Version 1.5 =
 * Prefixed some values
 * Moved favorite functionality to plugin

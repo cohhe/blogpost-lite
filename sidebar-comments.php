@@ -14,7 +14,7 @@
 ?>
 <div id="comments">
 	<?php if ( post_password_required() ) { ?>
-		<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'blogpost' ); ?></p>
+		<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'blogpost-lite' ); ?></p>
 	</div><!-- end of comments -->
 	<?php
 			/* Stop the rest of comments.php from being processed,
@@ -28,15 +28,15 @@
 	<?php if ( have_comments() ) : ?>
 			<?php
 
-				printf( _n( '<span class="post_comment_title">Comment</span>', '<span class="post_comment_title">Comments</span>', get_comments_number(),'blogpost' ), number_format_i18n( get_comments_number() ) );
+				printf( _n( '<span class="post_comment_title">Comment</span>', '<span class="post_comment_title">Comments</span>', get_comments_number(),'blogpost-lite' ), number_format_i18n( get_comments_number() ) );
 
 			?>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<div id="comment-nav-above">
-			<h1 class="assistive-text"><?php _e( 'Comment navigation', 'blogpost' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'blogpost' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'blogpost' ) ); ?></div>
+			<h1 class="assistive-text"><?php _e( 'Comment navigation', 'blogpost-lite' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'blogpost-lite' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'blogpost-lite' ) ); ?></div>
 		</div>
 		<?php endif; // check for comment navigation ?>
 
@@ -53,9 +53,9 @@
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<div id="comment-nav-below">
-			<h1 class="assistive-text"><?php _e( 'Comment navigation', 'blogpost' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'blogpost' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'blogpost' ) ); ?></div>
+			<h1 class="assistive-text"><?php _e( 'Comment navigation', 'blogpost-lite' ); ?></h1>
+			<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'blogpost-lite' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'blogpost-lite' ) ); ?></div>
 		</div>
 		<?php endif; // check for comment navigation ?>
 	<?php
@@ -64,7 +64,7 @@
 		 */
 		elseif ( ! comments_open() && ! is_page() && post_type_supports( get_post_type(), 'comments' ) ) :
 	?>
-		<p class="nocomments"><?php _e( 'Comments are closed.', 'blogpost' ); ?></p>
+		<p class="nocomments"><?php _e( 'Comments are closed.', 'blogpost-lite' ); ?></p>
 	<?php endif; ?>
 
 	<div class="content-form white-form">
@@ -77,10 +77,10 @@
 			array('comment_notes_after' => '',
 					'logged_in_as' => '',
 					'url' => '',
-					'title_reply'      => __( 'Add comment', 'blogpost'),
+					'title_reply'      => __( 'Add comment', 'blogpost-lite'),
 					'comment_notes_before' => '',
-					'label_submit'    => __( 'Add comment', 'blogpost'),
-					'comment_field' =>  '<div class="comment-form-comment"><textarea id="comment" name="comment" placeholder="' . __('Your comment', 'blogpost') . '" cols="45" rows="8" aria-required="true">' . '</textarea><span class="comment-form-error">' . __('Enter your comment', 'blogpost') . '</span></div>'));
+					'label_submit'    => __( 'Add comment', 'blogpost-lite'),
+					'comment_field' =>  '<div class="comment-form-comment"><textarea id="comment" name="comment" placeholder="' . __('Your comment', 'blogpost-lite') . '" cols="45" rows="8" aria-required="true">' . '</textarea><span class="comment-form-error">' . __('Enter your comment', 'blogpost-lite') . '</span></div>'));
 		?>
 	</div>
 </div><!-- end of comments -->

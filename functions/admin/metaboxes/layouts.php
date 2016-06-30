@@ -5,14 +5,14 @@
 
 $config = array(
 	'id'       => 'blogpost_layouts',
-	'title'    => __('Layouts', 'blogpost'),
+	'title'    => __('Layouts', 'blogpost-lite'),
 	'pages'    => array('page', 'post'),
 	'context'  => 'normal',
 	'priority' => 'high',
 );
 
 $options = array(array(
-	'name'    => __('Layout type', 'blogpost'),
+	'name'    => __('Layout type', 'blogpost-lite'),
 	'id'      => 'layouts',
 	'type'    => 'layouts',
 	'only'    => 'page,post',

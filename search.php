@@ -26,7 +26,7 @@ $blogpost_blog_image_layout = 'with_full_image';
 			<div class="search-information">
 				<span class="search-name">
 					<?php
-					_e( 'Search Results for:', 'blogpost' );
+					_e( 'Search Results for:', 'blogpost-lite' );
 					echo '<br/>';
 					echo get_search_query();
 					?>
@@ -53,7 +53,7 @@ $blogpost_blog_image_layout = 'with_full_image';
 
 						} else { ?>
 							<div class="vc_row wpb_row vc_row-fluid">
-								<p><?php _e('Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'blogpost'); ?></p>
+								<p><?php _e('Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'blogpost-lite'); ?></p>
 								<?php
 								$blogpost_is_in_sidebar = 'content';
 								get_search_form();

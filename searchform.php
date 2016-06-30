@@ -29,8 +29,8 @@
 ?>
 <div class="search sb-search" id="sb-search-<?php echo esc_attr( $random ); ?>">
 	<form action="<?php echo home_url(); ?>" method="get" class="<?php echo esc_attr( $form_class ); ?>">
-		<input type="text" name="s" class="<?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $search_string ); ?>" placeholder="<?php _e('Type here for search...', 'blogpost'); ?>"/>
-		<button class="wpb_button  wpb_btn-danger wpb_regularsize square"><span><?php _e('Search', 'blogpost'); ?></span></button>
-		<!-- <input type="submit" name="search" class="btn btn-primary sb-search-submit" value="<?php _e('Search', 'blogpost'); ?>" /> -->
+		<input type="text" name="s" class="<?php echo esc_attr( $class ); ?>" value="<?php echo esc_attr( $search_string ); ?>" placeholder="<?php _e('Type here for search...', 'blogpost-lite'); ?>"/>
+		<button class="wpb_button  wpb_btn-danger wpb_regularsize square"><span><?php _e('Search', 'blogpost-lite'); ?></span></button>
+		<!-- <input type="submit" name="search" class="btn btn-primary sb-search-submit" value="<?php _e('Search', 'blogpost-lite'); ?>" /> -->
 	</form>
 </div><!--end of search-->
