@@ -3930,6 +3930,7 @@ body:not(.home) .page-wrapper:not(.sidebar-active):not(.menu-active) .teaser_gri
 	width: 33.333333%;
 	list-style: none;
 	border: none;
+	box-sizing: border-box;
 }
 
 .grid-sizer {
