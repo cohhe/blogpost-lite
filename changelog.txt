@@ -1,5 +1,8 @@
 Blogspot Lite changelog
 
+= Version 1.6.2 =
+* Checked WordPress 4.8 compatibility
+
 = Version 1.6 =
 * Removed social links from customizer
 * Added and changed text domain to blogpost-lite
