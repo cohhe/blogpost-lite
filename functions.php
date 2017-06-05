@@ -220,6 +220,11 @@ if (!function_exists('blogpost_scripts_method')) {
 }
 add_action('wp_enqueue_scripts', 'blogpost_scripts_method'); 
 
+function vh_admin_scripts_method() {
+	wp_enqueue_script('master', get_template_directory_uri() . '/functions/admin/js/master.js', array('jquery'));
+}
+add_action('admin_enqueue_scripts', 'vh_admin_scripts_method');
+
 function blogpost_has_shortcode( $postid, $shortcode ) {
 	if ( !$postid ) {
 		return false;
@@ -1009,7 +1014,7 @@ function blogpost_register_required_plugins() {
 			'name'                  => 'Functionality for Blogpost Lite theme', // The plugin name
 			'slug'                  => 'functionality-for-blogpost-lite-theme', // The plugin slug (typically the folder name)
 			'required'              => false, // If false, the plugin is only 'recommended' instead of required
-			'version'               => '1.3.1', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
+			'version'               => '1.3.2', // E.g. 1.0.0. If set, the active plugin must be this version or higher, otherwise a notice is presented
 			'force_activation'      => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch
 			'force_deactivation'    => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins
 			'external_url'          => '', // If set, overrides default API URL and points to an external URL

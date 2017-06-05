@@ -1,6 +1,11 @@
 // Image Select script
 jQuery( document ).ready( function( $ ) {
 
+	jQuery(document).on('click', '.content.layouts label', function() {
+		jQuery('.content.layouts label img').removeClass('selectetd');
+		jQuery(this).find('img').addClass('selectetd');
+	});
+
 	// Show error log functionality
 	$('.show-error-log').on('click', function(event) {
 		event.preventDefault();

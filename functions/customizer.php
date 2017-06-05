@@ -343,16 +343,6 @@ function blogpost_sanitize_layout( $layout ) {
 }
 
 /**
- * Bind JS handlers to make Theme Customizer preview reload changes asynchronously.
- *
- * @since Blogpost 1.0
- */
-function blogpost_customize_preview_js() {
-	wp_enqueue_script( 'blogpost_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20131205', true );
-}
-add_action( 'customize_preview_init', 'blogpost_customize_preview_js' );
-
-/**
  * Add contextual help to the Themes and Post edit screens.
  *
  * @since Blogpost 1.0
